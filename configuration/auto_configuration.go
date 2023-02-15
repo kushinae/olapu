@@ -45,14 +45,3 @@ func getDatasourceProperties() types.DataSourceProperties {
 		},
 	}
 }
-
-//
-//func GetMySQLProperties() types.MySQLProperties {
-//	var mysqlProperties types.MySQLProperties
-//	mysqlProperties.Username = viperConfig.GetString("datasource.mysql.username")
-//	mysqlProperties.Password = viperConfig.GetString("datasource.mysql.password")
-//	mysqlProperties.Port = viperConfig.GetInt("datasource.mysql.port")
-//	mysqlProperties.Host = viperConfig.GetString("datasource.mysql.host")
-//	mysqlProperties.Database = viperConfig.GetString("datasource.mysql.database")
-//	return mysqlProperties
-//}
