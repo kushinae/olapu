@@ -1,0 +1,30 @@
+[
+  {
+    "key": "public",
+    "description": "public"
+  },
+  {
+    "key": "static",
+    "description": "static"
+  },
+  {
+    "key": "class",
+    "description": "class"
+  },
+  {
+    "key": "void",
+    "description": "void"
+  },
+  {
+    "key": "String",
+    "description": "String"
+  },
+  {
+    "key": "return",
+    "description": "return"
+  },
+  {
+    "key": "select",
+    "description": "SELECT"
+  }
+]

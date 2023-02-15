@@ -1,0 +1,12 @@
+web:
+  # 端口配置
+  port: 8080
+# 数据库配置
+datasource:
+  driver: mysql
+  mysql:
+    username: root
+    password: 123456
+    host: 127.0.0.1
+    port: 3306
+    database: golb
