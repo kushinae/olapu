@@ -1,8 +1,16 @@
 import molecule from "@dtinsight/molecule";
-import { UniqueId } from "@dtinsight/molecule/esm/common/types";
-import { ColorThemeMode, FileType, IExplorerPanelItem, IExtension, IFolderTreeNodeProps } from "@dtinsight/molecule/esm/model";
+import {
+  ColorThemeMode,
+  FileType, FileTypes,
+  IExplorerPanelItem,
+  IExtension,
+  IFolderTreeNodeProps,
+  TreeNodeModel
+} from "@dtinsight/molecule/esm/model";
 import { IExtensionService } from "@dtinsight/molecule/esm/services";
 import { Empty } from "antd";
+import { uniqueId } from 'lodash';
+import { UniqueId } from "@dtinsight/molecule/esm/common/types";
 
 export const FloderExtension: IExtension = {
   id: "FloderExtension",
@@ -10,6 +18,8 @@ export const FloderExtension: IExtension = {
   activate: function (extensionCtx: IExtensionService): void {
 
     const currentMode = molecule.colorTheme.getColorThemeMode();
+
+    molecule.folderTree.onLoadData((treeNode) => { })
 
     // 改默认的初始化无文件样式
     molecule.folderTree.setEntry(
@@ -31,14 +41,20 @@ export const FloderExtension: IExtension = {
     );
 
     molecule.folderTree.onCreate((type: FileType, id?: UniqueId) => {
-      molecule.editor.open({
-        id: 'test',
-        name: 'test.java',
-        data: {
-          value: 'select * from test',
-          language: 'java',
-        },
+
+      const folderTree = molecule.folderTree.getState().folderTree;
+
+      const parentId = typeof id === 'string' ? id : folderTree?.data?.[0]?.id;
+
+      const fileData = new TreeNodeModel({
+        id: uniqueId(),
+        name: '',
+        isLeaf: type === FileTypes.File,
+        fileType: type,
+        isEditable: true,
+        data: type === FileTypes.File ? null : parentId
       });
+      molecule.folderTree.add(fileData, parentId);
     });
 
     // Listen to the remove node event
@@ -48,10 +64,15 @@ export const FloderExtension: IExtension = {
 
     // Listen to the select node event
     molecule.folderTree.onSelectFile((file: IFolderTreeNodeProps) => {
-      // do something
+      molecule.editor.open({
+        id: file.id,
+        name: file.name,
+        data: {
+          value: file.data,
+          language: file.name?.substring(file.name?.lastIndexOf(".") + 1),
+        },
+      });
     });
-
-
   },
   dispose: function (extensionCtx: IExtensionService): void {
     throw new Error("Function not implemented.");

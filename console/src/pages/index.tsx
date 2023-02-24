@@ -1,5 +1,6 @@
 import { ColorThemeExtensions, EditorExtension, FloderExtension, LocaleExtension } from '@/extensions';
-import molecule, { create, Workbench } from '@dtinsight/molecule';
+import { CategoryExtension } from '@/extensions/category';
+import { create, Workbench } from '@dtinsight/molecule';
 import '@dtinsight/molecule/esm/style/mo.css';
 
 const moInstance = create({
@@ -8,6 +9,7 @@ const moInstance = create({
     LocaleExtension,
     FloderExtension,
     EditorExtension,
+    CategoryExtension,
   ],
   defaultLocale: 'zh-CN'
 });
