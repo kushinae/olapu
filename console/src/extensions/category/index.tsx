@@ -15,6 +15,10 @@ export const CategoryExtension: IExtension = {
       data: "root",
       children: []
     }));
+
+    molecule.folderTree.onLoadData((treeNode, callback) => {
+      callback(treeNode);
+    })
   },
   dispose: function (extensionCtx: IExtensionService): void {
 
