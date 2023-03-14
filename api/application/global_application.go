@@ -1,8 +1,8 @@
 package application
 
 import (
-	"api/controller"
-	"bootstrap/util"
+	"api/router"
+	"api/util"
 	"database/sql"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -15,7 +15,7 @@ import (
 
 var viperConfig = viper.New()
 var Connection *sql.DB
-var engine *gin.Engine
+var GinEngine *gin.Engine
 
 type IAutoConfiguration interface {
 	WebAutoConfiguration(property OlapuProperty)
@@ -48,9 +48,9 @@ type GlobalAutoConfiguration struct {
 }
 
 func (global GlobalAutoConfiguration) WebAutoConfiguration(property OlapuProperty) {
-	engine = gin.Default()
-	registerRouter()
-	err := engine.Run(fmt.Sprintf("0.0.0.0:%s", util.Int2String(property.WebProperty.Port)))
+	GinEngine = gin.Default()
+	router.RegisterRouters(GinEngine)
+	err := GinEngine.Run(fmt.Sprintf("0.0.0.0:%s", util.Int2String(property.WebProperty.Port)))
 	if err != nil {
 		log.Fatalln(fmt.Sprintf("启动服务失败，可能是因为端口 %s 已经被占用", util.Int2String(property.WebProperty.Port)))
 	}
@@ -150,8 +150,4 @@ func testConnection() {
 	if err != nil {
 		log.Fatal("与数据库服务器通信失败,请检查链接信息或确定服务是否已经启动", err.Error())
 	}
-}
-
-func registerRouter() {
-	engine.GET("/ping", controller.Ping)
 }

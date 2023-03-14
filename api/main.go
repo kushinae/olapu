@@ -1,8 +1,7 @@
 package main
 
-import "bootstrap/application"
+import "api/application"
 
 func main() {
-	defer application.Run()
 	application.Run()
 }

@@ -2,10 +2,7 @@ module api
 
 go 1.19
 
-replace bootstrap => ../bootstrap
-
 require (
-	bootstrap v0.0.0-00010101000000-000000000000
 	github.com/gin-gonic/gin v1.8.2
 )
 
