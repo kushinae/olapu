@@ -5,7 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterRouters(GinEngine *gin.Engine) {
+func RegisterRouters(engine *gin.Engine) {
 	// 心跳检测API
-	GinEngine.GET("/ping", routers.Ping)
+	engine.GET("/ping", routers.Ping)
+	engine.POST("/account/login", routers.Login)
 }
