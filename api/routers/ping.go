@@ -1,7 +1,6 @@
 package routers
 
 import (
-	olapuHttp "api/http"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -12,5 +11,5 @@ type LoginParam struct {
 }
 
 func Ping(c *gin.Context) {
-	c.JSON(http.StatusOK, olapuHttp.Ok.WithMessage("pong"))
+	c.JSON(http.StatusOK, "pong")
 }

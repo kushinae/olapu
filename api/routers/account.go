@@ -1,7 +1,7 @@
 package routers
 
 import (
-	olapuHttp "api/http"
+	olapuHttp "api/response"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -10,8 +10,12 @@ func Login(c *gin.Context) {
 	loginParam := LoginParam{}
 	err := c.BindJSON(&loginParam)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, olapuHttp.BadRequest.WithError("Missing Required Parameter"))
+		c.JSON(http.StatusBadRequest, olapuHttp.BadRequest())
 		return
 	}
-	c.JSON(http.StatusOK, olapuHttp.Ok.WithData(loginParam))
+	c.JSON(http.StatusOK, loginParam)
+}
+
+func Logout(c *gin.Context) {
+	c.JSON(http.StatusOK, nil)
 }

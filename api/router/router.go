@@ -8,5 +8,8 @@ import (
 func RegisterRouters(engine *gin.Engine) {
 	// 心跳检测API
 	engine.GET("/ping", routers.Ping)
-	engine.POST("/account/login", routers.Login)
+
+	// account
+	engine.POST("/login", routers.Login)
+	engine.POST("/logout", routers.Logout)
 }

@@ -1,53 +1,37 @@
 package application
 
 import (
+	"api/commons/properties"
+	"api/datasource"
 	"api/router"
 	"api/util"
-	"database/sql"
+	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/spf13/viper"
+	_ "go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"os"
 	"path/filepath"
 )
 
 var viperConfig = viper.New()
-var Connection *sql.DB
 var GinEngine *gin.Engine
 
 type IAutoConfiguration interface {
-	WebAutoConfiguration(property OlapuProperty)
-	DataSourceAutoConfiguration(property OlapuProperty)
+	WebAutoConfiguration(property properties.OlapuProperty)
+	DataSourceAutoConfiguration(property properties.OlapuProperty)
 }
 
 type Content struct {
-	OlapuProperty
-}
-
-type WebProperty struct {
-	Port int
-}
-
-type DataSourceProperty struct {
-	Driver   string `yaml:"driver"`
-	Username string `yaml:"username"`
-	Password string `yaml:"password"`
-	Host     string `yaml:"host"`
-	Port     int    `yaml:"port"`
-	Database string `yaml:"database"`
-}
-
-type OlapuProperty struct {
-	WebProperty
-	DataSourceProperty
+	properties.OlapuProperty
 }
 
 type GlobalAutoConfiguration struct {
 }
 
-func (global GlobalAutoConfiguration) WebAutoConfiguration(property OlapuProperty) {
+func (global GlobalAutoConfiguration) WebAutoConfiguration(property properties.OlapuProperty) {
 	GinEngine = gin.Default()
 	router.RegisterRouters(GinEngine)
 	err := GinEngine.Run(fmt.Sprintf("0.0.0.0:%s", util.Int2String(property.WebProperty.Port)))
@@ -56,56 +40,40 @@ func (global GlobalAutoConfiguration) WebAutoConfiguration(property OlapuPropert
 	}
 }
 
-func (global GlobalAutoConfiguration) DataSourceAutoConfiguration(property OlapuProperty) {
-	var err error
-	url := fmt.Sprintf("%s:%s@(%s:%s)/%s",
-		property.Username,
-		property.Password,
-		property.Host,
-		util.Int2String(property.DataSourceProperty.Port),
-		property.Database)
-	Connection, err = sql.Open(property.Driver, url)
-
-	if err != nil {
-		log.Fatal("创建数据库连接失败,请检查", url, err.Error(), err)
-
-	}
-	if err != nil {
-		log.Fatal("创建数据库连接失败", err.Error())
-	}
-	testConnection()
+func (global GlobalAutoConfiguration) DataSourceAutoConfiguration(property properties.OlapuProperty) {
+	testConnection(property)
 }
 
 // Run 启动程序
 func Run() Content {
 	// 加载配置
-	properties := LoadingProperties()
+	loadingProperties := LoadingProperties()
 
 	globalAutoConfiguration := new(GlobalAutoConfiguration)
 	// 前置自动化配置
-	globalAutoConfiguration.DataSourceAutoConfiguration(properties)
-	globalAutoConfiguration.WebAutoConfiguration(properties)
+	globalAutoConfiguration.DataSourceAutoConfiguration(loadingProperties)
+	globalAutoConfiguration.WebAutoConfiguration(loadingProperties)
 	// 启动
 	return Content{
-		OlapuProperty: properties,
+		OlapuProperty: loadingProperties,
 	}
 }
 
-func LoadingProperties() OlapuProperty {
+func LoadingProperties() properties.OlapuProperty {
 	preSetting()
 	if err := viperConfig.ReadInConfig(); err != nil {
 		log.Fatal("无法从 " + ConfigFilepath() + " 加载配置文件")
 	}
-	return OlapuProperty{
+	return properties.OlapuProperty{
 		WebProperty:        getWebProperty(),
 		DataSourceProperty: getDataSourceProperty(),
 	}
 }
 
-func getDataSourceProperty() DataSourceProperty {
+func getDataSourceProperty() properties.DataSourceProperty {
 	preKey := "datasource"
 	driverType := viperConfig.GetString(preKey + ".driver")
-	return DataSourceProperty{
+	return properties.DataSourceProperty{
 		Driver:   driverType,
 		Username: viperConfig.GetString(preKey + ".username"),
 		Password: viperConfig.GetString(preKey + ".password"),
@@ -115,8 +83,8 @@ func getDataSourceProperty() DataSourceProperty {
 	}
 }
 
-func getWebProperty() WebProperty {
-	return WebProperty{
+func getWebProperty() properties.WebProperty {
+	return properties.WebProperty{
 		Port: viperConfig.GetInt("web.port"),
 	}
 }
@@ -145,8 +113,15 @@ func ConfigFilepath() string {
 	return ConfigPath() + string(os.PathSeparator) + configFile
 }
 
-func testConnection() {
-	err := Connection.Ping()
+func testConnection(property properties.OlapuProperty) {
+	// 驱动 HOST 端口
+	url := fmt.Sprintf("%s://%s:%s",
+		property.Driver,
+		property.Host,
+		util.Int2String(property.DataSourceProperty.Port))
+
+	err := datasource.GetMongoDBClient(url, property).Ping(context.TODO(), nil)
+
 	if err != nil {
 		log.Fatal("与数据库服务器通信失败,请检查链接信息或确定服务是否已经启动", err.Error())
 	}
