@@ -2,8 +2,9 @@ package application
 
 import (
 	"api/commons/properties"
+	olapuContent "api/content"
 	"api/datasource"
-	"api/router"
+	"api/routers"
 	"api/util"
 	"context"
 	"fmt"
@@ -24,16 +25,12 @@ type IAutoConfiguration interface {
 	DataSourceAutoConfiguration(property properties.OlapuProperty)
 }
 
-type Content struct {
-	properties.OlapuProperty
-}
-
 type GlobalAutoConfiguration struct {
 }
 
 func (global GlobalAutoConfiguration) WebAutoConfiguration(property properties.OlapuProperty) {
 	GinEngine = gin.Default()
-	router.RegisterRouters(GinEngine)
+	routers.RegisterRouters(GinEngine)
 	err := GinEngine.Run(fmt.Sprintf("0.0.0.0:%s", util.Int2String(property.WebProperty.Port)))
 	if err != nil {
 		log.Fatalln(fmt.Sprintf("启动服务失败，可能是因为端口 %s 已经被占用", util.Int2String(property.WebProperty.Port)))
@@ -45,18 +42,18 @@ func (global GlobalAutoConfiguration) DataSourceAutoConfiguration(property prope
 }
 
 // Run 启动程序
-func Run() Content {
+func Run() olapuContent.Content {
 	// 加载配置
 	loadingProperties := LoadingProperties()
 
 	globalAutoConfiguration := new(GlobalAutoConfiguration)
+	olapuContent.Context = olapuContent.Content{
+		OlapuProperty: loadingProperties,
+	}
 	// 前置自动化配置
 	globalAutoConfiguration.DataSourceAutoConfiguration(loadingProperties)
 	globalAutoConfiguration.WebAutoConfiguration(loadingProperties)
-	// 启动
-	return Content{
-		OlapuProperty: loadingProperties,
-	}
+	return olapuContent.Context
 }
 
 func LoadingProperties() properties.OlapuProperty {
@@ -120,7 +117,7 @@ func testConnection(property properties.OlapuProperty) {
 		property.Host,
 		util.Int2String(property.DataSourceProperty.Port))
 
-	err := datasource.GetMongoDBClient(url, property).Ping(context.TODO(), nil)
+	err := datasource.ConfigureMongoDBClient(url, property).Ping(context.TODO(), nil)
 
 	if err != nil {
 		log.Fatal("与数据库服务器通信失败,请检查链接信息或确定服务是否已经启动", err.Error())

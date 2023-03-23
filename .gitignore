@@ -4,3 +4,4 @@ node_modules
 yarn.lock
 go.sum
 vendor
+*.log
