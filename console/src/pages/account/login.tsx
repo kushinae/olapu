@@ -2,6 +2,7 @@ import React, {useLayoutEffect, useState} from "react";
 import {Button, Form, Input, Modal, Space} from "antd";
 import {getCookie} from "@/utils/cookie";
 import api from "@/api";
+import {LoginParam} from "@/api/interfaces";
 
 const listener: Record<string, React.Dispatch<React.SetStateAction<boolean>>> = {};
 
@@ -34,7 +35,7 @@ export default () => {
       "username": form.getFieldValue("username"),
       "password": form.getFieldValue("password"),
       "nickname": form.getFieldValue("nickname"),
-    })
+    });
   }
 
   const renderLoginForm = () => {
@@ -46,6 +47,11 @@ export default () => {
         layout='horizontal'
         wrapperCol={{ span: 24 }}
         autoComplete="off"
+        onFinish={(payload: LoginParam) => {
+          console.log(payload);
+          const login = api.login(payload);
+          console.log(login);
+        }}
       >
         <Form.Item
           label=""
@@ -85,7 +91,7 @@ export default () => {
         </Form.Item>
         <Form.Item>
           <Space wrap>
-            <Button className="dt-button" loading={submitLoading} block type="primary">
+            <Button className="dt-button" loading={submitLoading} block type="primary" htmlType='submit'>
               登录
             </Button>
             <Button className="dt-button" onClick={() => {handlerRegister()}} loading={submitLoading} block type="link">

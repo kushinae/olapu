@@ -25,10 +25,20 @@ func Login(c *gin.Context) {
 
 	account, err := bson.GetLogin(bson.LoginBson{Username: loginParam.Username, Password: loginParam.Password})
 	if err != nil {
+		println(err.Error())
 		c.JSON(http.StatusBadRequest, olapuHttp.ErrorBuilder(olapuHttp.BadRequestError, &olapuHttp.UsernameOrPasswordError))
 		return
 	}
-	c.JSON(http.StatusOK, account)
+
+	result := olapuHttp.Login{
+		Id:          account.Id,
+		Nickname:    account.Nickname,
+		Avatar:      account.Avatar,
+		AccessToken: util.GenerateToken(account.Uid),
+		TokenType:   "Bearer",
+	}
+
+	c.JSON(http.StatusOK, result)
 }
 
 func Logout(c *gin.Context) {
@@ -39,7 +49,6 @@ func Register(c *gin.Context) {
 	registerParam := request.ResisterParam{}
 	err := c.BindJSON(&registerParam)
 	if err != nil {
-		println(err.Error())
 		c.JSON(http.StatusBadRequest, olapuHttp.ErrorBuilder(olapuHttp.BadRequestError, &olapuHttp.RequestPayloadMissing))
 		return
 	}
@@ -71,7 +80,7 @@ func Register(c *gin.Context) {
 
 	if account != nil {
 		message := util.Format(olapuHttp.DataExist, "username")
-		c.JSON(http.StatusInternalServerError, olapuHttp.ErrorBuilder(olapuHttp.BadRequestError, &message))
+		c.JSON(http.StatusBadRequest, olapuHttp.ErrorBuilder(olapuHttp.BadRequestError, &message))
 		return
 	}
 
@@ -82,6 +91,7 @@ func Register(c *gin.Context) {
 	})
 	if err != nil {
 		message := err.Error()
+		c.Status(http.StatusInternalServerError)
 		c.JSON(http.StatusInternalServerError, olapuHttp.ErrorBuilder(olapuHttp.InternalServerError, &message))
 		return
 	}

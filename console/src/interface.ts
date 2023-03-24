@@ -1,11 +1,9 @@
 /**
  * 请求返回体
  */
-export interface IResponseBodyProps<T = any> {
+export interface IErrorBodyProps {
   code: number;
-  data: T;
   message: string;
-  success: boolean;
-
+  status: string;
   [key: string]: any;
 }
