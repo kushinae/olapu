@@ -16,6 +16,18 @@ interface IFormField {
   nickname: string;
 }
 
+const loginStorage = (loginData: LoginResult) => {
+  localStorage.setItem(Constant.Authorization.X_Access_Token, loginData.access_token);
+  localStorage.setItem(Constant.Authorization.Nickname, loginData.nickname);
+  localStorage.setItem(Constant.Authorization.Avatar, loginData.avatar);
+}
+
+export const logoutStorage = () => {
+  localStorage.removeItem(Constant.Authorization.X_Access_Token);
+  localStorage.removeItem(Constant.Authorization.Nickname);
+  localStorage.removeItem(Constant.Authorization.Avatar);
+}
+
 export default () => {
   const [isOpen, setOpen] = useState(false);
   const [loginForm] = Form.useForm<IFormField>();
@@ -46,9 +58,8 @@ export default () => {
           });
           setLoading(false);
           setOpen(false);
-          localStorage.setItem(Constant.Authorization.X_Access_Token, result.access_token);
-          localStorage.setItem(Constant.Authorization.Nickname, result.nickname);
-          localStorage.setItem(Constant.Authorization.Avatar, result.avatar);
+          loginStorage(result);
+          window.location.reload();
         }}
       >
         <Form.Item
