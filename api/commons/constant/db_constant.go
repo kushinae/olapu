@@ -1,6 +1,6 @@
 package constant
 
-var (
+const (
 	MySQL   = "mysql"
 	MongoDB = "mongodb"
 )

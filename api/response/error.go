@@ -6,6 +6,7 @@ var (
 	RequestPayloadMissing         = "Missing required request payload"
 	CannotBeEmpty                 = "%s cannot be empty"
 	DataExist                     = "%s already exists"
+	UnauthorizedError             = "Unauthorized"
 )
 
 var (
@@ -13,6 +14,11 @@ var (
 		Code:    400,
 		Message: "",
 		Status:  "Bad Request",
+	}
+	Unauthorized = Error{
+		Code:    401,
+		Message: "",
+		Status:  "Unauthorized",
 	}
 	InternalServerError = Error{
 		Code:    500,

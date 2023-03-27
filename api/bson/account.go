@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const table = "t_account"
+const accountTableName = "t_account"
 
 type Account struct {
 	Id         string    `bson:"_id,omitempty" json:"id"`
@@ -34,7 +34,7 @@ type RegisterBson struct {
 }
 
 func GetLogin(payload LoginBson) (Account, error) {
-	collection := GetCollection(table)
+	collection := GetCollection(accountTableName)
 	one := collection.FindOne(context.TODO(), bson.M{"username": payload.Username, "password": payload.Password})
 	account := Account{}
 	err := one.Decode(&account)
@@ -42,7 +42,7 @@ func GetLogin(payload LoginBson) (Account, error) {
 }
 
 func QueryUsername(username string) (*Account, error) {
-	collection := GetCollection(table)
+	collection := GetCollection(accountTableName)
 	one := collection.FindOne(context.TODO(), bson.D{
 		{
 			"username",
@@ -63,7 +63,7 @@ func QueryUsername(username string) (*Account, error) {
 }
 
 func Register(payload RegisterBson) (*mongo.InsertOneResult, error) {
-	collection := GetCollection(table)
+	collection := GetCollection(accountTableName)
 	now := time.Now()
 	createUuid, err := uuid.NewUUID()
 	if err != nil {

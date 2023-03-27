@@ -2,6 +2,7 @@ package util
 
 import (
 	"fmt"
+	"strings"
 )
 
 func StringIsEmpty(str string) bool {
@@ -10,4 +11,8 @@ func StringIsEmpty(str string) bool {
 
 func Format(template string, values ...string) string {
 	return fmt.Sprintf(template, values)
+}
+
+func Split(str string, sep string) []string {
+	return strings.Split(str, sep)
 }
