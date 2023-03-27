@@ -1,8 +1,8 @@
 import React, {useLayoutEffect, useState} from "react";
-import {Button, Form, Input, Modal, Space} from "antd";
-import {getCookie} from "@/utils/cookie";
+import {Button, Form, Input, message, Modal, Space, Tabs} from "antd";
 import api from "@/api";
-import {LoginParam} from "@/api/interfaces";
+import {LoginParam, LoginResult} from "@/api/interfaces";
+import Constant from "@/commons/constant";
 
 const listener: Record<string, React.Dispatch<React.SetStateAction<boolean>>> = {};
 
@@ -18,10 +18,10 @@ interface IFormField {
 
 export default () => {
   const [isOpen, setOpen] = useState(false);
-  const [form] = Form.useForm<IFormField>();
+  const [loginForm] = Form.useForm<IFormField>();
+  const [registerForm] = Form.useForm<IFormField>();
   const [submitLoading, setLoading] = useState(false);
-  // const [isLogin, setLogin] = useState(() => !!getCookie('nickname'));
-  const [isLogin, setLogin] = useState(false);
+  const [activeKey, setActiveKey] = useState<string>('login');
 
   useLayoutEffect(() => {
     listener.setVisible = setOpen;
@@ -30,30 +30,84 @@ export default () => {
     }
   });
 
-  const handlerRegister = () => {
-    api.registerAccount({
-      "username": form.getFieldValue("username"),
-      "password": form.getFieldValue("password"),
-      "nickname": form.getFieldValue("nickname"),
-    });
-  }
-
   const renderLoginForm = () => {
     return (
       <Form<IFormField>
-        form={form}
-        hidden={isLogin}
+        form={loginForm}
+        hidden={activeKey !== 'login'}
         preserve={false}
         layout='horizontal'
         wrapperCol={{ span: 24 }}
         autoComplete="off"
-        onFinish={(payload: LoginParam) => {
-          console.log(payload);
-          const login = api.login(payload);
-          console.log(login);
+        onFinish={async (payload: LoginParam) => {
+          setLoading(true);
+          const result: LoginResult = await api.login(payload, () => {
+            setLoading(false);
+          });
+          setLoading(false);
+          setOpen(false);
+          localStorage.setItem(Constant.Authorization.X_Access_Token, result.access_token);
+          localStorage.setItem(Constant.Authorization.Nickname, result.nickname);
+          localStorage.setItem(Constant.Authorization.Avatar, result.avatar);
         }}
       >
         <Form.Item
+          label=""
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: '账号不能为空',
+            },
+          ]}
+        >
+          <Input placeholder="请输入注册账号,该帐号将用于登陆" bordered={false} />
+        </Form.Item>
+        <Form.Item
+          label=""
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: '密码不能为空',
+            },
+          ]}
+        >
+          <Input.Password className="dt-input-borderless" placeholder="请输入密码" bordered={false} />
+        </Form.Item>
+        <Form.Item>
+          <Space wrap>
+            <Button className="dt-button" loading={submitLoading} block type="primary" htmlType='submit'>
+              登录
+            </Button>
+          </Space>
+        </Form.Item>
+      </Form>
+    );
+  };
+
+  const renderRegisterForm = () => {
+    return (
+      <Form<IFormField>
+        form={registerForm}
+        hidden={activeKey !== 'register'}
+        preserve={false}
+        layout='horizontal'
+        wrapperCol={{ span: 24 }}
+        autoComplete="off"
+        onFinish={async () => {
+          await api.registerAccount({
+            "username": registerForm.getFieldValue("username"),
+            "password": registerForm.getFieldValue("password"),
+            "nickname": registerForm.getFieldValue("nickname"),
+          });
+          loginForm.setFieldValue('username', registerForm.getFieldValue('username'));
+          registerForm.resetFields();
+          setActiveKey('login');
+          await message.success('注册成功');
+        }}
+      >
+      <Form.Item
           label=""
           name="username"
           rules={[
@@ -92,9 +146,6 @@ export default () => {
         <Form.Item>
           <Space wrap>
             <Button className="dt-button" loading={submitLoading} block type="primary" htmlType='submit'>
-              登录
-            </Button>
-            <Button className="dt-button" onClick={() => {handlerRegister()}} loading={submitLoading} block type="link">
               注册
             </Button>
           </Space>
@@ -113,7 +164,24 @@ export default () => {
         destroyOnClose
         onCancel={() => setOpen(false)}
       >
-        {renderLoginForm()}
+        <Tabs
+          activeKey={activeKey}
+          onChange={(key: 'login' | 'register' | string) => {
+            setActiveKey(key);
+          }}
+          items={[
+              {
+                label: '登陆',
+                key: 'login',
+                children: renderLoginForm()
+              },
+              {
+                label: '注册',
+                key: 'register',
+                children: renderRegisterForm()
+              }
+            ]}
+        />
       </Modal>
     </>
   )

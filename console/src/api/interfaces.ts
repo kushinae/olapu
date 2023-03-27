@@ -10,6 +10,9 @@ export interface LoginParam {
 }
 
 export interface LoginResult {
-  username: string,
-  password: string,
+  id: string,
+  nickname: string,
+  avatar: string,
+  access_token: string,
+  token_type: string,
 }

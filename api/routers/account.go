@@ -11,6 +11,8 @@ import (
 )
 
 func Login(c *gin.Context) {
+	header := c.GetHeader("Authorization")
+	println("Bearer", header)
 	loginParam := request.LoginParam{}
 	err := c.BindJSON(&loginParam)
 	if err != nil {
@@ -95,8 +97,6 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, olapuHttp.ErrorBuilder(olapuHttp.InternalServerError, &message))
 		return
 	}
-
-	println(register.InsertedID.(primitive.ObjectID).Hex)
 
 	c.JSON(http.StatusOK, olapuHttp.Register{Id: register.InsertedID.(primitive.ObjectID).Hex()})
 }

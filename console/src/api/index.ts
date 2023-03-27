@@ -1,15 +1,19 @@
 import {LoginParam, LoginResult, RegisterParam} from "@/api/interfaces";
-import request from '@/api/http'
+import {httpClient} from '@/api/http'
 import requests from "@/api/requests";
 
 export default {
   /* 注册 */
-  registerAccount(payload: RegisterParam): string | undefined {
-    return request.post<string>(requests.REGISTER, payload);
+  async registerAccount(payload: RegisterParam): Promise<string> {
+    return httpClient.post<string>(requests.REGISTER, {
+      data: payload
+    });
   },
 
   /* 登陆 */
-  login(payload: LoginParam) {
-    return request.post<LoginResult>(requests.LOGIN, payload);
+  async login(payload: LoginParam, callback?: () => void): Promise<LoginResult> {
+      return await httpClient.post<LoginResult>(requests.LOGIN, {
+        data: payload
+      }, callback);
   }
 }
