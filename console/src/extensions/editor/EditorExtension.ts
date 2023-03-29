@@ -2,6 +2,7 @@ import { IExtension } from "@dtinsight/molecule/esm/model";
 import { languages } from '@dtinsight/molecule/esm/monaco';
 import { IExtensionService } from "@dtinsight/molecule/esm/services";
 import {Keywords, Snippets} from "@/utils/completion";
+import {UniqueId} from "@dtinsight/molecule/esm/common/types";
 
 const SUPPORTED_LANGUAGES = ['java', 'sql'] as const;
 
@@ -11,10 +12,10 @@ export async function createSQLProposals(
     return (await Keywords(range)).concat(Snippets(range));
 }
 
-export const EditorExtension: IExtension = {
-  id: "EditorExtension",
-  name: "Editor Extension",
-  activate: function (extensionCtx: IExtensionService): void {
+export default class EditorExtension implements IExtension {
+  id: UniqueId = "EditorExtension";
+  name: string = "Editor Extension";
+  activate (extensionCtx: IExtensionService): void {
     SUPPORTED_LANGUAGES.forEach(sql => {
       languages.registerCompletionItemProvider(sql, {
         async provideCompletionItems(model, position) {
@@ -33,8 +34,8 @@ export const EditorExtension: IExtension = {
         },
       })
     })
-  },
-  dispose: function (extensionCtx: IExtensionService): void {
+  }
+  dispose (extensionCtx: IExtensionService): void {
 
   }
 }

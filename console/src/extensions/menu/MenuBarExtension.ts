@@ -4,10 +4,10 @@ import {molecule} from '@dtinsight/molecule';
 import {localize} from "@dtinsight/molecule/esm/i18n";
 import {UniqueId} from "@dtinsight/molecule/esm/common/types";
 
-export const MenuBarExtension: IExtension = {
-    id: "MenuBarExtension",
-    name: "Menu Extension",
-    activate: function (extensionCtx: IExtensionService): void {
+export default class MenuBarExtension implements IExtension {
+    id: UniqueId = "MenuBarExtension";
+    name: string = "Menu Extension";
+    activate (extensionCtx: IExtensionService): void {
         molecule.menuBar.append({
             id: 'menu.createDataSource',
             name: localize('menu.createDataSource', '创建数据源'),
@@ -18,8 +18,8 @@ export const MenuBarExtension: IExtension = {
         molecule.menuBar.onSelect((menuId: UniqueId) => {
             console.log(menuId);
         })
-    },
-    dispose: function (extensionCtx: IExtensionService): void {
-
+    }
+    dispose (extensionCtx: IExtensionService): void {
+        throw new Error('Method not implemented.');
     }
 }
