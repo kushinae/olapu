@@ -1,6 +1,5 @@
 import {IActivityMenuItemProps, IExtension} from "@dtinsight/molecule/esm/model";
 import {IExtensionService} from "@dtinsight/molecule/esm/services";
-import {getCookie} from "@/utils/cookie";
 import {molecule} from "@dtinsight/molecule";
 import React from "react";
 import {logoutStorage, openLoginModal} from "@/pages/account/login";
