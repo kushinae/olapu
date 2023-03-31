@@ -10,6 +10,7 @@ export default class InitializeExtension implements IExtension {
   name: string = "Initialize Extension";
   activate(extensionCtx: IExtensionService) {
     initLogin();
+
   }
   dispose(extensionCtx: IExtensionService) {
 

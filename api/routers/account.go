@@ -27,7 +27,6 @@ func Login(c *gin.Context) {
 
 	account, err := bson.GetLogin(bson.LoginBson{Username: loginParam.Username, Password: loginParam.Password})
 	if err != nil {
-		println(err.Error())
 		c.JSON(http.StatusBadRequest, olapuHttp.ErrorBuilder(olapuHttp.BadRequestError, &olapuHttp.UsernameOrPasswordError))
 		return
 	}

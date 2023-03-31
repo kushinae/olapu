@@ -18,10 +18,10 @@ func RegisterRouters(engine *gin.Engine) {
 
 	group.Use(Authorize())
 	group.POST("/logout", Logout)
-	group.POST("/directory", CreateDirectory)
-	group.PUT("/directory", ModifyDirectory)
-	group.DELETE("/directory", RemoveDirectory)
-	group.GET("/directory", GetDirectory)
+	group.POST("/resource", CreateResource)
+	group.PUT("/resource", ModifyDirectory)
+	group.DELETE("/resource", RemoveDirectory)
+	group.GET("/resource", GetResource)
 }
 
 func Authorize() gin.HandlerFunc {
@@ -39,12 +39,22 @@ func Authorize() gin.HandlerFunc {
 			return
 		}
 
-		_, err := util.VerifyToken(token)
+		verifyToken, err := util.VerifyToken(token)
 		if err != nil {
 			c.Abort()
 			c.JSON(http.StatusUnauthorized, olapuHttp.ErrorBuilder(olapuHttp.Unauthorized, &olapuHttp.UnauthorizedError))
 			return
 		}
+
+		issuer, err := verifyToken.Claims.GetIssuer()
+		if err != nil {
+			c.Abort()
+			c.JSON(http.StatusUnauthorized, olapuHttp.ErrorBuilder(olapuHttp.Unauthorized, &olapuHttp.UnauthorizedError))
+			return
+		}
+
+		c.Set("uid", issuer)
+
 		c.Next()
 	}
 }

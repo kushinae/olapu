@@ -9,3 +9,5 @@ export class Constant {
 }
 
 export const SUPPORTED_LANGUAGES = ['java', 'sql'] as const;
+
+export const ROOT_CATEGORY_ID = 'ROOT';

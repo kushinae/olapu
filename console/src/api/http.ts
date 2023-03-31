@@ -11,9 +11,7 @@ class Http {
   constructor() {
     this.request = extend({
       timeout: 3000,
-      headers: {
-
-      },
+      headers: {},
       errorHandler: async (error: ResponseError<IErrorBodyProps>) => {
         if (error) {
           await message.error(error.data.message);
@@ -47,6 +45,13 @@ class Http {
       this.errorCallback = errorCallback;
     }
     return this.request.post<T>(url, options);
+  };
+
+  get<T>(url: string, options?: RequestOptionsInit, errorCallback?: () => void): Promise<T> {
+    if (errorCallback) {
+      this.errorCallback = errorCallback;
+    }
+    return this.request.get<T>(url, options);
   }
 }
 

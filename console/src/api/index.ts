@@ -15,5 +15,17 @@ export default {
       return await httpClient.post<LoginResult>(requests.LOGIN, {
         data: payload
       }, callback);
+  },
+
+  /* 获取资源目录 */
+  async getResources(payload: {
+    parent_id: string,
+    name?: string,
+  }): Promise<any[]> {
+    return await httpClient.get(requests.RESOURCE, {
+      params: {
+        ...payload
+      }
+    });
   }
 }
