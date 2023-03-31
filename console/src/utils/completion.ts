@@ -1,4 +1,4 @@
-import {languages} from "monaco-editor";
+import { languages } from '@dtinsight/molecule/esm/monaco';
 import keywordsCodeHint from '../assets/keywords_code_hint.json';
 
 interface ICompletionProps {

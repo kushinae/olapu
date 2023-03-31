@@ -1,9 +1,8 @@
 import {IActivityMenuItemProps, IExtension} from "@dtinsight/molecule/esm/model";
 import {IExtensionService} from "@dtinsight/molecule/esm/services";
 import {molecule} from "@dtinsight/molecule";
-import React from "react";
 import {logoutStorage, openLoginModal} from "@/pages/account/login";
-import Constant from "@/commons/constant";
+import {Constant} from "@/commons/constant";
 import {UniqueId} from "@dtinsight/molecule/esm/common/types";
 
 export default class InitializeExtension implements IExtension {
@@ -11,24 +10,10 @@ export default class InitializeExtension implements IExtension {
   name: string = "Initialize Extension";
   activate(extensionCtx: IExtensionService) {
     initLogin();
-    // initFolder();
   }
   dispose(extensionCtx: IExtensionService) {
 
   }
-}
-
-const initFolder = () => {
-  const currentMode = molecule.colorTheme.getColorThemeMode();
-
-  molecule.folderTree.onLoadData((treeNode) => { })
-
-  // 改默认的初始化无文件样式
-  molecule.folderTree.setEntry(
-    <div>
-      没有数据
-    </div>
-  );
 }
 
 const initLogin = () => {

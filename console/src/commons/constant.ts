@@ -1,4 +1,4 @@
-class Constant {
+export class Constant {
   public static Authorization = {
     X_Access_Token: 'X-Access-Token',
     Nickname: 'nickname',
@@ -8,4 +8,4 @@ class Constant {
 
 }
 
-export default Constant;
+export const SUPPORTED_LANGUAGES = ['java', 'sql'] as const;

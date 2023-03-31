@@ -8,11 +8,11 @@ import { IExtension } from "@dtinsight/molecule/esm/model";
 import ColorThemeExtensions from "@/extensions/themes";
 
 export const extensions: IExtension[] = [
-  new ColorThemeExtensions(),
-  new FolderExtension(),
   new LocaleExtension(),
-  // new EditorExtension(),
-  new MenuBarExtension(),
+  new ColorThemeExtensions(),
   new InitializeExtension(),
-  // new CategoryExtension()
+  new CategoryExtension(),
+  // new EditorExtension(),
+  new FolderExtension(),
+  new MenuBarExtension(),
 ];

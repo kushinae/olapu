@@ -2,7 +2,7 @@ import React, {useLayoutEffect, useState} from "react";
 import {Button, Form, Input, message, Modal, Space, Tabs} from "antd";
 import api from "@/api";
 import {LoginParam, LoginResult} from "@/api/interfaces";
-import Constant from "@/commons/constant";
+import {Constant} from "@/commons/constant";
 
 const listener: Record<string, React.Dispatch<React.SetStateAction<boolean>>> = {};
 

@@ -6,13 +6,13 @@ import {UniqueId} from "@dtinsight/molecule/esm/common/types";
 
 export default class MenuBarExtension implements IExtension {
     id: UniqueId = "MenuBarExtension";
-    name: string = "Menu Extension";
+    name: string = "MenuExtension";
     activate (extensionCtx: IExtensionService): void {
-        molecule.menuBar.append({
-            id: 'menu.createDataSource',
-            name: localize('menu.createDataSource', '创建数据源'),
-            icon: '',
-        }, 'File');
+        // molecule.menuBar.append({
+        //     id: 'menu.createDataSource',
+        //     name: localize('menu.createDataSource', '创建数据源'),
+        //     icon: '',
+        // }, 'File');
 
         // 点击事件
         molecule.menuBar.onSelect((menuId: UniqueId) => {

@@ -4,7 +4,7 @@ import {UniqueId} from "@dtinsight/molecule/esm/common/types";
 
 export default class LocaleExtension implements IExtension {
   id: UniqueId = "LocaleExtension";
-  name: string = "Locale Extension";
+  name: string = "LocaleExtension";
   activate (extensionCtx: IExtensionService): void {
 
   }

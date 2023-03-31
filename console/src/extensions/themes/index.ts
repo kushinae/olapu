@@ -4,7 +4,7 @@ import {UniqueId} from "@dtinsight/molecule/esm/common/types";
 
 export default class ColorThemeExtensions implements IExtension {
   id: UniqueId = 'colorTheme';
-  name = 'color theme';
+  name = 'colorTheme';
   activate(extensionCtx: IExtensionService): void {
     // molecule.colorTheme.setTheme('GitHub Plus');
   }

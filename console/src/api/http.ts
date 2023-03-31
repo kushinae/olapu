@@ -1,7 +1,7 @@
 import request, {extend, RequestMethod, RequestOptionsInit, ResponseError} from "umi-request";
 import {IErrorBodyProps} from "@/interface";
 import {message} from "antd";
-import Constant from "@/commons/constant";
+import {Constant} from "@/commons/constant";
 
 class Http {
 

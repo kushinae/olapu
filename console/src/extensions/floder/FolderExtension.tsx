@@ -7,13 +7,14 @@ import {
   TreeNodeModel
 } from "@dtinsight/molecule/esm/model";
 import { IExtensionService } from "@dtinsight/molecule/esm/services";
-import { Empty } from "antd";
+import {Empty, message} from "antd";
 import { uniqueId } from 'lodash';
 import { UniqueId } from "@dtinsight/molecule/esm/common/types";
+import {Constant} from "@/commons/constant";
 
 export default class FolderExtension implements IExtension {
   id: UniqueId = "FolderExtension";
-  name: string = "Folder Extension";
+  name: string = "FolderExtension";
   activate (extensionCtx: IExtensionService): void {
 
     molecule.folderTree.onLoadData((treeNode) => { })
@@ -30,44 +31,29 @@ export default class FolderExtension implements IExtension {
       (panel: IExplorerPanelItem, toolbarId: string) => {
         console.log('panel', panel);
         console.log('toolbarId', toolbarId)
-        // do something
         alert('被点击了呜呜呜')
       }
     );
 
-    // molecule.folderTree.onCreate((type: FileType, id?: UniqueId) => {
-    //
-    //   const folderTree = molecule.folderTree.getState().folderTree;
-    //
-    //   const parentId = typeof id === 'string' ? id : folderTree?.data?.[0]?.id;
-    //
-    //   const fileData = new TreeNodeModel({
-    //     id: uniqueId(),
-    //     name: '',
-    //     isLeaf: type === FileTypes.File,
-    //     fileType: type,
-    //     isEditable: true,
-    //     data: type === FileTypes.File ? null : parentId
-    //   });
-    //   molecule.folderTree.add(fileData, parentId);
-    // });
-    //
-    // // Listen to the remove node event
-    // molecule.folderTree.onRemove((id?: UniqueId) => {
-    //   // do something
-    // });
-    //
-    // // Listen to the select node event
-    // molecule.folderTree.onSelectFile((file: IFolderTreeNodeProps) => {
-    //   molecule.editor.open({
-    //     id: file.id,
-    //     name: file.name,
-    //     data: {
-    //       value: file.data,
-    //       language: file.name?.substring(file.name?.lastIndexOf(".") + 1),
-    //     },
-    //   });
-    // });
+    molecule.folderTree.onCreate(async (type: FileType, id?: UniqueId) => {
+
+    });
+    // Listen to the remove node event
+    molecule.folderTree.onRemove((id?: UniqueId) => {
+      // do something
+    });
+
+    // Listen to the select node event
+    molecule.folderTree.onSelectFile((file: IFolderTreeNodeProps) => {
+      molecule.editor.open({
+        id: file.id,
+        name: file.name,
+        data: {
+          value: file.data,
+          language: file.name?.substring(file.name?.lastIndexOf(".") + 1),
+        },
+      });
+    });
   }
   dispose (extensionCtx: IExtensionService): void {
     throw new Error("Function not implemented.");
