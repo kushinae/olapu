@@ -1,16 +1,17 @@
-import {IActivityMenuItemProps, IExtension} from "@dtinsight/molecule/esm/model";
-import {IExtensionService} from "@dtinsight/molecule/esm/services";
-import {molecule} from "@dtinsight/molecule";
-import {logoutStorage, openLoginModal} from "@/pages/account/login";
-import {Constant} from "@/commons/constant";
-import {UniqueId} from "@dtinsight/molecule/esm/common/types";
+import { IActivityMenuItemProps, IExtension } from "@dtinsight/molecule/esm/model";
+import { IExtensionService } from "@dtinsight/molecule/esm/services";
+import { molecule } from "@dtinsight/molecule";
+import { logoutStorage, openLoginModal } from "@/pages/account/login";
+import { ActivityBar, Constant } from "@/commons/constant";
+import { UniqueId } from "@dtinsight/molecule/esm/common/types";
 
 export default class InitializeExtension implements IExtension {
   id: UniqueId = "InitializeExtension";
   name: string = "Initialize Extension";
   activate(extensionCtx: IExtensionService) {
     initLogin();
-
+    // 初始化左侧菜单侧边栏
+    initActiveBar();
   }
   dispose(extensionCtx: IExtensionService) {
 
@@ -51,10 +52,15 @@ const initLogin = () => {
 
 const updateAccountContent = (contextMenu: IActivityMenuItemProps[]) => {
   const items = molecule.activityBar.getState().data || [];
-  const {ACTIVITY_BAR_GLOBAL_ACCOUNT} = molecule.builtin.getConstants();
+  const { ACTIVITY_BAR_GLOBAL_ACCOUNT } = molecule.builtin.getConstants();
   const target = items.find((item) => item.id === ACTIVITY_BAR_GLOBAL_ACCOUNT);
   if (target) {
     target.contextMenu = contextMenu
   }
   molecule.activityBar.setState({ data: items })
+}
+
+const initActiveBar = () => {
+  molecule.activityBar.add(ActivityBar.DataSourceActivityBar);
+  molecule.activityBar.add(ActivityBar.LowCodeActivityBar);
 }

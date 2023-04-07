@@ -6,12 +6,12 @@ import {
   IFolderTreeNodeProps,
 } from "@dtinsight/molecule/esm/model";
 import { IExtensionService } from "@dtinsight/molecule/esm/services";
-import {Button} from "antd";
+import { Button } from "antd";
 import { UniqueId } from "@dtinsight/molecule/esm/common/types";
 import React from "react";
-import {EmptyFolder} from "@/extensions/floder/style";
-import {getTreeNode} from "@/utils/category";
-import {categoryService} from "@/service";
+import { EmptyFolder } from "@/extensions/floder/style";
+import { getTreeNode } from "@/utils/category";
+import { categoryService } from "@/service";
 
 
 /** 文件树异步加载 */
@@ -21,7 +21,7 @@ const onLoadTree = () => {
 export default class FolderExtension implements IExtension {
   id: UniqueId = "FolderExtension";
   name: string = "FolderExtension";
-  activate (extensionCtx: IExtensionService): void {
+  activate(extensionCtx: IExtensionService): void {
 
     onLoadTree();
 
@@ -44,12 +44,8 @@ export default class FolderExtension implements IExtension {
     );
 
     molecule.folderTree.onCreate(async (type: FileType, id?: UniqueId) => {
-      console.log("id", id)
-
-      // alert("创建了");
       switch (type) {
         case "Folder":
-          alert("新建文件夹");
           molecule.folderTree.add(getTreeNode({
             id: 'work_directory',
             name: '',
@@ -98,7 +94,7 @@ export default class FolderExtension implements IExtension {
       });
     });
   }
-  dispose (extensionCtx: IExtensionService): void {
+  dispose(extensionCtx: IExtensionService): void {
     throw new Error("Function not implemented.");
   }
 }

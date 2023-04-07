@@ -11,8 +11,6 @@ import (
 )
 
 func Login(c *gin.Context) {
-	header := c.GetHeader("Authorization")
-	println("Bearer", header)
 	loginParam := request.LoginParam{}
 	err := c.BindJSON(&loginParam)
 	if err != nil {

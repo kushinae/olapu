@@ -6,6 +6,7 @@ import InitializeExtension from './init';
 import CategoryExtension from './category';
 import { IExtension } from "@dtinsight/molecule/esm/model";
 import ColorThemeExtensions from "@/extensions/themes";
+import { ActivityExtension } from "./activity";
 
 export const extensions: IExtension[] = [
   new LocaleExtension(),
@@ -15,4 +16,5 @@ export const extensions: IExtension[] = [
   // new EditorExtension(),
   new FolderExtension(),
   new MenuBarExtension(),
+  ActivityExtension
 ];
