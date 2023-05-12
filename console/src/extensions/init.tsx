@@ -5,14 +5,14 @@ import { logoutStorage, openLoginModal } from "@/pages/account/login";
 import { ActivityBar, Constant } from "@/commons/constant";
 import { UniqueId } from "@dtinsight/molecule/esm/common/types";
 
-export default class InitializeExtension implements IExtension {
-  id: UniqueId = "InitializeExtension";
-  name: string = "Initialize Extension";
+export const InitializeExtension: IExtension = {
+  id: "InitializeExtension",
+  name: "Initialize Extension",
   activate(extensionCtx: IExtensionService) {
     initLogin();
     // 初始化左侧菜单侧边栏
     initActiveBar();
-  }
+  },
   dispose(extensionCtx: IExtensionService) {
 
   }

@@ -1,5 +1,5 @@
-import {LoginParam, LoginResult, RegisterParam} from "@/api/interfaces";
-import {httpClient} from '@/api/http'
+import { CreateResourceParam, LoginParam, LoginResult, RegisterParam } from "@/api/interfaces";
+import { httpClient } from '@/api/http'
 import requests from "@/api/requests";
 
 export default {
@@ -12,9 +12,9 @@ export default {
 
   /* 登陆 */
   async login(payload: LoginParam, callback?: () => void): Promise<LoginResult> {
-      return await httpClient.post<LoginResult>(requests.LOGIN, {
-        data: payload
-      }, callback);
+    return await httpClient.post<LoginResult>(requests.LOGIN, {
+      data: payload
+    }, callback);
   },
 
   /* 获取资源目录 */
@@ -24,6 +24,15 @@ export default {
   }): Promise<any[]> {
     return await httpClient.get(requests.RESOURCE, {
       params: {
+        ...payload
+      }
+    });
+  },
+
+  /* 创建资源目录或文件 */
+  async createResource(payload: CreateResourceParam): Promise<string> {
+    return await httpClient.post(requests.RESOURCE, {
+      data: {
         ...payload
       }
     });

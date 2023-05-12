@@ -4,7 +4,7 @@ type CreateDirectoryParam struct {
 	Name     string `json:"name"`
 	Type     string `json:"type"`
 	ParentId string `json:"parent_id"`
-	Content  string `bson:"content" bson:"content"`
+	Content  string `json:"content" bson:"content"`
 }
 
 type QueryResourceParam struct {

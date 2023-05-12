@@ -9,6 +9,13 @@ export interface LoginParam {
   password: string,
 }
 
+export interface CreateResourceParam {
+  name: string,
+  type: 'directory' | 'file',
+  parent_id: string | 'ROOT',
+  content?: string
+}
+
 export interface LoginResult {
   id: string,
   nickname: string,
