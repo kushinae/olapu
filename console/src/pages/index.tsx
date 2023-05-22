@@ -14,7 +14,6 @@ moInstance.onBeforeInit(() => {
 });
 
 const MoleculeProvider = () => moInstance.render(<Workbench />);
-
 export default function HomePage() {
   return (
     <>
