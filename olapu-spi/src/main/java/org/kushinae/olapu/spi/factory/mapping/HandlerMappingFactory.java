@@ -8,5 +8,5 @@ import org.kushinae.olapu.spi.factory.Factory;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface MappingFactory extends Factory<HandlerMapping, Language> {
+public interface HandlerMappingFactory extends Factory<HandlerMapping, Language> {
 }

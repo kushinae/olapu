@@ -3,6 +3,7 @@ package org.kushinae.olapu.plugin.java.mapping;
 import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.adapter.HandlerAdapter;
 import org.kushinae.olapu.generate.mapping.AbstractHandlerMapping;
+import org.kushinae.olapu.spi.factory.adapter.DefaultHandlerAdapterFactory;
 
 /**
  * @author kaisa.liu
@@ -16,6 +17,7 @@ public class JavaHandlerMapping extends AbstractHandlerMapping {
 
     @Override
     public HandlerAdapter getHandlerAdapter() {
-        return null;
+        DefaultHandlerAdapterFactory handlerAdapterFactory = new DefaultHandlerAdapterFactory();
+        return handlerAdapterFactory.getFactory(getLanguage());
     }
 }

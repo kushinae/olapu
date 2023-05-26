@@ -9,7 +9,7 @@ import java.util.ServiceLoader;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public abstract class AbstractAdapterFactory implements AdapterFactory {
+public abstract class AbstractHandlerAdapterFactory implements HandlerAdapterFactory {
 
     @Override
     public HandlerAdapter getFactory(Language code) {

@@ -15,6 +15,12 @@ public class JavaHandlerAdapter extends AbstractHandlerAdapter {
 
     @Override
     public Object handler() {
-        return null;
+        return """
+               public class HelloWorld {
+                   public static void main(String[] args) {
+                       System.out.println("这是Java生成的代码！！！");
+                   }
+               }
+               """;
     }
 }

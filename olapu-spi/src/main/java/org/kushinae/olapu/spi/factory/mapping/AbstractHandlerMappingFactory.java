@@ -1,7 +1,6 @@
 package org.kushinae.olapu.spi.factory.mapping;
 
 import org.kushinae.olapu.generate.Language;
-import org.kushinae.olapu.generate.chain.ExecutionChain;
 import org.kushinae.olapu.generate.mapping.HandlerMapping;
 
 import java.util.ServiceLoader;
@@ -10,7 +9,7 @@ import java.util.ServiceLoader;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public abstract class AbstractMappingFactory implements MappingFactory {
+public abstract class AbstractHandlerMappingFactory implements HandlerMappingFactory {
     @Override
     public HandlerMapping getFactory(Language code) {
         ServiceLoader<HandlerMapping> handlerMappings = ServiceLoader.load(HandlerMapping.class);

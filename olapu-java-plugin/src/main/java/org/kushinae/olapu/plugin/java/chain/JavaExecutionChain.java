@@ -3,6 +3,7 @@ package org.kushinae.olapu.plugin.java.chain;
 import org.kushinae.olapu.generate.mapping.HandlerMapping;
 import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.chain.AbstractExecutionChain;
+import org.kushinae.olapu.spi.factory.mapping.DefaultHandlerMappingFactory;
 
 /**
  * @author kaisa.liu
@@ -16,6 +17,7 @@ public class JavaExecutionChain extends AbstractExecutionChain {
 
     @Override
     public HandlerMapping getHandlerMapping() {
-        return null;
+        DefaultHandlerMappingFactory handlerMappingFactory = new DefaultHandlerMappingFactory();
+        return handlerMappingFactory.getFactory(getLanguage());
     }
 }

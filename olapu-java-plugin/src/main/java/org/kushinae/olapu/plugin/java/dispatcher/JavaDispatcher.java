@@ -4,14 +4,13 @@ import org.kushinae.olapu.generate.BuildOption;
 import org.kushinae.olapu.generate.chain.ExecutionChain;
 import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.dispatcher.AbstractDispatcherGenerate;
+import org.kushinae.olapu.spi.factory.chain.DefaultExecutionChainFactory;
 
 /**
  * @author kaisa.liu
  * @since 1.0.0
  */
 public class JavaDispatcher extends AbstractDispatcherGenerate {
-
-
 
     @Override
     public Language getLanguage() {
@@ -20,6 +19,7 @@ public class JavaDispatcher extends AbstractDispatcherGenerate {
 
     @Override
     public ExecutionChain getExecutionChain(BuildOption option) {
-        return null;
+        DefaultExecutionChainFactory executionChainFactory = new DefaultExecutionChainFactory();
+        return executionChainFactory.getFactory(getLanguage());
     }
 }
