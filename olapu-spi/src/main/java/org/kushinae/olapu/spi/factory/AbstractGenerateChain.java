@@ -38,7 +38,7 @@ public abstract class AbstractGenerateChain implements GenerateChain {
             RecordResolver resolver = executorResolver.resolver(option, template);
             Executor executor = executorResolver.getExecutor();
             String out = executor.executor(resolver);
-            LanguageRecord languageRecord = new LanguageRecord();
+            LanguageRecord languageRecord = record.get(handler.getLanguage()) == null ? new LanguageRecord() : record.get(handler.getLanguage());
             LanguageModelRecord languageModelRecord = new LanguageModelRecord();
             languageModelRecord.setOut(out);
             languageRecord.put(handler.getModelType(), languageModelRecord);

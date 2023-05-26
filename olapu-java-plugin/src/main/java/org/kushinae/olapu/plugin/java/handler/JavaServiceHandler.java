@@ -11,7 +11,7 @@ import org.kushinae.olapu.spi.factory.executor.DefaultExecutorResolverFactory;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public class JavaControllerHandler extends AbstractHandler {
+public class JavaServiceHandler extends AbstractHandler {
 
     @Override
     public Language getLanguage() {
@@ -20,7 +20,7 @@ public class JavaControllerHandler extends AbstractHandler {
 
     @Override
     public ModelType getModelType() {
-        return ModelType.CTRL;
+        return ModelType.SVC;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class JavaControllerHandler extends AbstractHandler {
         return """
               <html>
                <head>
-                 <title>欢迎!这是Controller</title>
+                 <title>欢迎!这是Service</title>
                </head>
                <body>
                  <h1>欢迎来到王者荣耀!</h1>
