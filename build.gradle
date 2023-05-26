@@ -21,4 +21,5 @@ ext {
     graphqlVersion = '13.0.3'
     junitVersion = '5.8.1'
     jacksonVersion = '2.15.0'
+    freemarkerVersion = '2.3.32'
 }

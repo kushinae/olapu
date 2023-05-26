@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     api project(path: ':olapu-core')
+    // https://mvnrepository.com/artifact/org.freemarker/freemarker
+    api group: 'org.freemarker', name: 'freemarker', version: freemarkerVersion
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"

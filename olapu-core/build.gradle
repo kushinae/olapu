@@ -18,10 +18,7 @@ dependencies {
     api group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
     api group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
-    // implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: springComponentVersion
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-    // implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springComponentVersion
+
     // https://mvnrepository.com/artifact/org.mapstruct/mapstruct
     // implementation group: 'org.mapstruct', name: 'mapstruct', version: mapstructVersion
 

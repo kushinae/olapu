@@ -1,9 +1,10 @@
 package org.kushinae.olapu.spi.factory.handler;
 
+import org.kushinae.olapu.core.utils.CollectionUtils;
 import org.kushinae.olapu.generate.Language;
-import org.kushinae.olapu.generate.adapter.HandlerAdapter;
 import org.kushinae.olapu.generate.handler.Handler;
 
+import java.util.List;
 import java.util.ServiceLoader;
 
 /**
@@ -12,13 +13,15 @@ import java.util.ServiceLoader;
  */
 public abstract class AbstractHandlerFactory implements HandlerFactory {
     @Override
-    public Handler getFactory(Language code) {
-        ServiceLoader<Handler> handlers = ServiceLoader.load(Handler.class);
-        for (Handler handler : handlers) {
-            if (handler.getLanguage().equals(code)) {
-                return handler;
-            }
+    public List<Handler> getFactory(Language code) {
+        ServiceLoader<Handler> providers = ServiceLoader.load(Handler.class);
+        List<Handler> handlers = providers.stream()
+                .filter(handlerProvider -> handlerProvider.get().getLanguage().equals(code))
+                .map(ServiceLoader.Provider::get)
+                .toList();
+        if (CollectionUtils.isEmpty(handlers)) {
+            throw new IllegalArgumentException("Unsupported handler language");
         }
-        throw new IllegalArgumentException("Unsupported handler language");
+        return handlers;
     }
 }

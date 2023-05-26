@@ -1,7 +1,12 @@
 package org.kushinae.olapu.plugin.java.adapter;
 
+import org.kushinae.olapu.generate.BuildOption;
 import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.adapter.AbstractHandlerAdapter;
+import org.kushinae.olapu.generate.handler.Handler;
+import org.kushinae.olapu.spi.factory.handler.DefaultHandlerFactory;
+
+import java.util.List;
 
 /**
  * @author kaisa.liu
@@ -14,13 +19,10 @@ public class JavaHandlerAdapter extends AbstractHandlerAdapter {
     }
 
     @Override
-    public Object handler() {
-        return """
-               public class HelloWorld {
-                   public static void main(String[] args) {
-                       System.out.println("这是Java生成的代码！！！");
-                   }
-               }
-               """;
+    public List<Handler> getHandlers(BuildOption option) {
+        return new DefaultHandlerFactory().getFactory(getLanguage())
+                .stream()
+                .filter(e -> option.getModel().contains(e.getModelType()))
+                .toList();
     }
 }
