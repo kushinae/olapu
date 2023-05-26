@@ -1,6 +1,6 @@
 package org.kushinae.olapu.plugin.java.chain;
 
-import org.kushinae.olapu.generate.HandlerMapping;
+import org.kushinae.olapu.generate.mapping.HandlerMapping;
 import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.chain.AbstractExecutionChain;
 
