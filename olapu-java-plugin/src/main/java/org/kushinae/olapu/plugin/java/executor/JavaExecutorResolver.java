@@ -23,7 +23,8 @@ public class JavaExecutorResolver extends AbstractExecutorResolver {
     @Override
     public RecordResolver resolver(BuildOption option, String template) {
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("username", "kaisa.liu");
+        // todo 这里模版字符串替换也从客户端(引入该项目)服务拿
+        dataModel.put("className", "HelloWorld");
         RecordResolver recordResolver = new RecordResolver();
         recordResolver.setDataModel(dataModel);
         recordResolver.setTemplate(template);

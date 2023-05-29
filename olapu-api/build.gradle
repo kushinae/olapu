@@ -2,18 +2,8 @@ plugins {
     id 'java'
 }
 
-group 'org.kushinae'
-version '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    implementation project(path: ':olapu-java-plugin')
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {
@@ -21,15 +11,23 @@ test {
 }
 
 dependencies {
+
+    implementation project(path: ':olapu-java-plugin')
+    implementation project(path: ':olapu-repository')
+
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
-     implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: springComponentVersion
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: springComponentVersion
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springComponentVersion
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springComponentVersion
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: springComponentVersion
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
     // https://mvnrepository.com/artifact/org.mapstruct/mapstruct
-    // implementation group: 'org.mapstruct', name: 'mapstruct', version: mapstructVersion
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: mapstructVersion
 
     // https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor
-    // annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"

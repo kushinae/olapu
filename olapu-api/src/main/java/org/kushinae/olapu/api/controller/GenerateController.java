@@ -1,8 +1,9 @@
 package org.kushinae.olapu.api.controller;
 
-import org.kushinae.olapu.generate.BuildOption;
+import jakarta.annotation.Resource;
+import org.kushinae.olapu.api.pojo.api.generate.Generate;
+import org.kushinae.olapu.api.service.GenerateService;
 import org.kushinae.olapu.generate.Record;
-import org.kushinae.olapu.spi.factory.DefaultGenerateChain;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/generate")
 public class GenerateController {
 
+    @Resource
+    GenerateService generateService;
+
     @PostMapping
-    public Record generate(@RequestBody BuildOption option) {
-        DefaultGenerateChain chain = new DefaultGenerateChain();
-        return chain.chain(option);
+    public Record generate(@RequestBody Generate generate) {
+        return generateService.generate(generate);
     }
 
 }

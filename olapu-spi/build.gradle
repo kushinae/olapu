@@ -2,9 +2,6 @@ plugins {
     id 'java-library'
 }
 
-group 'org.kushinae'
-version '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }

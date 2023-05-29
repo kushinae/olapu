@@ -8,11 +8,16 @@ plugins {
     id 'java'
 }
 
-group 'org.kushinae'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        mavenLocal()
+        mavenCentral()
+    }
+    group 'org.kushinae'
+    version '1.0-SNAPSHOT'
 }
 
 ext {
@@ -22,4 +27,6 @@ ext {
     junitVersion = '5.8.1'
     jacksonVersion = '2.15.0'
     freemarkerVersion = '2.3.32'
+    mysqlDriverVersion = '8.0.33'
+    lombokVersion = '1.18.28'
 }

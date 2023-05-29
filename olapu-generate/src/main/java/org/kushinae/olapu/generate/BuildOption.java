@@ -1,6 +1,7 @@
 package org.kushinae.olapu.generate;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author kaisa.liu
@@ -10,7 +11,7 @@ public class BuildOption {
 
     private Language language;
 
-    private List<ModelType> model;
+    private Map<ModelType, String> modelsTemplate;
 
     public Language getLanguage() {
         return language;
@@ -20,11 +21,11 @@ public class BuildOption {
         this.language = language;
     }
 
-    public List<ModelType> getModel() {
-        return model;
+    public Map<ModelType, String> getModelsTemplate() {
+        return modelsTemplate;
     }
 
-    public void setModel(List<ModelType> model) {
-        this.model = model;
+    public void setModelsTemplate(Map<ModelType, String> modelsTemplate) {
+        this.modelsTemplate = modelsTemplate;
     }
 }

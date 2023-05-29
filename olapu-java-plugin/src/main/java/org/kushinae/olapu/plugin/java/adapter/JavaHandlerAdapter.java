@@ -22,7 +22,7 @@ public class JavaHandlerAdapter extends AbstractHandlerAdapter {
     public List<Handler> getHandlers(BuildOption option) {
         return new DefaultHandlerFactory().getFactory(getLanguage())
                 .stream()
-                .filter(e -> option.getModel().contains(e.getModelType()))
+                .filter(e -> option.getModelsTemplate().containsKey(e.getModelType()))
                 .toList();
     }
 }

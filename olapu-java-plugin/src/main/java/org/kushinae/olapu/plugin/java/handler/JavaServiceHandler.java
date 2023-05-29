@@ -24,22 +24,6 @@ public class JavaServiceHandler extends AbstractHandler {
     }
 
     @Override
-    public String getTemplate(BuildOption buildOption) {
-        return """
-              <html>
-               <head>
-                 <title>欢迎!这是Service</title>
-               </head>
-               <body>
-                 <h1>欢迎来到王者荣耀!</h1>
-                 <p>这是 <b>${username}</b> 的
-                 <a href="https://bnyte.github.io">博客</a>!
-               </body>
-               </html>
-                """;
-    }
-
-    @Override
     public ExecutorResolver getExecutorResolver() {
         return new DefaultExecutorResolverFactory().getFactory(getLanguage());
     }

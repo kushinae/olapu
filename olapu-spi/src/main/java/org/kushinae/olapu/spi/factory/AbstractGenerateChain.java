@@ -26,8 +26,7 @@ public abstract class AbstractGenerateChain implements GenerateChain {
     @Override
     public Record chain(BuildOption option) {
         Record record = new Record();
-        DefaultDispatcherFactory dispatcherFactory = new DefaultDispatcherFactory();
-        Dispatcher dispatcher = dispatcherFactory.getFactory(option.getLanguage());
+        Dispatcher dispatcher = getDispatcher(option);
         ExecutionChain executionChain = dispatcher.getExecutionChain(option);
         HandlerMapping handlerMapping = executionChain.getHandlerMapping();
         HandlerAdapter handlerAdapter = handlerMapping.getHandlerAdapter();
@@ -45,5 +44,11 @@ public abstract class AbstractGenerateChain implements GenerateChain {
             record.put(handler.getLanguage(), languageRecord);
         }
         return record;
+    }
+
+    @Override
+    public Dispatcher getDispatcher(BuildOption option) {
+        DefaultDispatcherFactory dispatcherFactory = new DefaultDispatcherFactory();
+        return dispatcherFactory.getFactory(option.getLanguage());
     }
 }

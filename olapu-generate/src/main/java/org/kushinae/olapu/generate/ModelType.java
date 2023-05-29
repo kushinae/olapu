@@ -13,7 +13,7 @@ public enum ModelType implements EnumCode<String> {
     CTRL("ctrl"),
     SVC("svc"),
     REPO("repo"),
-    DAO("dap"),
+    DAO("dao"),
     ENTITY("entity"),
     ;
 
