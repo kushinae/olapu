@@ -29,12 +29,12 @@ public class TemplateServiceImpl implements TemplateService {
     public Long create(Template template) {
         Template queryTemplate = getRepository().searchBySourceAndTypeAndModel(template.getSource(), template.getType(), template.getModel());
         if (Objects.nonNull(queryTemplate)) {
-            throw new UniqueException("Repeat unique data");
+            throw new UniqueException("Repeat unique data (%s, %s, %s)".formatted(queryTemplate.getSource().getCode(), queryTemplate.getType().getCode(), queryTemplate.getModel().getCode()));
         }
 
         queryTemplate = getRepository().searchByName(template.getName());
         if (Objects.nonNull(queryTemplate)) {
-            throw new UniqueException("Repeat unique data");
+            throw new UniqueException("Repeat unique name %s".formatted(queryTemplate.getName()));
         }
         template.setCreateAt(new Date());
         template.setModifiedAt(new Date());

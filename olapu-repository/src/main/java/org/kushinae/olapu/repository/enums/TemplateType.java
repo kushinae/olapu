@@ -9,7 +9,7 @@ import jakarta.persistence.Converter;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public enum TemplateType implements AttributeConverterSupport<TemplateType.Convert> {
+public enum TemplateType implements AttributeConverterSupport<TemplateType.Convert>, CodeSupport<String> {
 
     JAVA("java"),
     ;
@@ -17,6 +17,11 @@ public enum TemplateType implements AttributeConverterSupport<TemplateType.Conve
     @Override
     public Convert getConvert() {
         return new TemplateType.Convert();
+    }
+
+    @Override
+    public String getCode() {
+        return this.code;
     }
 
     @Converter(autoApply = true)

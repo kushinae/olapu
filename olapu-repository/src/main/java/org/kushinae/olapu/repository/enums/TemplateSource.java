@@ -9,13 +9,18 @@ import jakarta.persistence.Converter;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public enum TemplateSource implements AttributeConverterSupport<TemplateSource.Convert> {
+public enum TemplateSource implements AttributeConverterSupport<TemplateSource.Convert>, CodeSupport<String> {
     GENERATE("generate"),
     ;
 
     @Override
     public Convert getConvert() {
         return new TemplateSource.Convert();
+    }
+
+    @Override
+    public String getCode() {
+        return this.code;
     }
 
     @Converter(autoApply = true)
