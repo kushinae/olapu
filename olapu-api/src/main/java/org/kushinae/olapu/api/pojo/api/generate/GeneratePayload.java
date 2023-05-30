@@ -10,7 +10,7 @@ import org.kushinae.olapu.repository.enums.TemplateType;
  * @since 1.0.0
  */
 @Data
-public class Generate {
+public class GeneratePayload {
 
     private TemplateSource source;
 

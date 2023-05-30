@@ -1,6 +1,5 @@
 package org.kushinae.olapu.api.pojo.api.template;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -13,7 +12,7 @@ import org.kushinae.olapu.repository.enums.TemplateType;
  * @since 1.0.0
  */
 @Data
-public class Create {
+public class CreatePayload {
 
     @NotNull(message = "模版所属不能为空")
     private TemplateSource source;

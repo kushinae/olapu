@@ -2,7 +2,7 @@ package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.convert.TemplateConvert;
-import org.kushinae.olapu.api.pojo.api.template.Create;
+import org.kushinae.olapu.api.pojo.api.template.CreatePayload;
 import org.kushinae.olapu.api.service.TemplateService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,7 @@ public class TemplateController {
     private TemplateService templateService;
 
     @PostMapping
-    Long created(@RequestBody Create payload) {
+    Long created(@RequestBody CreatePayload payload) {
         return templateService.create(TemplateConvert.INSTANCE.toEntity(payload));
     }
 

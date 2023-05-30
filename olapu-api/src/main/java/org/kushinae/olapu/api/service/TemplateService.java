@@ -11,5 +11,6 @@ import org.kushinae.olapu.repository.repository.TemplateRepository;
 public interface TemplateService extends IRepositoryService<Template, Long> {
     Long create(Template template);
 
+    @Override
     TemplateRepository getRepository();
 }

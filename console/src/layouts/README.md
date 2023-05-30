@@ -1,4 +1,4 @@
-- create `category.ts` file
+- createPayload `category.ts` file
 
 ```typescript
 import { Link, Outlet } from "umi";

@@ -29,4 +29,5 @@ ext {
     freemarkerVersion = '2.3.32'
     mysqlDriverVersion = '8.0.33'
     lombokVersion = '1.18.28'
+    jwtVersion = '4.4.0'
 }

@@ -1,6 +1,6 @@
 package org.kushinae.olapu.api.service;
 
-import org.kushinae.olapu.api.pojo.api.generate.Generate;
+import org.kushinae.olapu.api.pojo.api.generate.GeneratePayload;
 import org.kushinae.olapu.generate.Record;
 
 /**
@@ -8,5 +8,5 @@ import org.kushinae.olapu.generate.Record;
  * @since 1.0.0
  */
 public interface GenerateService {
-    Record generate(Generate generate);
+    Record generate(GeneratePayload generatePayload);
 }

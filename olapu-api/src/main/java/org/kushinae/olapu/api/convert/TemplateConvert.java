@@ -1,6 +1,6 @@
 package org.kushinae.olapu.api.convert;
 
-import org.kushinae.olapu.api.pojo.api.template.Create;
+import org.kushinae.olapu.api.pojo.api.template.CreatePayload;
 import org.kushinae.olapu.repository.entities.Template;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -14,6 +14,6 @@ public interface TemplateConvert {
 
     TemplateConvert INSTANCE = Mappers.getMapper(TemplateConvert.class);
 
-    Template toEntity(Create create);
+    Template toEntity(CreatePayload createPayload);
 
 }

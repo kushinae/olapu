@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.pojo.api.generate.Generate;
+import org.kushinae.olapu.api.pojo.api.generate.GeneratePayload;
 import org.kushinae.olapu.api.service.GenerateService;
 import org.kushinae.olapu.generate.Record;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +21,8 @@ public class GenerateController {
     GenerateService generateService;
 
     @PostMapping
-    public Record generate(@RequestBody Generate generate) {
-        return generateService.generate(generate);
+    public Record generate(@RequestBody GeneratePayload generatePayload) {
+        return generateService.generate(generatePayload);
     }
 
 }

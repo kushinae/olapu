@@ -10,5 +10,4 @@ public interface IRepositoryService<E, I> {
 
     Repository<E, I> getRepository();
 
-
 }
