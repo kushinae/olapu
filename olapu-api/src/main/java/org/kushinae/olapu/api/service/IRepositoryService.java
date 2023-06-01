@@ -1,4 +1,4 @@
-package org.kushinae.olapu.repository.repository;
+package org.kushinae.olapu.api.service;
 
 import org.springframework.data.repository.Repository;
 
@@ -9,5 +9,4 @@ import org.springframework.data.repository.Repository;
 public interface IRepositoryService<E, I> {
 
     Repository<E, I> getRepository();
-
 }

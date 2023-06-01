@@ -9,7 +9,7 @@ const moInstance = create({
   defaultLocale: 'zh-CN'
 });
 
-alert(randomId())
+console.log(randomId());
 
 moInstance.onBeforeInit(() => {
   molecule.builtin.inactiveModule('builtInOutputPanel');

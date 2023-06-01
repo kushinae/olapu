@@ -19,4 +19,11 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface AccessWhitelist {
 
+    /**
+     * 是否跳过验证，如果关闭验证白名单则会将该接口进行强行验证 尽管他没有实现{@link org.kushinae.olapu.api.authorization.Authorization}
+     *
+     * @return true则会证明跳过
+     */
+    boolean value() default true;
+
 }

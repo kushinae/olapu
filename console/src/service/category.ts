@@ -1,24 +1,23 @@
-import {ICategoryService} from "@/service/interface";
+import { ICategoryService } from "@/service/interface";
 import api from "@/api";
-import {ROOT_CATEGORY_ID} from "@/commons/constant";
+import { ROOT_CATEGORY_ID } from "@/commons/constant";
 import molecule from "@dtinsight/molecule";
-import {getTreeNode} from "@/utils/category";
-import {IFolderTreeNodeProps} from "@dtinsight/molecule/esm/model";
-import {GlobalEvent} from "@dtinsight/molecule/esm/common/event";
+import { getTreeNode } from "@/utils/category";
+import { IFolderTreeNodeProps } from "@dtinsight/molecule/esm/model";
+import { GlobalEvent } from "@dtinsight/molecule/esm/common/event";
 
 export default class CategoryService extends GlobalEvent implements ICategoryService {
 
-  private getCategoryViaNode = async (node: {parent_id: string, name?: string}): Promise<any[]> => {
-    return await api.getResources({...node});
+  private getCategoryViaNode = async (node: { parent_id: number, name?: string }): Promise<any[]> => {
+    return await api.getResources({ ...node });
   }
 
   public loadRootFolder = () => {
-    this.getCategoryViaNode({parent_id: ROOT_CATEGORY_ID}).then(resp => {
+    this.getCategoryViaNode({ parent_id: ROOT_CATEGORY_ID }).then(resp => {
       if (!resp || resp.length < 1) {
         return;
       }
       const element = resp[0];
-
       const treeNode = getTreeNode({
         id: element.id,
         children: [],
@@ -35,11 +34,11 @@ export default class CategoryService extends GlobalEvent implements ICategorySer
     });
   }
 
-  public loadTreeNode = async (id: string) => {
-    const categoryViaNode = await this.getCategoryViaNode({parent_id: id});
+  public loadTreeNode = async (id: number) => {
+    const categoryViaNode = await this.getCategoryViaNode({ parent_id: id });
     if (categoryViaNode) {
       const childrenNodes = <molecule.model.TreeNodeModel[]>(
-        (categoryViaNode.map((child) =>  getTreeNode({
+        (categoryViaNode.map((child) => getTreeNode({
           id: child.id,
           children: [],
           content: child.content,

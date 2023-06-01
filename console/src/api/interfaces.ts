@@ -12,7 +12,7 @@ export interface LoginParam {
 export interface CreateResourceParam {
   name: string,
   type: 'directory' | 'file',
-  parent_id: string | 'ROOT',
+  parent_id: number | -1,
   content?: string
 }
 

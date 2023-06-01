@@ -2,10 +2,10 @@ package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.TemplateService;
+import org.kushinae.olapu.api.service.TemplateServiceRepository;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.repository.entities.Template;
-import org.kushinae.olapu.repository.repository.TemplateRepository;
+import org.kushinae.olapu.repository.repository.impl.TemplateRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -15,7 +15,7 @@ import java.util.Date;
  * @since 1.0.0
  */
 @Service
-public class TemplateServiceImpl implements TemplateService {
+public class TemplateServiceImplRepository implements TemplateServiceRepository {
 
     @Resource
     TemplateRepository templateRepository;

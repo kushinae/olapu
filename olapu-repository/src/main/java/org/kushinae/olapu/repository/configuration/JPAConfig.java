@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EntityScan("org.kushinae.olapu.repository.entities")
-@EnableJpaRepositories("org.kushinae.olapu.repository.repository")
+@EnableJpaRepositories("org.kushinae.olapu.repository.repository.impl")
 public class JPAConfig {
 
 }

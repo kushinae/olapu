@@ -19,7 +19,7 @@ export default {
 
   /* 获取资源目录 */
   async getResources(payload: {
-    parent_id: string,
+    parent_id: number,
     name?: string,
   }): Promise<any[]> {
     return await httpClient.get(requests.RESOURCE, {

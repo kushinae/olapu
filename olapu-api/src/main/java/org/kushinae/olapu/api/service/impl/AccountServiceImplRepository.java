@@ -4,12 +4,12 @@ import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.enums.TokenType;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.pojo.api.account.LoginPayload;
-import org.kushinae.olapu.api.service.AccountService;
+import org.kushinae.olapu.api.service.AccountServiceRepository;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.AccessTokenUtils;
 import org.kushinae.olapu.api.vo.account.Login;
 import org.kushinae.olapu.repository.entities.Account;
-import org.kushinae.olapu.repository.repository.AccountRepository;
+import org.kushinae.olapu.repository.repository.impl.AccountRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @since 1.0.0
  */
 @Service
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImplRepository implements AccountServiceRepository {
 
     @Resource
     AccountRepository accountRepository;

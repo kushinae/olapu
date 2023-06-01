@@ -78,10 +78,11 @@ const onPanelToolbarClick = () => {
 
 const createResource = () => {
   molecule.folderTree.onCreate(async (type: FileType, id?: UniqueId) => {
+    const parentId = id ? Number(id) : -1;
     api.createResource({
       name: "",
       type: "directory",
-      parent_id: ""
+      parent_id: parentId
     })
     switch (type) {
       case "Folder":

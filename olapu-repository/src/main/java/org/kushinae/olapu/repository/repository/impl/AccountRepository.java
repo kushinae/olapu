@@ -1,7 +1,7 @@
-package org.kushinae.olapu.repository.repository;
+package org.kushinae.olapu.repository.repository.impl;
 
 import org.kushinae.olapu.repository.entities.Account;
-import org.springframework.data.repository.ListPagingAndSortingRepository;
+import org.kushinae.olapu.repository.repository.IServiceRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * @since 1.0.0
  */
 @Repository
-public interface AccountRepository extends ListPagingAndSortingRepository<Account, Long> {
+public interface AccountRepository extends IServiceRepository<Account, Long> {
 
     Account searchByUsernameAndPassword(String username, String password);
 

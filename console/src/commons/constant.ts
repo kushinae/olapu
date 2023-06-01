@@ -27,5 +27,5 @@ export const ActivityBar = {
 
 export const SUPPORTED_LANGUAGES = ['java', 'sql'] as const;
 
-export const ROOT_CATEGORY_ID = 'ROOT';
+export const ROOT_CATEGORY_ID = -1;
 

@@ -4,6 +4,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/olapu
     username: root
     password: 123456
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://idp.example.com/issuer
 server:
   servlet:
     context-path: /api

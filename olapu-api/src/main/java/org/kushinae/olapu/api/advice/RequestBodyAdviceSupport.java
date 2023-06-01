@@ -61,21 +61,11 @@ public class RequestBodyAdviceSupport implements RequestBodyAdvice {
             accessWhitelist = declaringClass.getDeclaredAnnotation(AccessWhitelist.class);
         }
         if (body instanceof Authorization authorization && null == accessWhitelist) {
-            String authType = request.getAuthType();
-
-            String header = request.getHeader(TOKEN_KEY);
-            if (StringUtils.nonText(header) || !header.startsWith(tokenType.getSerial())) {
-                throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
-            }
-            Pattern authorizationPattern = Pattern.compile("^Bearer (?<token>[a-zA-Z0-9-:._~+/]+=*)$", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = authorizationPattern.matcher(header);
-            if (!matcher.matches()) {
-                throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
-            }
-            String token = matcher.group("token");
-            JWTToken jwtToken = AccessTokenUtils.decryptJWT(token);
-            authorization.setToken(token);
+            JWTToken jwtToken = checkAccessPurview();
             authorization.setUid(jwtToken.getUid());
+            authorization.setToken(jwtToken.getToken());
+        } else if (null != accessWhitelist && accessWhitelist.value()) {
+            checkAccessPurview();
         }
         if (log.isInfoEnabled()) {
             log.info("\n[Request Logger]" + LOG_STYLE +
@@ -94,5 +84,25 @@ public class RequestBodyAdviceSupport implements RequestBodyAdvice {
     @Override
     public Object handleEmptyBody(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
         return body;
+    }
+
+    public JWTToken checkAccessPurview() {
+        String authType = request.getAuthType();
+
+        String header = request.getHeader(TOKEN_KEY);
+        if (StringUtils.nonText(header) || !header.startsWith(tokenType.getSerial())) {
+            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+        }
+        Pattern authorizationPattern = Pattern.compile("^Bearer (?<token>[a-zA-Z0-9-:._~+/]+=*)$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = authorizationPattern.matcher(header);
+        if (!matcher.matches()) {
+            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+        }
+        String token = matcher.group("token");
+        JWTToken jwtToken = AccessTokenUtils.decryptJWT(token);
+        if (System.currentTimeMillis() > jwtToken.getExpiresAt().getTime()) {
+            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_TOKEN_EXPIRED.getCode());
+        }
+        return jwtToken;
     }
 }

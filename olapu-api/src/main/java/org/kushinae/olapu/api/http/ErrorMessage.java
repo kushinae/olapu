@@ -5,8 +5,16 @@ package org.kushinae.olapu.api.http;
  * @since 1.0.0
  */
 public enum ErrorMessage {
+
+    /**
+     * system error
+     */
+    UNKNOWN_EXCEPTION("system.error.unknown", "Internal service exception"),
+
+
     USERNAME_ALREADY_EXISTS("account.username.exists", "Username already exists"),
     AUTHENTICATION_FAILED("account.authentication.failed", "Account authentication failed"),
+    AUTHENTICATION_TOKEN_EXPIRED("account.authentication.expired", "Access token has expired"),
     WRONG_USERNAME_OR_PASSWORD("account.login.username_or_password.wrong", "Wrong user name or password"),
 
     RESOURCE_DOES_NOT_EXIST("resource.does_not_exist", "Resource does not exist"),

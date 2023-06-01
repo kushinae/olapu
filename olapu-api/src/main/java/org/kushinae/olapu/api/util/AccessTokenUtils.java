@@ -7,6 +7,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import org.kushinae.olapu.api.exceprion.AccessTokenException;
 import org.kushinae.olapu.api.http.ErrorMessage;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,8 @@ public class AccessTokenUtils {
         // 受众人
         payload.put("aud", uid);
         // jwt过期时间
-        payload.put("exp", DateUtils.offset(currentDate, DateField.MINUTE, 15).getTime());
+        Date offset = DateUtils.offset(currentDate, DateField.MINUTE, 15);
+        payload.put("exp", offset.getTime());
         // jwt生效时间 表示在此之前验证这个jwt则为失效
         payload.put("nbf", currentDate.getTime());
         // jwt签发时间
@@ -58,7 +60,10 @@ public class AccessTokenUtils {
         if (StringUtils.nonText(uid)) {
             throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
         }
-        return JWTToken.builder().uid(uid).build();
+
+        Instant expiresAtAsInstant = decode.getExpiresAtAsInstant();
+        long epochSecond = expiresAtAsInstant.getEpochSecond();
+        return JWTToken.builder().uid(uid).token(token).expiresAt(new Date(epochSecond)).build();
     }
 
 }

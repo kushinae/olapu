@@ -2,21 +2,23 @@ package org.kushinae.olapu.api.service.impl;
 
 import org.kushinae.olapu.api.convert.ResourceConvert;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.ResourceService;
+import org.kushinae.olapu.api.service.ResourceServiceRepository;
 import org.kushinae.olapu.api.util.AbstractAssert;
+import org.kushinae.olapu.api.util.StringUtils;
 import org.kushinae.olapu.api.vo.resource.EditResource;
 import org.kushinae.olapu.repository.entities.Resource;
-import org.kushinae.olapu.repository.repository.ResourceRepository;
+import org.kushinae.olapu.repository.repository.impl.ResourceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author kaisa.liu
  * @since 1.0.0
  */
 @Service
-public class ResourceServiceImpl implements ResourceService {
+public class ResourceServiceImplRepository implements ResourceServiceRepository {
 
     @jakarta.annotation.Resource
     ResourceRepository repository;
@@ -26,6 +28,14 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public ResourceRepository getRepository() {
         return repository;
+    }
+
+    @Override
+    public List<Resource> getResources(Long parentId, String name) {
+        ResourceRepository repository = getRepository();
+        return StringUtils.hasText(name) ?
+                repository.findAllByParentIdAndName(parentId, name) :
+                repository.findAllByParentId(parentId);
     }
 
     @Override
@@ -43,8 +53,7 @@ public class ResourceServiceImpl implements ResourceService {
         resource.setCreateAt(new Date());
         resource.setModifiedAt(new Date());
         resource.setDeleted(false);
-        resource.setUid("");
 
-        return null;
+        return getRepository().save(resource).getId();
     }
 }
