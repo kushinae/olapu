@@ -11,8 +11,14 @@ import org.springframework.data.repository.Repository;
  * @since 1.0.0
  */
 public interface AccountService extends IRepositoryService<Account, Long> {
+
     Login login(LoginPayload payload);
+
+    Account getAccount(String username, String password);
+
+    Account getAccount(String username);
 
     @Override
     Repository<Account, Long> getRepository();
+
 }

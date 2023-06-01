@@ -33,7 +33,7 @@ public class Template {
      * 自增主键ID
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     /**

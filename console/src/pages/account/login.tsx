@@ -1,8 +1,9 @@
-import React, {useLayoutEffect, useState} from "react";
-import {Button, Form, Input, message, Modal, Space, Tabs} from "antd";
+import React, { useLayoutEffect, useState } from "react";
+import { Button, Form, Input, message, Modal, Space, Tabs } from "antd";
+import md5 from 'md5';
 import api from "@/api";
-import {LoginParam, LoginResult} from "@/api/interfaces";
-import {Constant} from "@/commons/constant";
+import { LoginParam, LoginResult } from "@/api/interfaces";
+import { Constant } from "@/commons/constant";
 
 const listener: Record<string, React.Dispatch<React.SetStateAction<boolean>>> = {};
 
@@ -52,6 +53,7 @@ export default () => {
         wrapperCol={{ span: 24 }}
         autoComplete="off"
         onFinish={async (payload: LoginParam) => {
+          payload.password = md5(payload.password);
           setLoading(true);
           const result: LoginResult = await api.login(payload, () => {
             setLoading(false);
@@ -118,7 +120,7 @@ export default () => {
           await message.success('注册成功');
         }}
       >
-      <Form.Item
+        <Form.Item
           label=""
           name="username"
           rules={[
@@ -181,17 +183,17 @@ export default () => {
             setActiveKey(key);
           }}
           items={[
-              {
-                label: '登陆',
-                key: 'login',
-                children: renderLoginForm()
-              },
-              {
-                label: '注册',
-                key: 'register',
-                children: renderRegisterForm()
-              }
-            ]}
+            {
+              label: '登陆',
+              key: 'login',
+              children: renderLoginForm()
+            },
+            {
+              label: '注册',
+              key: 'register',
+              children: renderRegisterForm()
+            }
+          ]}
         />
       </Modal>
     </>

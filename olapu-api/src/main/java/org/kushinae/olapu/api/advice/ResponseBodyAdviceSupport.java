@@ -3,7 +3,9 @@ package org.kushinae.olapu.api.advice;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
+import org.kushinae.olapu.api.exceprion.AccessTokenException;
 import org.kushinae.olapu.api.exceprion.UniqueException;
+import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.http.ErrorResponse;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
@@ -31,7 +33,25 @@ public class ResponseBodyAdviceSupport implements ResponseBodyAdvice<Object> {
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponse handlerUniqueException(UniqueException e) {
         preLogger(e);
-        return ErrorResponse.conflict().message(e.getMessage()).path(request.getMethod(), request.getRequestURI());
+        return ErrorResponse.conflict().message(getMessage(e.getMessage())).path(request.getMethod(), request.getRequestURI());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ErrorResponse handlerIllegalArgumentException(IllegalArgumentException e) {
+        preLogger(e);
+        return ErrorResponse.badRequest().message(getMessage(e.getMessage())).path(request.getMethod(), request.getRequestURI());
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(AccessTokenException.class)
+    public ErrorResponse handlerAccessTokenException(AccessTokenException e) {
+        preLogger(e);
+        return ErrorResponse.unauthorized().message(getMessage(e.getMessage())).path(request.getMethod(), request.getRequestURI());
+    }
+
+    private String getMessage(String code) {
+        return ErrorMessage.matchDefaultMessageByCode(code);
     }
 
     private void preLogger(Exception e) {

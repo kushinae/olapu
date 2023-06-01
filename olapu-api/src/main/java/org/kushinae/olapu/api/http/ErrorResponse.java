@@ -1,6 +1,5 @@
 package org.kushinae.olapu.api.http;
 
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.Date;
@@ -31,6 +30,22 @@ public class ErrorResponse {
         response.timestamp = new Date();
         response.status = StatusCode.CONFLICT.getCode();
         response.error = StatusCode.CONFLICT.getMessage();
+        return response;
+    }
+
+    public static ErrorResponse badRequest() {
+        ErrorResponse response = new ErrorResponse();
+        response.timestamp = new Date();
+        response.status = StatusCode.BAD_REQUEST.getCode();
+        response.error = StatusCode.BAD_REQUEST.getMessage();
+        return response;
+    }
+
+    public static ErrorResponse unauthorized() {
+        ErrorResponse response = new ErrorResponse();
+        response.timestamp = new Date();
+        response.status = StatusCode.UNAUTHORIZED.getCode();
+        response.error = StatusCode.UNAUTHORIZED.getMessage();
         return response;
     }
 

@@ -3,6 +3,9 @@ package org.kushinae.olapu.api.pojo.api.template;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.kushinae.olapu.api.authorization.AbstractAuthorization;
+import org.kushinae.olapu.api.enums.TokenType;
 import org.kushinae.olapu.repository.enums.TemplateModel;
 import org.kushinae.olapu.repository.enums.TemplateSource;
 import org.kushinae.olapu.repository.enums.TemplateType;
@@ -12,7 +15,8 @@ import org.kushinae.olapu.repository.enums.TemplateType;
  * @since 1.0.0
  */
 @Data
-public class CreatePayload {
+@EqualsAndHashCode(callSuper = true)
+public class CreatePayload extends AbstractAuthorization {
 
     @NotNull(message = "模版所属不能为空")
     private TemplateSource source;
@@ -30,4 +34,8 @@ public class CreatePayload {
 
     private String description;
 
+    @Override
+    public TokenType getAuthType() {
+        return TokenType.BEARER;
+    }
 }

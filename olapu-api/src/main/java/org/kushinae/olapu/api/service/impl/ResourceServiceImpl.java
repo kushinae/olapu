@@ -1,0 +1,50 @@
+package org.kushinae.olapu.api.service.impl;
+
+import org.kushinae.olapu.api.convert.ResourceConvert;
+import org.kushinae.olapu.api.http.ErrorMessage;
+import org.kushinae.olapu.api.service.ResourceService;
+import org.kushinae.olapu.api.util.AbstractAssert;
+import org.kushinae.olapu.api.vo.resource.EditResource;
+import org.kushinae.olapu.repository.entities.Resource;
+import org.kushinae.olapu.repository.repository.ResourceRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+
+/**
+ * @author kaisa.liu
+ * @since 1.0.0
+ */
+@Service
+public class ResourceServiceImpl implements ResourceService {
+
+    @jakarta.annotation.Resource
+    ResourceRepository repository;
+
+
+
+    @Override
+    public ResourceRepository getRepository() {
+        return repository;
+    }
+
+    @Override
+    public Long create(EditResource payload) {
+
+        if (payload.getParentId() != -1) {
+            Resource resource = getRepository().searchById(payload.getParentId());
+            AbstractAssert.notNull(resource, ErrorMessage.RESOURCE_DOES_NOT_EXIST);
+        }
+
+        Resource resource = getRepository().searchByParentIdAndNameAndType(payload.getParentId(), payload.getName(), payload.getType());
+        AbstractAssert.isNull(resource, ErrorMessage.RESOURCE_DOES_NOT_EXIST);
+
+        resource = ResourceConvert.INSTANCE.toEntity(payload);
+        resource.setCreateAt(new Date());
+        resource.setModifiedAt(new Date());
+        resource.setDeleted(false);
+        resource.setUid("");
+
+        return null;
+    }
+}

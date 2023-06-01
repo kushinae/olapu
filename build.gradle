@@ -30,4 +30,5 @@ ext {
     mysqlDriverVersion = '8.0.33'
     lombokVersion = '1.18.28'
     jwtVersion = '4.4.0'
+    hutoolVersion = '5.8.19'
 }

@@ -10,4 +10,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AccountRepository extends ListPagingAndSortingRepository<Account, Long> {
+
+    Account searchByUsernameAndPassword(String username, String password);
+
+    Account searchByUsername(String username);
+
 }

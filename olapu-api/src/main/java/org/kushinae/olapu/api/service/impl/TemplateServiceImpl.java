@@ -1,14 +1,14 @@
 package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.exceprion.UniqueException;
+import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.service.TemplateService;
+import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.repository.entities.Template;
 import org.kushinae.olapu.repository.repository.TemplateRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * @author kaisa.liu
@@ -28,14 +28,10 @@ public class TemplateServiceImpl implements TemplateService {
     @Override
     public Long create(Template template) {
         Template queryTemplate = getRepository().searchBySourceAndTypeAndModel(template.getSource(), template.getType(), template.getModel());
-        if (Objects.nonNull(queryTemplate)) {
-            throw new UniqueException("Repeat unique data (%s, %s, %s)".formatted(queryTemplate.getSource().getCode(), queryTemplate.getType().getCode(), queryTemplate.getModel().getCode()));
-        }
+        AbstractAssert.isNull(queryTemplate, ErrorMessage.TEMPLATE_DATA_ALREADY_EXISTS);
 
         queryTemplate = getRepository().searchByName(template.getName());
-        if (Objects.nonNull(queryTemplate)) {
-            throw new UniqueException("Repeat unique name %s".formatted(queryTemplate.getName()));
-        }
+        AbstractAssert.isNull(queryTemplate, ErrorMessage.TEMPLATE_NAME_ALREADY_EXISTS);
         template.setCreateAt(new Date());
         template.setModifiedAt(new Date());
         template.setDeleted(false);

@@ -8,6 +8,8 @@ public enum StatusCode {
 
     OK(200, "SUCCESS"),
 
+    BAD_REQUEST(400, "Bad Request"),
+    UNAUTHORIZED(401, "Unauthorized"),
     CONFLICT(409, "Repeat Data Conflict"),
     ;
 
