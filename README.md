@@ -14,7 +14,7 @@ execution [database initialization script](./sql/init.sql)
 
 - configure your database connection
 
-编辑 [API服务配置文件](./olapu-api/src/main/resources/application.yaml) 
+Editor [API service configuration file](./olapu-api/src/main/resources/application.yaml) 
 
 ```yaml
 spring:
@@ -55,9 +55,9 @@ cd ./console
 yarn build
 ```
 
-build之后您的静态资源会在 `console/dist` 目录中，您可以使用 `nginx` 或者其他静态资源代理来访问它，
+After building, your static resources will be in the `consoledist` directory, you can use `nginx` or other static resource agents to access it,
 
-如果您想`本地启动`
+If you want to `local start`
 
 ```shell
 cd ./console
@@ -65,7 +65,7 @@ yarn
 yarn start
 ```
 
-或者您想使用`应用程序`启动
+Or you want to use `Application` to launch
 
 ```shell
 cd ./console
@@ -88,6 +88,6 @@ I'm actively developing this project, I can't push it anytime soon due to work, 
 
 # Thank you
 
-- 感谢 `JetBrains` 对本项目的帮助
+- Thanks to `JetBrains` for their help with this project
 
 ![JetBrainsLogo](https://github.com/rymcu/forest/raw/master/src/main/resources/static/jb_beam.svg)
