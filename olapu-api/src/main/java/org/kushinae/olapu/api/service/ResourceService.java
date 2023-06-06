@@ -10,7 +10,7 @@ import java.util.List;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface ResourceServiceRepository extends IRepositoryService<Resource, Long> {
+public interface ResourceService extends IRepositoryService<Resource, Long> {
     Long create(EditResource payload);
 
     @Override

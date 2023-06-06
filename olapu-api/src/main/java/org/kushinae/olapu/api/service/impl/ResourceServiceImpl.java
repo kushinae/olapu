@@ -2,7 +2,7 @@ package org.kushinae.olapu.api.service.impl;
 
 import org.kushinae.olapu.api.convert.ResourceConvert;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.ResourceServiceRepository;
+import org.kushinae.olapu.api.service.ResourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.StringUtils;
 import org.kushinae.olapu.api.vo.resource.EditResource;
@@ -18,7 +18,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @Service
-public class ResourceServiceImplRepository implements ResourceServiceRepository {
+public class ResourceServiceImpl implements ResourceService {
 
     @jakarta.annotation.Resource
     ResourceRepository repository;

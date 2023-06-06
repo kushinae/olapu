@@ -4,7 +4,7 @@ import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.annotation.AccessWhitelist;
 import org.kushinae.olapu.api.convert.ResourceConvert;
 import org.kushinae.olapu.api.pojo.api.resource.Detail;
-import org.kushinae.olapu.api.service.ResourceServiceRepository;
+import org.kushinae.olapu.api.service.ResourceService;
 import org.kushinae.olapu.api.vo.resource.EditResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ import java.util.List;
 public class ResourceController {
 
     @Resource
-    ResourceServiceRepository resourceService;
+    ResourceService resourceService;
 
     @PostMapping
     Long create(@RequestBody EditResource payload) {

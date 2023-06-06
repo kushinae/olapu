@@ -3,7 +3,7 @@ package org.kushinae.olapu.api.service.impl;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.pojo.api.generate.GeneratePayload;
 import org.kushinae.olapu.api.service.GenerateService;
-import org.kushinae.olapu.api.service.TemplateServiceRepository;
+import org.kushinae.olapu.api.service.TemplateService;
 import org.kushinae.olapu.generate.BuildOption;
 import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.ModelType;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class GenerateServiceImpl implements GenerateService {
 
     @Resource
-    TemplateServiceRepository templateService;
+    TemplateService templateService;
 
     @Override
     public Record generate(GeneratePayload generatePayload) {

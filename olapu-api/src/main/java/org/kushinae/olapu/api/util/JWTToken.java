@@ -19,4 +19,6 @@ public class JWTToken {
 
     private String token;
 
+    private String username;
+
 }

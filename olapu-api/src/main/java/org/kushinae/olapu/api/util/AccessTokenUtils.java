@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateField;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.kushinae.olapu.api.enums.TokenType;
 import org.kushinae.olapu.api.exceprion.AccessTokenException;
 import org.kushinae.olapu.api.http.ErrorMessage;
 
@@ -13,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author kaisa.liu
@@ -24,7 +27,7 @@ public class AccessTokenUtils {
 
     private static final String issueAt = "olapu.api.service-v1";
 
-    public static String createFromJWT(String uid, String secret) {
+    public static String createFromJWT(String uid, String secret, String username) {
         Date currentDate = new Date();
         Algorithm algorithm = Algorithm.HMAC256(secret);
         Map<String, Object> headers = new HashMap<>();
@@ -45,6 +48,7 @@ public class AccessTokenUtils {
         payload.put("iat", currentDate.getTime());
         // 本次jwt令牌编号
         payload.put("jti", UUID.randomUUID().toString());
+        payload.put("username", username);
 
         return JWT.create().withHeader(headers).withPayload(payload).withIssuer(issueAt).sign(algorithm);
     }
@@ -62,8 +66,26 @@ public class AccessTokenUtils {
         }
 
         Instant expiresAtAsInstant = decode.getExpiresAtAsInstant();
+
         long epochSecond = expiresAtAsInstant.getEpochSecond();
-        return JWTToken.builder().uid(uid).token(token).expiresAt(new Date(epochSecond)).build();
+        return JWTToken.builder().uid(uid).token(token).expiresAt(new Date(epochSecond)).username(decode.getClaim("username").asString()).build();
+    }
+
+    public static JWTToken checkAccessPurview(String authType, String header, TokenType tokenType) {
+        if (StringUtils.nonText(header) || !header.startsWith(tokenType.getSerial())) {
+            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+        }
+        Pattern authorizationPattern = Pattern.compile("^Bearer (?<token>[a-zA-Z0-9-:._~+/]+=*)$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = authorizationPattern.matcher(header);
+        if (!matcher.matches()) {
+            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+        }
+        String token = matcher.group("token");
+        JWTToken jwtToken = AccessTokenUtils.decryptJWT(token);
+        if (System.currentTimeMillis() > jwtToken.getExpiresAt().getTime()) {
+            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_TOKEN_EXPIRED.getCode());
+        }
+        return jwtToken;
     }
 
 }

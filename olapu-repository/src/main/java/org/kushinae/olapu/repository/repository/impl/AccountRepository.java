@@ -15,4 +15,6 @@ public interface AccountRepository extends IServiceRepository<Account, Long> {
 
     Account searchByUsername(String username);
 
+    Account searchByUid(String uid);
+
 }

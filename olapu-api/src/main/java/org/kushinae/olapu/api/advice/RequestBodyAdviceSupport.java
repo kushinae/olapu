@@ -2,14 +2,6 @@ package org.kushinae.olapu.api.advice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
-import org.kushinae.olapu.api.annotation.AccessWhitelist;
-import org.kushinae.olapu.api.authorization.Authorization;
-import org.kushinae.olapu.api.enums.TokenType;
-import org.kushinae.olapu.api.exceprion.AccessTokenException;
-import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.util.AccessTokenUtils;
-import org.kushinae.olapu.api.util.JWTToken;
-import org.kushinae.olapu.api.util.StringUtils;
 import org.kushinae.olapu.core.utils.JacksonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -19,12 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Date;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author kaisa.liu
@@ -35,8 +23,6 @@ import java.util.regex.Pattern;
 public class RequestBodyAdviceSupport implements RequestBodyAdvice {
 
     private static final String LOG_STYLE = "\n\t";
-    private static final String TOKEN_KEY = "Authorization";
-    private static final TokenType tokenType = TokenType.BEARER;
 
     @Autowired
     HttpServletRequest request;
@@ -54,19 +40,6 @@ public class RequestBodyAdviceSupport implements RequestBodyAdvice {
 
     @Override
     public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
-        Method method = parameter.getMethod();
-        AccessWhitelist accessWhitelist = Objects.requireNonNull(method).getDeclaredAnnotation(AccessWhitelist.class);
-        Class<?> declaringClass = Objects.requireNonNull(method).getDeclaringClass();
-        if (null == accessWhitelist) {
-            accessWhitelist = declaringClass.getDeclaredAnnotation(AccessWhitelist.class);
-        }
-        if (body instanceof Authorization authorization && null == accessWhitelist) {
-            JWTToken jwtToken = checkAccessPurview();
-            authorization.setUid(jwtToken.getUid());
-            authorization.setToken(jwtToken.getToken());
-        } else if (null != accessWhitelist && accessWhitelist.value()) {
-            checkAccessPurview();
-        }
         if (log.isInfoEnabled()) {
             log.info("\n[Request Logger]" + LOG_STYLE +
                     "Request \t\tpath: {} {}" + LOG_STYLE +
@@ -84,25 +57,5 @@ public class RequestBodyAdviceSupport implements RequestBodyAdvice {
     @Override
     public Object handleEmptyBody(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
         return body;
-    }
-
-    public JWTToken checkAccessPurview() {
-        String authType = request.getAuthType();
-
-        String header = request.getHeader(TOKEN_KEY);
-        if (StringUtils.nonText(header) || !header.startsWith(tokenType.getSerial())) {
-            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
-        }
-        Pattern authorizationPattern = Pattern.compile("^Bearer (?<token>[a-zA-Z0-9-:._~+/]+=*)$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = authorizationPattern.matcher(header);
-        if (!matcher.matches()) {
-            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
-        }
-        String token = matcher.group("token");
-        JWTToken jwtToken = AccessTokenUtils.decryptJWT(token);
-        if (System.currentTimeMillis() > jwtToken.getExpiresAt().getTime()) {
-            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_TOKEN_EXPIRED.getCode());
-        }
-        return jwtToken;
     }
 }

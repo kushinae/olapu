@@ -60,6 +60,24 @@ public class Account {
     private String uid;
 
     /**
+     * 用户是否过期
+     */
+    @Column(name = "expired")
+    private Boolean expired;
+
+    /**
+     * 用户是否被锁定
+     */
+    @Column(name = "locked")
+    private Boolean locked;
+
+    /**
+     * 用户是否开启,如后续如果有多个注册流程的话可以使用该字段 确定用户是否注册完毕
+     */
+    @Column(name = "enabled")
+    private Boolean enabled;
+
+    /**
      * 数据创建时间
      */
     @Column(name = "create_at")

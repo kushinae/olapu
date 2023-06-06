@@ -6,6 +6,6 @@ class AccessTokenUtilsTest {
 
     @Test
     void create() {
-        System.out.println(AccessTokenUtils.createFromJWT("GC4joRWDhcIVdZINm0lblpiCKzhT", "GC4joRWDhcIVdZINm0lblpiCKzhT"));
+        System.out.println(AccessTokenUtils.createFromJWT("GC4joRWDhcIVdZINm0lblpiCKzhT", "GC4joRWDhcIVdZINm0lblpiCKzhT", "kaisa.liu"));
     }
 }
