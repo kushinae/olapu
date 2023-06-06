@@ -90,4 +90,4 @@ I'm actively developing this project, I can't push it anytime soon due to work, 
 
 - Thanks to `JetBrains` for their help with this project
 
-![JetBrainsLogo](https://github.com/rymcu/forest/raw/master/src/main/resources/static/jb_beam.svg)
+![[JetBrainsLogo](https://www.jetbrains.com)](https://github.com/rymcu/forest/raw/master/src/main/resources/static/jb_beam.svg)
