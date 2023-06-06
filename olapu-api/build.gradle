@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.1.0'
 }
 
 repositories {
@@ -8,6 +9,16 @@ repositories {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.kushinae.olapu.api.Main',
+                'Implementation-Title': 'Olapu backend api service',
+                'Implementation-Version': version
+        )
+    }
 }
 
 dependencies {

@@ -11,3 +11,5 @@ vendor
 
 # Ignore Gradle build output directory
 build
+dist/
+.umi-production/
