@@ -1,7 +1,6 @@
 package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
-import jakarta.annotation.security.PermitAll;
 import org.kushinae.olapu.api.pojo.api.account.LoginPayload;
 import org.kushinae.olapu.api.service.AccountService;
 import org.kushinae.olapu.api.vo.account.Login;
@@ -19,7 +18,6 @@ public class AccountLinkedController {
     @Resource
     AccountService accountService;
 
-    @PermitAll
     @PostMapping("/login")
     public Login login(@RequestBody LoginPayload payload) {
         return accountService.login(payload);

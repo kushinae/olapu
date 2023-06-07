@@ -27,10 +27,15 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     private UserDetailsService userDetailsService;
 
+    private Whitelist whitelist;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 检查在不在白名单
-
+        if (whitelist.contains(request.getRequestURI())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         // get token from header:  Authorization: Bearer <token>
         String authHeader = request.getHeader(AUTH_HEADER);
         JWTToken jwtToken = null;
@@ -65,5 +70,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
+    }
+
+    public void setWhitelist(Whitelist whitelist) {
+        this.whitelist = whitelist;
     }
 }

@@ -5,9 +5,10 @@ import jakarta.servlet.Filter;
 import org.kushinae.olapu.api.authorization.security.AccessHandler;
 import org.kushinae.olapu.api.authorization.security.JWTProvider;
 import org.kushinae.olapu.api.authorization.security.JwtAuthenticationTokenFilter;
+import org.kushinae.olapu.api.authorization.security.Whitelist;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author kaisa.liu
@@ -32,6 +34,9 @@ public class SecurityConfig {
 
     @Resource(name = "accountServiceImpl")
     private UserDetailsService userDetailsService;
+
+    @Resource
+    ServerProperties serverProperties;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -47,16 +52,15 @@ public class SecurityConfig {
                 .logout(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(register -> register
-                        .requestMatchers("/api/login").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/**").permitAll()
-                        .requestMatchers("/error/**").permitAll()
-                        .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests(register -> {
+                    for (String uri : whitelistURI()) {
+                        register.requestMatchers(uri).permitAll();
+                    }
+                    register.anyRequest().authenticated();
+                })
                 .sessionManagement(e -> e.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
-                .addFilter(jwtAuthFilter())
+                .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
                 .userDetailsService(userDetailsService)
                 .exceptionHandling(e -> e
                         .accessDeniedHandler(accessDeniedHandler())
@@ -72,10 +76,10 @@ public class SecurityConfig {
     }
 
     @Bean
-    @Order(1)
     public Filter jwtAuthFilter() {
         JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter();
         filter.setUserDetailsService(userDetailsService);
+        filter.setWhitelist(whitelistURI());
         return filter;
     }
 
@@ -89,5 +93,15 @@ public class SecurityConfig {
         return new AccessHandler();
     }
 
+    @Bean
+    public Whitelist whitelistURI() {
+        Whitelist whitelist = new Whitelist();
+        whitelist.setContentPath(serverProperties.getServlet().getContextPath());
+        whitelist.add("/login");
+        whitelist.add("/register");
+        whitelist.addIgnorePrefix("/register");
+        whitelist.addIgnorePrefix("/error/**");
+        return whitelist;
+    }
 
 }
