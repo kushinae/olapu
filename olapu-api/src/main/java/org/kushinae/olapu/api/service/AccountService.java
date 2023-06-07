@@ -1,7 +1,9 @@
 package org.kushinae.olapu.api.service;
 
 import org.kushinae.olapu.api.pojo.api.account.LoginPayload;
+import org.kushinae.olapu.api.pojo.api.account.RegisterPayload;
 import org.kushinae.olapu.api.vo.account.Login;
+import org.kushinae.olapu.api.vo.account.Register;
 import org.kushinae.olapu.repository.entities.Account;
 import org.springframework.data.repository.Repository;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,4 +25,5 @@ public interface AccountService extends IRepositoryService<Account, Long>, UserD
     @Override
     Repository<Account, Long> getRepository();
 
+    Register register(RegisterPayload payload);
 }

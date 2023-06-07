@@ -1,7 +1,8 @@
-import request, {extend, RequestMethod, RequestOptionsInit, ResponseError} from "umi-request";
-import {IErrorBodyProps} from "@/interface";
-import {message} from "antd";
-import {Constant} from "@/commons/constant";
+import request, { extend, RequestMethod, RequestOptionsInit, ResponseError } from "umi-request";
+import { IErrorBodyProps } from "@/interface";
+import { message } from "antd";
+import { Constant } from "@/commons/constant";
+import { logoutStorage } from "@/pages/account/login";
 
 class Http {
 
@@ -29,7 +30,6 @@ class Http {
           Authorization: `Bearer ${localStorage.getItem(Constant.Authorization.X_Access_Token)}`
         }
         : new Headers(options.headers);
-      console.log('added headers', headers);
       return {
         url,
         options: {
@@ -37,7 +37,14 @@ class Http {
           headers
         }
       }
-    }, {global: false})
+    }, { global: false });
+
+    this.request.interceptors.response.use(response => {
+      if (401 == response.status) {
+        logoutStorage();
+      }
+      return response;
+    })
   };
 
   post<T>(url: string, options?: RequestOptionsInit, errorCallback?: () => void): Promise<T> {

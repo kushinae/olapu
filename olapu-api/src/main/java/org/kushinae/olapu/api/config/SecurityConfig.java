@@ -99,6 +99,7 @@ public class SecurityConfig {
         whitelist.setContentPath(serverProperties.getServlet().getContextPath());
         whitelist.add("/login");
         whitelist.add("/register");
+        whitelist.addIgnorePrefix("/login");
         whitelist.addIgnorePrefix("/register");
         whitelist.addIgnorePrefix("/error/**");
         return whitelist;
