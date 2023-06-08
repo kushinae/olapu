@@ -35,7 +35,7 @@ public class ResourceController {
     @AccessWhitelist(value = false)
     List<Detail> getResources(@RequestParam(value = "parent_id", defaultValue = "-1", required = false) Long parentId,
                               @RequestParam(value = "name", required = false) String name) {
-        return ResourceConvert.INSTANCE.toDetails(resourceService.getResources(parentId, name));
+        return ResourceConvert.INSTANCE.toDetails(resourceService.getResources(parentId, name, "TLSDZ51qrUP0FhRJxs4GD8nB4Dad"));
     }
 
 }

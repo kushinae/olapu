@@ -16,5 +16,5 @@ public interface ResourceService extends IRepositoryService<Resource, Long> {
     @Override
     ResourceRepository getRepository();
 
-    List<Resource> getResources(Long parentId, String name);
+    List<Resource> getResources(Long parentId, String name, String uid);
 }

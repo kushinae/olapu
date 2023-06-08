@@ -18,7 +18,7 @@ public interface ResourceRepository extends IServiceRepository<Resource, Long> {
 
     Resource searchByParentIdAndNameAndType(Long parentId, String name, FileType type);
 
-    List<Resource> findAllByParentId(Long parentId);
-    List<Resource> findAllByParentIdAndName(Long parentId, String name);
+    List<Resource> findAllByParentIdAndUid(Long parentId, String uid);
+    List<Resource> findAllByParentIdAndNameAndUid(Long parentId, String name, String uid);
 
 }

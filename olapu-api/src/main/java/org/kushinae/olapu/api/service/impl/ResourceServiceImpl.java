@@ -31,11 +31,11 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public List<Resource> getResources(Long parentId, String name) {
+    public List<Resource> getResources(Long parentId, String name, String uid) {
         ResourceRepository repository = getRepository();
         return StringUtils.hasText(name) ?
-                repository.findAllByParentIdAndName(parentId, name) :
-                repository.findAllByParentId(parentId);
+                repository.findAllByParentIdAndNameAndUid(parentId, name, uid) :
+                repository.findAllByParentIdAndUid(parentId, uid);
     }
 
     @Override
