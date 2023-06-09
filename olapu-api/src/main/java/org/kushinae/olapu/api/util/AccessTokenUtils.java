@@ -5,7 +5,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.kushinae.olapu.api.enums.TokenType;
-import org.kushinae.olapu.api.exceprion.AccessTokenException;
+import org.kushinae.olapu.api.exceprion.UnAccessException;
 import org.kushinae.olapu.api.http.ErrorMessage;
 
 import java.time.Instant;
@@ -57,12 +57,12 @@ public class AccessTokenUtils {
         DecodedJWT decode = JWT.decode(token);
         List<String> audience = decode.getAudience();
         if (CollectionUtils.isEmpty(audience)) {
-            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+            throw new UnAccessException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
         }
 
         String uid = audience.get(0);
         if (StringUtils.nonText(uid)) {
-            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+            throw new UnAccessException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
         }
 
         Instant expiresAtAsInstant = decode.getExpiresAtAsInstant();
@@ -73,17 +73,17 @@ public class AccessTokenUtils {
 
     public static JWTToken checkAccessPurview(String authType, String header, TokenType tokenType) {
         if (StringUtils.nonText(header) || !header.startsWith(tokenType.getSerial())) {
-            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+            throw new UnAccessException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
         }
         Pattern authorizationPattern = Pattern.compile("^Bearer (?<token>[a-zA-Z0-9-:._~+/]+=*)$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = authorizationPattern.matcher(header);
         if (!matcher.matches()) {
-            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+            throw new UnAccessException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
         }
         String token = matcher.group("token");
         JWTToken jwtToken = AccessTokenUtils.decryptJWT(token);
         if (System.currentTimeMillis() > jwtToken.getExpiresAt().getTime()) {
-            throw new AccessTokenException(ErrorMessage.AUTHENTICATION_TOKEN_EXPIRED.getCode());
+            throw new UnAccessException(ErrorMessage.AUTHENTICATION_TOKEN_EXPIRED.getCode());
         }
         return jwtToken;
     }

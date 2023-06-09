@@ -10,6 +10,7 @@ public enum StatusCode {
 
     BAD_REQUEST(400, "Bad Request"),
     UNAUTHORIZED(401, "Unauthorized"),
+    FORBIDDEN(403, "Forbidden"),
     CONFLICT(409, "Repeat Data Conflict"),
     ;
 

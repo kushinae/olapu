@@ -14,6 +14,7 @@ public enum ErrorMessage {
 
     USERNAME_ALREADY_EXISTS("account.username.exists", "Username already exists"),
     AUTHENTICATION_FAILED("account.authentication.failed", "Account authentication failed"),
+    UN_AUTHENTICATION("account.authentication.un_authentication", "Un authentication"),
     AUTHENTICATION_TOKEN_EXPIRED("account.authentication.expired", "Access token has expired"),
     WRONG_USERNAME_OR_PASSWORD("account.login.username_or_password.wrong", "Wrong user name or password"),
 

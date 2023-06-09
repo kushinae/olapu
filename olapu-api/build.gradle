@@ -37,8 +37,6 @@ dependencies {
     implementation group: 'com.auth0', name: 'java-jwt', version: jwtVersion
     // https://mvnrepository.com/artifact/cn.hutool/hutool-core
     implementation group: 'cn.hutool', name: 'hutool-core', version: hutoolVersion
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springComponentVersion
 
 
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"

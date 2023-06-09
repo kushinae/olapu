@@ -15,8 +15,7 @@ import org.kushinae.olapu.repository.enums.TemplateType;
  * @since 1.0.0
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class CreatePayload extends AbstractAuthorization {
+public class CreatePayload {
 
     @NotNull(message = "模版所属不能为空")
     private TemplateSource source;
@@ -33,9 +32,4 @@ public class CreatePayload extends AbstractAuthorization {
     private String name;
 
     private String description;
-
-    @Override
-    public TokenType getAuthType() {
-        return TokenType.BEARER;
-    }
 }

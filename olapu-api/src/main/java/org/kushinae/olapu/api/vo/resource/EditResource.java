@@ -12,8 +12,7 @@ import org.kushinae.olapu.repository.enums.FileType;
  * @since 1.0.0
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class EditResource extends AbstractAuthorization {
+public class EditResource {
 
     private String name;
 
@@ -24,8 +23,4 @@ public class EditResource extends AbstractAuthorization {
 
     private String content;
 
-    @Override
-    public TokenType getAuthType() {
-        return TokenType.BEARER;
-    }
 }

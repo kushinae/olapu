@@ -16,6 +16,10 @@ public interface Authorization {
 
     void setToken(String token);
 
+    Whitelist getWhitelist();
+
+    void setWhitelist(Whitelist whitelist);
+
     TokenType getAuthType();
 
 }

@@ -6,13 +6,12 @@ import org.kushinae.olapu.api.vo.account.Login;
 import org.kushinae.olapu.api.vo.account.Register;
 import org.kushinae.olapu.repository.entities.Account;
 import org.springframework.data.repository.Repository;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface AccountService extends IRepositoryService<Account, Long>, UserDetailsService {
+public interface AccountService extends IRepositoryService<Account, Long> {
 
     Login login(LoginPayload payload);
 

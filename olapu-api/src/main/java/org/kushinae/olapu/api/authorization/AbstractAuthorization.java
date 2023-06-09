@@ -8,6 +8,7 @@ public abstract class AbstractAuthorization implements Authorization {
 
     private String uid;
     private String token;
+    private Whitelist whitelist;
 
     @Override
     public String getUid() {
@@ -27,5 +28,15 @@ public abstract class AbstractAuthorization implements Authorization {
     @Override
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @Override
+    public Whitelist getWhitelist() {
+        return whitelist;
+    }
+
+    @Override
+    public void setWhitelist(Whitelist whitelist) {
+        this.whitelist = whitelist;
     }
 }

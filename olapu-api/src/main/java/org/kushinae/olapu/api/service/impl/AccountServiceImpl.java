@@ -4,7 +4,6 @@ import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.convert.AccountConvert;
 import org.kushinae.olapu.api.enums.TokenType;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.pojo.account.AccountDetails;
 import org.kushinae.olapu.api.pojo.api.account.LoginPayload;
 import org.kushinae.olapu.api.pojo.api.account.RegisterPayload;
 import org.kushinae.olapu.api.service.AccountService;
@@ -15,8 +14,6 @@ import org.kushinae.olapu.api.vo.account.Login;
 import org.kushinae.olapu.api.vo.account.Register;
 import org.kushinae.olapu.repository.entities.Account;
 import org.kushinae.olapu.repository.repository.impl.AccountRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -85,17 +82,5 @@ public class AccountServiceImpl implements AccountService {
 
         Account save = getRepository().save(account);
         return Register.builder().uid(save.getUid()).nickname(save.getNickname()).avatar(save.getAvatar()).build();
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = getAccount(username);
-        return AccountDetails
-                .build()
-                .enabled(account.getEnabled())
-                .expired(account.getExpired())
-                .locked(account.getLocked())
-                .username(account.getUsername())
-                .password(account.getPassword());
     }
 }

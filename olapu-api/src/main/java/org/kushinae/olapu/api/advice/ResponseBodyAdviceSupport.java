@@ -3,7 +3,7 @@ package org.kushinae.olapu.api.advice;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
-import org.kushinae.olapu.api.exceprion.AccessTokenException;
+import org.kushinae.olapu.api.exceprion.UnAccessException;
 import org.kushinae.olapu.api.exceprion.UniqueException;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.http.ErrorResponse;
@@ -43,11 +43,11 @@ public class ResponseBodyAdviceSupport implements ResponseBodyAdvice<Object> {
         return ErrorResponse.badRequest().message(getMessage(e.getMessage())).path(request.getMethod(), request.getRequestURI());
     }
 
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(AccessTokenException.class)
-    public ErrorResponse handlerAccessTokenException(AccessTokenException e) {
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(UnAccessException.class)
+    public ErrorResponse handlerAccessTokenException(UnAccessException e) {
         preLogger(e);
-        return ErrorResponse.unauthorized().message(getMessage(e.getMessage())).path(request.getMethod(), request.getRequestURI());
+        return ErrorResponse.forbidden().message(getMessage(e.getMessage())).path(request.getMethod(), request.getRequestURI());
     }
 
     private String getMessage(String code) {

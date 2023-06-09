@@ -49,6 +49,14 @@ public class ErrorResponse {
         return response;
     }
 
+    public static ErrorResponse forbidden() {
+        ErrorResponse response = new ErrorResponse();
+        response.timestamp = new Date();
+        response.status = StatusCode.FORBIDDEN.getCode();
+        response.error = StatusCode.FORBIDDEN.getMessage();
+        return response;
+    }
+
     public ErrorResponse path(String method, String path) {
         this.path = method.toUpperCase(Locale.ROOT) + " " + path;
         return this;

@@ -6,13 +6,13 @@ import org.kushinae.olapu.api.http.ErrorMessage;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public class AccessTokenException extends AbstractErrorException {
+public class UnAccessException extends AbstractErrorException {
 
-    public AccessTokenException(ErrorMessage error) {
+    public UnAccessException(ErrorMessage error) {
         super(error);
     }
 
-    public AccessTokenException(String message) {
+    public UnAccessException(String message) {
         super(message);
     }
 }
