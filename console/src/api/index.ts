@@ -30,7 +30,7 @@ export default {
   },
 
   /* 创建资源目录或文件 */
-  async createResource(payload: CreateResourceParam): Promise<string> {
+  async createResource(payload: CreateResourceParam): Promise<number> {
     return await httpClient.post(requests.RESOURCE, {
       data: {
         ...payload

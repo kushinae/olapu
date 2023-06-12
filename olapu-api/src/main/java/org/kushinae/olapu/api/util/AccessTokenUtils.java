@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.kushinae.olapu.api.enums.TokenType;
 import org.kushinae.olapu.api.exceprion.UnAccessException;
+import org.kushinae.olapu.api.exceprion.UnAuthorizationException;
 import org.kushinae.olapu.api.http.ErrorMessage;
 
 import java.time.Instant;
@@ -73,17 +74,17 @@ public class AccessTokenUtils {
 
     public static JWTToken checkAccessPurview(String authType, String header, TokenType tokenType) {
         if (StringUtils.nonText(header) || !header.startsWith(tokenType.getSerial())) {
-            throw new UnAccessException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+            throw new UnAuthorizationException(ErrorMessage.AUTHENTICATION_FAILED);
         }
         Pattern authorizationPattern = Pattern.compile("^Bearer (?<token>[a-zA-Z0-9-:._~+/]+=*)$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = authorizationPattern.matcher(header);
         if (!matcher.matches()) {
-            throw new UnAccessException(ErrorMessage.AUTHENTICATION_FAILED.getCode());
+            throw new UnAuthorizationException(ErrorMessage.AUTHENTICATION_FAILED);
         }
         String token = matcher.group("token");
         JWTToken jwtToken = AccessTokenUtils.decryptJWT(token);
         if (System.currentTimeMillis() > jwtToken.getExpiresAt().getTime()) {
-            throw new UnAccessException(ErrorMessage.AUTHENTICATION_TOKEN_EXPIRED.getCode());
+            throw new UnAuthorizationException(ErrorMessage.AUTHENTICATION_TOKEN_EXPIRED);
         }
         return jwtToken;
     }

@@ -13,4 +13,7 @@ export default defineConfig({
       secure: false,
     },
   },
+  chainWebpack(config) {
+    config.module.rule('mjs-rule').test(/.m?js/).resolve.set('fullySpecified', false);
+  },
 });

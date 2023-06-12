@@ -1,5 +1,6 @@
 package org.kushinae.olapu.api.service.impl;
 
+import org.kushinae.olapu.api.authorization.Authorization;
 import org.kushinae.olapu.api.convert.ResourceConvert;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.service.ResourceService;
@@ -22,6 +23,9 @@ public class ResourceServiceImpl implements ResourceService {
 
     @jakarta.annotation.Resource
     ResourceRepository repository;
+
+    @jakarta.annotation.Resource
+    Authorization authorization;
 
 
 
@@ -53,6 +57,7 @@ public class ResourceServiceImpl implements ResourceService {
         resource.setCreateAt(new Date());
         resource.setModifiedAt(new Date());
         resource.setDeleted(false);
+        resource.setUid(authorization.getUid());
 
         return getRepository().save(resource).getId();
     }

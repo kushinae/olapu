@@ -61,7 +61,4 @@ export default class CategoryService extends GlobalEvent implements ICategorySer
     molecule.explorer.forceUpdate();
 
   }
-
-  loadTreeNode1(id: string): void {
-  }
 }
