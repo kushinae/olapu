@@ -13,3 +13,4 @@ vendor
 build
 dist/
 .umi-production/
+gradle.properties

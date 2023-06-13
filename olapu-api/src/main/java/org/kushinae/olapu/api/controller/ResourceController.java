@@ -32,7 +32,9 @@ public class ResourceController {
 
     @PostMapping
     Long create(@RequestBody EditResource payload) {
-        return resourceService.create(payload);
+        org.kushinae.olapu.repository.entities.Resource entity = ResourceConvert.INSTANCE.toEntity(payload);
+        entity.setUid(authorization.getUid());
+        return resourceService.create(entity);
     }
 
     @GetMapping

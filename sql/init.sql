@@ -1,4 +1,4 @@
-create table t_template(
+createPayload table t_template(
                            id bigint primary key auto_increment comment '主键ID',
                            source enum('generate') not null comment '模版原始来源',
                            type varchar(16) not null comment '如java或其他',
@@ -11,7 +11,7 @@ create table t_template(
                            deleted tinyint(1) default false comment '数据是否删除'
 );
 
-create table t_account (
+createPayload table t_account (
                            id bigint primary key auto_increment comment '主键ID',
                            username varchar(64) not null comment '用户名',
                            avatar text comment '用户头像',
@@ -27,7 +27,7 @@ create table t_account (
 );
 
 
-create table t_resource (
+createPayload table t_resource (
                             id bigint primary key auto_increment comment '主键ID',
                             content text comment '文件内容，如果文件类型为文件时不可为空',
                             name varchar(128) comment '文件/文件夹名称',

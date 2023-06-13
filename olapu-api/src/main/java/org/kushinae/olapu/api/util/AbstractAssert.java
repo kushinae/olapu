@@ -42,4 +42,9 @@ public abstract class AbstractAssert extends org.springframework.util.Assert {
         Assert.hasText(text, message.getCode());
     }
 
+    public static void isEquals(Object obj, Object target) {
+        if (!ObjectUtils.nullSafeEquals(obj, target)) {
+
+        }
+    }
 }

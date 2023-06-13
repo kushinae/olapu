@@ -11,10 +11,12 @@ import java.util.List;
  * @since 1.0.0
  */
 public interface ResourceService extends IRepositoryService<Resource, Long> {
-    Long create(EditResource payload);
+    Long create(Resource resource);
 
     @Override
     ResourceRepository getRepository();
 
     List<Resource> getResources(Long parentId, String name, String uid);
+
+    Resource getResourceById(Long id);
 }

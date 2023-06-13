@@ -8,6 +8,8 @@ plugins {
     id 'java'
 }
 
+def properties = project.getProperties()
+
 allprojects {
     repositories {
         maven {
@@ -15,9 +17,23 @@ allprojects {
         }
         mavenLocal()
         mavenCentral()
+        maven {
+            credentials {
+                username properties['maven.username']
+                password properties['maven.password']
+            }
+            url 'https://packages.aliyun.com/maven/repository/2212017-release-TmeWL8/'
+        }
+        maven {
+            credentials {
+                username properties['maven.username']
+                password properties['maven.password']
+            }
+            url 'https://packages.aliyun.com/maven/repository/2212017-snapshot-2vhkHr/'
+        }
     }
     group 'org.kushinae'
-    version '1.0-SNAPSHOT'
+    version '1.0.0-SNAPSHOT'
 }
 
 ext {
@@ -31,4 +47,5 @@ ext {
     lombokVersion = '1.18.28'
     jwtVersion = '4.4.0'
     hutoolVersion = '5.8.19'
+    yoneVersion = '1.0.0'
 }

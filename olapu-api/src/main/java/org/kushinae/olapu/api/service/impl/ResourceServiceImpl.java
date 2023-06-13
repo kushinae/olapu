@@ -43,8 +43,12 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public Long create(EditResource payload) {
+    public Resource getResourceById(Long id) {
+        return getRepository().searchById(id);
+    }
 
+    @Override
+    public Long create(Resource payload) {
         if (payload.getParentId() != -1) {
             Resource resource = getRepository().searchById(payload.getParentId());
             AbstractAssert.notNull(resource, ErrorMessage.RESOURCE_DOES_NOT_EXIST);
@@ -53,12 +57,10 @@ public class ResourceServiceImpl implements ResourceService {
         Resource resource = getRepository().searchByParentIdAndNameAndType(payload.getParentId(), payload.getName(), payload.getType());
         AbstractAssert.isNull(resource, ErrorMessage.RESOURCE_DOES_NOT_EXIST);
 
-        resource = ResourceConvert.INSTANCE.toEntity(payload);
-        resource.setCreateAt(new Date());
-        resource.setModifiedAt(new Date());
-        resource.setDeleted(false);
-        resource.setUid(authorization.getUid());
+        payload.setCreateAt(new Date());
+        payload.setModifiedAt(new Date());
+        payload.setDeleted(false);
 
-        return getRepository().save(resource).getId();
+        return getRepository().save(payload).getId();
     }
 }
