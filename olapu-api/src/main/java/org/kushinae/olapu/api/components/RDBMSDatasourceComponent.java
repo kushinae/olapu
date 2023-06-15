@@ -11,7 +11,6 @@ import org.kushinae.yone.client.Yone;
 import org.kushinae.yone.commons.model.properties.Properties;
 import org.kushinae.yone.commons.model.properties.RDBProperties;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
