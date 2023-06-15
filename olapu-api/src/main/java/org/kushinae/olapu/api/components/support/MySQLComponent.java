@@ -22,11 +22,11 @@ public class MySQLComponent extends RDBMSDatasourceComponent {
     public Properties getProperties(Long datasourceId, String uid) {
         DatasourceConfigureMapping mapping = datasourceConfigureService.load2Mapping(datasourceId, uid);
         MySQLProperties properties = new MySQLProperties();
-        properties.setIp(mapping.getHost());
+        properties.host(mapping.getHost())
+                .port(mapping.getPort())
+                .username(mapping.getUsername());
+        properties.database(mapping.getDatabase());
         properties.setPassword(mapping.getPassword());
-        properties.setPort(mapping.getPort());
-        properties.setUsername(mapping.getUsername());
-        properties.setDatabase(mapping.getDatabase());
         return properties;
     }
 }

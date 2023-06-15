@@ -3,6 +3,7 @@ package org.kushinae.olapu.api.convert;
 import org.kushinae.olapu.api.vo.datasource.configure.Configure;
 import org.kushinae.olapu.repository.entities.DatasourceConfigure;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * @author kaisa.liu
  * @since 1.0.0
  */
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface DatasourceConfigureConvert {
 
     DatasourceConfigureConvert INSTANCE = Mappers.getMapper(DatasourceConfigureConvert.class);

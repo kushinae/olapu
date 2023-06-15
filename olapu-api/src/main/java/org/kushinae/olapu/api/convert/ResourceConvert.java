@@ -4,6 +4,7 @@ import org.kushinae.olapu.api.pojo.api.resource.Detail;
 import org.kushinae.olapu.api.vo.resource.EditResource;
 import org.kushinae.olapu.repository.entities.Resource;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @author kaisa.liu
  * @since 1.0.0
  */
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ResourceConvert {
 
     ResourceConvert INSTANCE = Mappers.getMapper(ResourceConvert.class);
