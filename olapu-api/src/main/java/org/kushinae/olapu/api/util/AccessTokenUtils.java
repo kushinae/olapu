@@ -41,7 +41,7 @@ public class AccessTokenUtils {
         // 受众人
         payload.put("aud", uid);
         // jwt过期时间
-        Date offset = DateUtils.offset(currentDate, DateField.MINUTE, 15);
+        Date offset = DateUtils.offset(currentDate, DateField.DAY_OF_YEAR, 15);
         payload.put("exp", offset.getTime());
         // jwt生效时间 表示在此之前验证这个jwt则为失效
         payload.put("nbf", currentDate.getTime());

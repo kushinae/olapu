@@ -10,3 +10,4 @@ server:
 logging:
   level:
     org.kushinae.olapu.api.filter: debug
+    org.springframework.data.jpa: debug

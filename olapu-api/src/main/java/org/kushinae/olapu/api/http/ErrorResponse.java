@@ -49,6 +49,14 @@ public class ErrorResponse {
         return response;
     }
 
+    public static ErrorResponse internalServerError() {
+        ErrorResponse response = new ErrorResponse();
+        response.timestamp = new Date();
+        response.status = StatusCode.INTERNAL_SERVER_ERROR.getCode();
+        response.error = StatusCode.INTERNAL_SERVER_ERROR.getMessage();
+        return response;
+    }
+
     public static ErrorResponse forbidden() {
         ErrorResponse response = new ErrorResponse();
         response.timestamp = new Date();

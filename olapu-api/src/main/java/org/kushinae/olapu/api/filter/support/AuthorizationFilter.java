@@ -12,7 +12,6 @@ import org.kushinae.olapu.api.authorization.Authorization;
 import org.kushinae.olapu.api.exceprion.UnAuthorizationException;
 import org.kushinae.olapu.api.filter.AbstractAuthorizationFilter;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.AccountService;
 import org.kushinae.olapu.api.util.AccessTokenUtils;
 import org.kushinae.olapu.api.util.JWTToken;
 import org.kushinae.olapu.api.util.StringUtils;
@@ -26,9 +25,6 @@ import java.io.IOException;
 @Log4j2
 @WebFilter
 public class AuthorizationFilter extends AbstractAuthorizationFilter {
-
-    @Resource
-    AccountService accountService;
 
     @Resource
     Authorization authorization;

@@ -24,7 +24,7 @@ public abstract class AbstractFilter implements OlapuFilter {
     public void onError(HttpServletRequest request, HttpServletResponse response, Exception e) throws IOException {
         String method = request.getMethod();
         String requestURI = request.getRequestURI();
-        ErrorResponse message = ErrorResponse.unauthorized().path(method, requestURI).message(e.getMessage());
+        ErrorResponse message = ErrorResponse.internalServerError().path(method, requestURI).message(e.getMessage());
         PrintWriter writer = response.getWriter();
         writer.write(JacksonUtils.toJsonString(message));
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

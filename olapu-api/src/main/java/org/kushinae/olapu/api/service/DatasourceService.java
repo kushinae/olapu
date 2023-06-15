@@ -1,6 +1,7 @@
 package org.kushinae.olapu.api.service;
 
 import org.kushinae.olapu.repository.entities.Datasource;
+import org.kushinae.olapu.repository.enums.DatasourceType;
 
 /**
  * @author kaisa.liu
@@ -8,4 +9,8 @@ import org.kushinae.olapu.repository.entities.Datasource;
  */
 public interface DatasourceService extends IRepositoryService<Datasource, Long> {
     Long create(Datasource entity);
+
+    Datasource queryTemplate(DatasourceType type);
+
+    Datasource queryById(Long id, String uid);
 }

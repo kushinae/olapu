@@ -1,8 +1,12 @@
 package org.kushinae.olapu.repository.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import org.kushinae.yone.commons.model.enums.EDataSourceType;
+
+import java.beans.PropertyEditorSupport;
 
 /**
  * @author kaisa.liu
@@ -15,7 +19,7 @@ public enum DatasourceType implements AttributeConverterSupport<DatasourceType.C
 
     @Override
     public Convert getConvert() {
-        return new Convert();
+        return new DatasourceType.Convert();
     }
 
     @Override
@@ -24,7 +28,7 @@ public enum DatasourceType implements AttributeConverterSupport<DatasourceType.C
     }
 
     @Converter(autoApply = true)
-    public static class Convert implements AttributeConverter<DatasourceType, String> {
+    public static class Convert extends PropertyEditorSupport implements AttributeConverter<DatasourceType, String> {
 
         @Override
         public String convertToDatabaseColumn(DatasourceType attribute) {
@@ -35,15 +39,21 @@ public enum DatasourceType implements AttributeConverterSupport<DatasourceType.C
         public DatasourceType convertToEntityAttribute(String dbData) {
             return matchByName(dbData);
         }
+
+        @Override
+        public void setAsText(String text) throws IllegalArgumentException {
+            setValue(DatasourceType.matchByName(text));
+        }
     }
 
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static DatasourceType matchByName(String yoneName) {
         for (DatasourceType value : values()) {
             if (value.getYoneName().equals(yoneName)) {
                 return value;
             }
         }
-        throw new IllegalArgumentException("Unsupported data source " + yoneName);
+        throw new IllegalArgumentException("Unsupported data source of the " + yoneName);
     }
 
     /**
@@ -54,6 +64,7 @@ public enum DatasourceType implements AttributeConverterSupport<DatasourceType.C
     /**
      * 它意味着{@link EDataSourceType#getName()}
      */
+    @JsonValue
     private final String yoneName;
 
     DatasourceType(Integer yoneCode, String yoneName) {

@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.kushinae.olapu.repository.enums.DatasourceType;
 
 import java.util.Date;
 
@@ -39,8 +38,8 @@ public class DatasourceConfigure {
     /**
      * 数据源配置key
      */
-    @Column(name = "key")
-    private String name;
+    @Column(name = "`key`")
+    private String key;
 
     /**
      * 数据源配置值

@@ -1,10 +1,6 @@
 package org.kushinae.olapu.api.authorization;
 
-import jakarta.annotation.Resource;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author kaisa.liu
@@ -18,6 +14,15 @@ public class Whitelist extends HashSet<String> {
         if (s.startsWith(prePath)) {
             return super.add(s);
         } else {
+            return super.add(prePath + s);
+        }
+    }
+
+    public boolean addAny(String s) {
+        if (s.startsWith(prePath)) {
+            return super.add(s);
+        } else {
+            super.add(s);
             return super.add(prePath + s);
         }
     }

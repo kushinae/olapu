@@ -6,9 +6,12 @@ import org.kushinae.olapu.api.service.DatasourceService;
 import org.kushinae.olapu.api.service.ResourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.repository.entities.Datasource;
+import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.repository.enums.FileType;
 import org.kushinae.olapu.repository.repository.impl.DatasourceRepository;
-import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * @author kaisa.liu
@@ -24,7 +27,7 @@ public class DatasourceServiceImpl implements DatasourceService {
     ResourceService resourceService;
 
     @Override
-    public Repository<Datasource, Long> getRepository() {
+    public DatasourceRepository getRepository() {
         return datasourceRepository;
     }
 
@@ -32,9 +35,26 @@ public class DatasourceServiceImpl implements DatasourceService {
     public Long create(Datasource entity) {
 
         org.kushinae.olapu.repository.entities.Resource resource = resourceService.getResourceById(entity.getResourceId());
-        AbstractAssert.isNull(resource, ErrorMessage.RESOURCE_DOES_NOT_EXIST);
+        AbstractAssert.notNull(resource, ErrorMessage.RESOURCE_DOES_NOT_EXIST);
+        AbstractAssert.notEquals(resource.getType(), FileType.FILE, ErrorMessage.UNSUPPORTED_RESOURCE_TYPE);
 
+        Datasource datasource = getRepository().searchByNameAndUidAndTypeAndResourceId(entity.getName(), entity.getUid(), entity.getType(), entity.getResourceId());
+        AbstractAssert.isNull(datasource, ErrorMessage.DATASOURCE_ALREADY_EXISTS);
+        entity.setCreateAt(new Date());
+        entity.setModifiedAt(new Date());
+        entity.setDeleted(false);
 
-        return null;
+        return getRepository().save(entity).getId();
     }
+
+    @Override
+    public Datasource queryTemplate(DatasourceType type) {
+        return getRepository().searchByTypeAndTemplateIsTrue(type);
+    }
+
+    @Override
+    public Datasource queryById(Long id, String uid) {
+        return getRepository().searchByIdAndUid(id, uid);
+    }
+
 }

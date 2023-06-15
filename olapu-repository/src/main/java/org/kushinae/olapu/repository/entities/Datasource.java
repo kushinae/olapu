@@ -1,6 +1,7 @@
 package org.kushinae.olapu.repository.entities;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -47,7 +48,14 @@ public class Datasource {
      * 数据源类型
      */
     @Column(name = "type")
+    @Convert(converter = DatasourceType.Convert.class)
     private DatasourceType type;
+
+    /**
+     * 该数据是否为模版
+     */
+    @Column(name = "template")
+    private Boolean template;
 
     /**
      * 所属人uid

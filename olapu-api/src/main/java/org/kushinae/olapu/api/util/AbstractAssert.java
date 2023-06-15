@@ -3,6 +3,8 @@ package org.kushinae.olapu.api.util;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.springframework.util.Assert;
 
+import java.util.Collection;
+
 /**
  * @author kaisa.liu
  * @since 1.0.0
@@ -42,9 +44,48 @@ public abstract class AbstractAssert extends org.springframework.util.Assert {
         Assert.hasText(text, message.getCode());
     }
 
-    public static void isEquals(Object obj, Object target) {
+    /**
+     * 断言两个对象必须相等
+     *
+     * @param obj 被断言的对象
+     * @param target 被断言的对象
+     * @param message 断言失败之后的异常消息
+     * @throws IllegalArgumentException 当两个对象相等时
+     */
+    public static void isEquals(Object obj, Object target, ErrorMessage message) {
         if (!ObjectUtils.nullSafeEquals(obj, target)) {
-
+            throw new IllegalArgumentException(message.getCode());
         }
+    }
+
+    /**
+     * 断言两个对象必须不相等
+     *
+     * @param obj 被断言的对象
+     * @param target 被断言的对象
+     * @param message 断言失败之后的异常消息
+     * @throws IllegalArgumentException 当两个对象不相等时
+     */
+    public static void notEquals(Object obj, Object target, ErrorMessage message) {
+        if (ObjectUtils.nullSafeEquals(obj, target)) {
+            throw new IllegalArgumentException(message.getCode());
+        }
+    }
+
+    /**
+     * 断言一个集合必须为空
+     *
+     * @param collection 被断言的集合
+     * @param message 断言失败之后的异常消息
+     * @throws IllegalArgumentException 当参数 <code>collection</code> 不为空时
+     */
+    public static void isEmpty(Collection<?> collection, ErrorMessage message) {
+        if (CollectionUtils.notEmpty(collection)) {
+            throw new IllegalArgumentException(message.getCode());
+        }
+    }
+
+    public static void notEmpty(Collection<?> collection, ErrorMessage message) {
+        notEmpty(collection, message.getCode());
     }
 }

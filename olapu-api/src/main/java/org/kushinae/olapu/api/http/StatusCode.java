@@ -12,6 +12,8 @@ public enum StatusCode {
     UNAUTHORIZED(401, "Unauthorized"),
     FORBIDDEN(403, "Forbidden"),
     CONFLICT(409, "Repeat Data Conflict"),
+
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
     ;
 
     private final String message;

@@ -20,10 +20,16 @@ public enum ErrorMessage {
 
     RESOURCE_DOES_NOT_EXIST("resource.does_not_exist", "Resource does not exist"),
     RESOURCE_ALREADY_EXISTS("resource.exists", "Resource already exists"),
+    UNSUPPORTED_RESOURCE_TYPE("resource.unsupported.type", "Unsupported resource type"),
 
 
     TEMPLATE_DATA_ALREADY_EXISTS("template.exists", "Template already exists"),
     TEMPLATE_NAME_ALREADY_EXISTS("template.name.exists", "Template name already exists"),
+
+    DATASOURCE_ALREADY_EXISTS("datasource.exists", "Datasource already exists"),
+    UNSUPPORTED_DATASOURCE_TYPE("datasource.unsupported", "Unsupported datasource type"),
+    DATASOURCE_DOES_NOT_EXIST("datasource.does_not_exist", "Datasource does not exist"),
+    DUPLICATE_DATA_SOURCE_CONFIGURATION_ITEMS("datasource.configure.duplicate.item", "Duplicate data source configuration items"),
     ;
 
     /**
