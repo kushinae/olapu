@@ -30,6 +30,7 @@ public enum ErrorMessage {
     UNSUPPORTED_DATASOURCE_TYPE("datasource.unsupported", "Unsupported datasource type"),
     DATASOURCE_DOES_NOT_EXIST("datasource.does_not_exist", "Datasource does not exist"),
     DUPLICATE_DATA_SOURCE_CONFIGURATION_ITEMS("datasource.configure.duplicate.item", "Duplicate data source configuration items"),
+    DATABASE_CANNOT_BE_EMPTY("database.database.can_not_be_empty", "Database cannot be empty"),
     ;
 
     /**

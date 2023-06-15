@@ -14,6 +14,7 @@ public class DatasourceConfigureMapping extends HashMap<String, String> {
     protected static final String PASSWORD_FIELD = "password";
     protected static final String PORT_FIELD = "port";
     protected static final String USERNAME_FIELD = "username";
+    protected static final String DATABASE_FIELD = "database";
 
     /**
      * 获取数据源配置项中的 host 配置值 {@link DatasourceConfigure#getValue()}
@@ -49,6 +50,15 @@ public class DatasourceConfigureMapping extends HashMap<String, String> {
      */
     public String getUsername() {
         return get(USERNAME_FIELD);
+    }
+
+    /**
+     * 获取数据源配置项中的 database 配置值 {@link DatasourceConfigure#getValue()}
+     *
+     * @return 返回数据库配置值
+     */
+    public String getDatabase() {
+        return get(DATABASE_FIELD);
     }
 
 }

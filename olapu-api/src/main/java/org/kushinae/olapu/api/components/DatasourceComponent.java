@@ -20,6 +20,8 @@ public interface DatasourceComponent {
 
     List<String> databases(Long datasourceId, String uid, boolean skipDefault);
 
+    List<String> tables(Long datasourceId, String uid, String database);
+
     DatasourceType getType();
 
     Properties getProperties(Long datasourceId, String uid);

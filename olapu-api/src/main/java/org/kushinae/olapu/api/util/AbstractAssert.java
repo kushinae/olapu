@@ -88,4 +88,31 @@ public abstract class AbstractAssert extends org.springframework.util.Assert {
     public static void notEmpty(Collection<?> collection, ErrorMessage message) {
         notEmpty(collection, message.getCode());
     }
+
+    /**
+     * 断言所有字符串必须不为 {@code null} 以及 {@code ""}
+     *
+     * @param strings 需要被断言的字符串集合
+     * @param message 断言失败之后抛出异常消息
+     * @throws IllegalArgumentException 当 strings 为空时抛出异常
+     */
+    public static void hasText(Collection<String> strings, ErrorMessage message) {
+        strings.forEach(e -> hasText(e, message));
+    }
+
+    /**
+     * 断言所有字符串中任意一个不为 {@code null} 以及 {@code ""}
+     *
+     * @param strings 需要被断言的字符串集合
+     * @param message 断言失败之后抛出异常消息
+     * @throws IllegalArgumentException 当 strings 没有一个不为为空时抛出异常
+     */
+    public static void anyHasText(Collection<String> strings, ErrorMessage message) {
+        for (String string : strings) {
+            if (StringUtils.hasText(string)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(message.getCode());
+    }
 }

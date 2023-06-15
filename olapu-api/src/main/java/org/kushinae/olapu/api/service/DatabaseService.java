@@ -8,4 +8,6 @@ import java.util.List;
  */
 public interface DatabaseService {
     List<String> databases(Long datasourceId, String uid, Boolean allDatabase);
+
+    List<String> tables(Long datasourceId, String uid, String database);
 }

@@ -26,6 +26,7 @@ public class MySQLComponent extends RDBMSDatasourceComponent {
         properties.setPassword(mapping.getPassword());
         properties.setPort(mapping.getPort());
         properties.setUsername(mapping.getUsername());
+        properties.setDatabase(mapping.getDatabase());
         return properties;
     }
 }
