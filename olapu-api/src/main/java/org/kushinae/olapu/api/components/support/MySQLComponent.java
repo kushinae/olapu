@@ -19,8 +19,8 @@ public class MySQLComponent extends RDBMSDatasourceComponent {
     }
 
     @Override
-    public Properties getProperties(Long datasourceId) {
-        DatasourceConfigureMapping mapping = datasourceConfigureService.load2Mapping(datasourceId);
+    public Properties getProperties(Long datasourceId, String uid) {
+        DatasourceConfigureMapping mapping = datasourceConfigureService.load2Mapping(datasourceId, uid);
         MySQLProperties properties = new MySQLProperties();
         properties.setIp(mapping.getHost());
         properties.setPassword(mapping.getPassword());

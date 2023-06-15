@@ -16,9 +16,10 @@ public interface DatasourceConfigureService extends IRepositoryService<Datasourc
      * 通过数据源ID获取数据源配置项
      *
      * @param datasourceId 数据源ID
+     * @param uid 用户uid
      * @return 数据源配置项列表
      */
-    List<DatasourceConfigure> configures(Long datasourceId);
+    List<DatasourceConfigure> configures(Long datasourceId, String uid);
 
     /**
      * 通过数据源类型加载模版
@@ -40,5 +41,5 @@ public interface DatasourceConfigureService extends IRepositoryService<Datasourc
 
     DatasourceConfigureMapping load2Mapping(List<DatasourceConfigure> datasourceConfigures);
 
-    DatasourceConfigureMapping load2Mapping(Long datasourceId);
+    DatasourceConfigureMapping load2Mapping(Long datasourceId, String uid);
 }

@@ -30,4 +30,11 @@ public class DatabaseController {
         return databaseService.databases(datasourceId, authorization.getUid(), allDatabase);
     }
 
+    @GetMapping("/tables")
+    public List<String> tables(@RequestParam("datasource_id") Long datasourceId,
+                               @RequestParam("database") String database,
+                               @RequestParam(value = "all", required = false, defaultValue = "false") Boolean allDatabase) {
+        return databaseService.databases(datasourceId, authorization.getUid(), allDatabase);
+    }
+
 }

@@ -39,7 +39,9 @@ public class DatasourceConfigureServiceImpl implements DatasourceConfigureServic
     }
 
     @Override
-    public List<DatasourceConfigure> configures(Long datasourceId) {
+    public List<DatasourceConfigure> configures(Long datasourceId, String uid) {
+        Datasource datasource = datasourceService.queryById(datasourceId, uid);
+        AbstractAssert.notNull(datasource, ErrorMessage.DATASOURCE_DOES_NOT_EXIST);
         return getRepository().searchByDatasourceId(datasourceId);
     }
 
@@ -52,10 +54,7 @@ public class DatasourceConfigureServiceImpl implements DatasourceConfigureServic
 
     @Override
     public List<DatasourceConfigure> configure(Long datasourceId, String uid, List<DatasourceConfigure> configures) {
-        Datasource datasource = datasourceService.queryById(datasourceId, uid);
-        AbstractAssert.notNull(datasource, ErrorMessage.DATASOURCE_DOES_NOT_EXIST);
-
-        List<DatasourceConfigure> datasourceConfigures = configures(datasourceId);
+        List<DatasourceConfigure> datasourceConfigures = configures(datasourceId, uid);
         AbstractAssert.isEmpty(datasourceConfigures, ErrorMessage.DUPLICATE_DATA_SOURCE_CONFIGURATION_ITEMS);
 
         Map<String, Object> map = new HashMap<>();
@@ -83,8 +82,8 @@ public class DatasourceConfigureServiceImpl implements DatasourceConfigureServic
     }
 
     @Override
-    public DatasourceConfigureMapping load2Mapping(Long datasourceId) {
-        List<DatasourceConfigure> configures = configures(datasourceId);
+    public DatasourceConfigureMapping load2Mapping(Long datasourceId, String uid) {
+        List<DatasourceConfigure> configures = configures(datasourceId, uid);
         if (CollectionUtils.isEmpty(configures)) {
             return new DatasourceConfigureMapping();
         }

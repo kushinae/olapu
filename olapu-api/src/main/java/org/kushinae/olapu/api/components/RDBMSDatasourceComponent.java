@@ -22,17 +22,17 @@ public abstract class RDBMSDatasourceComponent implements DatasourceComponent {
     protected DatasourceService datasourceService;
 
     @Override
-    public IClient buildClient(Properties properties, Long datasourceId) {
-        return Yone.client(getType().getYoneCode()).build(getProperties(datasourceId));
+    public IClient buildClient(Properties properties, String uid, Long datasourceId) {
+        return Yone.client(getType().getYoneCode()).build(getProperties(datasourceId, uid));
     }
 
     @Override
-    public List<String> databases(Long datasourceId) {
-        return buildClient(getProperties(datasourceId), datasourceId).databases(false);
+    public List<String> databases(Long datasourceId, String uid) {
+        return buildClient(getProperties(datasourceId, uid), uid, datasourceId).databases(false);
     }
 
     @Override
-    public List<String> databases(Long datasourceId, boolean skipDefault) {
-        return buildClient(getProperties(datasourceId), datasourceId).databases(skipDefault);
+    public List<String> databases(Long datasourceId, String uid, boolean skipDefault) {
+        return buildClient(getProperties(datasourceId, uid), uid, datasourceId).databases(skipDefault);
     }
 }

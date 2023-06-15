@@ -14,14 +14,14 @@ import java.util.List;
  */
 public interface DatasourceComponent {
 
-    IClient buildClient(Properties properties, Long datasourceId);
+    IClient buildClient(Properties properties, String uid, Long datasourceId);
 
-    List<String> databases(Long datasourceId);
+    List<String> databases(Long datasourceId, String uid);
 
-    List<String> databases(Long datasourceId, boolean skipDefault);
+    List<String> databases(Long datasourceId, String uid, boolean skipDefault);
 
     DatasourceType getType();
 
-    Properties getProperties(Long datasourceId);
+    Properties getProperties(Long datasourceId, String uid);
 
 }

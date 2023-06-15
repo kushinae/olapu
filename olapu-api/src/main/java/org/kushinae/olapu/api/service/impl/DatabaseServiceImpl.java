@@ -19,6 +19,6 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public List<String> databases(Long datasourceId, String uid, Boolean allDatabase) {
-        return componentFactory.getDatasourceComponent(datasourceId, uid).databases(datasourceId, !allDatabase);
+        return componentFactory.getDatasourceComponent(datasourceId, uid).databases(datasourceId, uid, !allDatabase);
     }
 }
