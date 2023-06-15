@@ -45,14 +45,10 @@ public abstract class RDBMSDatasourceComponent implements DatasourceComponent {
 
     @Override
     public List<String> tables(Long datasourceId, String uid, String database) {
-        try {
-            RDBProperties properties = (RDBProperties) getProperties(datasourceId, uid);
-            AbstractAssert.anyHasText(Stream.of(database, properties.getDatabase()).collect(Collectors.toList()), ErrorMessage.DATABASE_CANNOT_BE_EMPTY);
-            IClient client = buildClient(properties, uid, datasourceId);
-            database = StringUtils.hasText(database) ? database : properties.getDatabase();
-            return client.tables(database);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        RDBProperties properties = (RDBProperties) getProperties(datasourceId, uid);
+        AbstractAssert.anyHasText(Stream.of(database, properties.getDatabase()).collect(Collectors.toList()), ErrorMessage.DATABASE_CANNOT_BE_EMPTY);
+        IClient client = buildClient(properties, uid, datasourceId);
+        database = StringUtils.hasText(database) ? database : properties.getDatabase();
+        return client.tables(database);
     }
 }
