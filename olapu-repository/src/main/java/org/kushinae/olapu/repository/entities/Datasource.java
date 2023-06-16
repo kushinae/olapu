@@ -32,13 +32,6 @@ public class Datasource {
     private Long id;
 
     /**
-     * 资源主键ID 标识此数据源目录
-     * 该资源类型不能为 {@link org.kushinae.olapu.repository.enums.FileType#FILE}
-     */
-    @Column(name = "resource_id")
-    private Long resourceId;
-
-    /**
      * 数据源名称
      */
     @Column(name = "name")

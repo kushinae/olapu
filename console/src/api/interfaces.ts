@@ -1,3 +1,16 @@
+export interface ISearch<T> {
+  current: number;
+  query_count: number;
+  q?: T;
+}
+
+export interface IPage<T> {
+  current: number;
+  query_count: number;
+  total: number;
+  records?: T[]
+}
+
 export interface RegisterParam {
   username: string,
   nickname: string,
@@ -22,4 +35,10 @@ export interface LoginResult {
   avatar: string,
   access_token: string,
   token_type: string,
+}
+
+export interface DatasourceInfo {
+  id: number;
+  name: string;
+  type: DatasourceType;
 }

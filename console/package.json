@@ -24,6 +24,7 @@
     "lodash": "^4.17.21",
     "md5": "^2.3.0",
     "nanoid": "^4.0.2",
+    "react-icons": "^4.9.0",
     "styled-components": "^5.3.9",
     "umi": "^4.0.63",
     "umi-request": "^1.4.0"

@@ -1,0 +1,3 @@
+enum DatasourceType {
+  mysql = 'mysql',
+}

@@ -9,7 +9,7 @@ createPayload table t_template(
                            create_at datetime default now() comment '数据创建时间',
                            modified_at datetime default now() comment '数据编辑时间',
                            deleted tinyint(1) default false comment '数据是否删除'
-);
+) comment '模版表';
 
 createPayload table t_account (
                            id bigint primary key auto_increment comment '主键ID',
@@ -24,7 +24,7 @@ createPayload table t_account (
                            create_at datetime default now() comment '数据创建时间',
                            modified_at datetime default now() comment '数据编辑时间',
                            deleted tinyint(1) default false comment '数据是否删除'
-);
+) comment '账号';
 
 
 createPayload table t_resource (
@@ -37,4 +37,25 @@ createPayload table t_resource (
                             create_at datetime default now() comment '数据创建时间',
                             modified_at datetime default now() comment '数据编辑时间',
                             deleted tinyint(1) default false comment '数据是否删除'
-);
+) comment '文件资源';
+
+create table t_datasource (
+                              id bigint primary key auto_increment comment '主键ID',
+                              name varchar(128) comment '数据源名称',
+                              type varchar(16) not null comment '数据源类型',
+                              template tinyint(1) default false comment '该数据源是否为模版',
+                              uid varchar(64) not null comment '用户uid',
+                              create_at datetime default now() comment '数据创建时间',
+                              modified_at datetime default now() comment '数据编辑时间',
+                              deleted tinyint(1) default false comment '数据是否删除'
+) comment '数据源信息';
+
+create table t_datasource_configure (
+                                        id bigint primary key auto_increment comment '主键ID',
+                                        datasource_id bigint not null comment '数据源ID',
+                                        `key` varchar(128) comment '数据源配置key',
+                                        value varchar(128) comment '数据源配置值',
+                                        create_at datetime default now() comment '数据创建时间',
+                                        modified_at datetime default now() comment '数据编辑时间',
+                                        deleted tinyint(1) default false comment '数据是否删除'
+) comment '数据源配置';

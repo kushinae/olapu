@@ -1,7 +1,12 @@
 package org.kushinae.olapu.api.service;
 
+import org.kushinae.olapu.api.pojo.api.DefaultSearchPayload;
+import org.kushinae.olapu.api.pojo.api.SearchPayload;
 import org.kushinae.olapu.repository.entities.Datasource;
 import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /**
  * @author kaisa.liu
@@ -13,4 +18,8 @@ public interface DatasourceService extends IRepositoryService<Datasource, Long> 
     Datasource queryTemplate(DatasourceType type);
 
     Datasource queryById(Long id, String uid);
+
+    List<DatasourceType> supports();
+
+    Page<Datasource> search(SearchPayload<String> search);
 }

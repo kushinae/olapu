@@ -4,6 +4,7 @@ import { molecule } from "@dtinsight/molecule";
 import { logoutStorage, openLoginModal } from "@/pages/account/login";
 import { ActivityBar, Constant } from "@/commons/constant";
 import { UniqueId } from "@dtinsight/molecule/esm/common/types";
+import { DatasourcePane } from "./sidebar/supportes/datasource";
 
 export const InitializeExtension: IExtension = {
   id: "InitializeExtension",
@@ -12,6 +13,8 @@ export const InitializeExtension: IExtension = {
     initLogin();
     // 初始化左侧菜单侧边栏
     initActiveBar();
+    // 初始化左侧边栏
+    initSideBar();
   },
   dispose(extensionCtx: IExtensionService) {
 
@@ -61,6 +64,10 @@ const updateAccountContent = (contextMenu: IActivityMenuItemProps[]) => {
 }
 
 const initActiveBar = () => {
-  molecule.activityBar.add(ActivityBar.DataSourceActivityBar);
-  molecule.activityBar.add(ActivityBar.LowCodeActivityBar);
+  molecule.activityBar.add(ActivityBar.Datasource);
+  molecule.activityBar.add(ActivityBar.LowCode);
+}
+
+const initSideBar = () => {
+  molecule.sidebar.add(DatasourcePane);
 }

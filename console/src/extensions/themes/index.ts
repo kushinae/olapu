@@ -1,6 +1,5 @@
 import { IExtension } from "@dtinsight/molecule/esm/model";
 import { IExtensionService } from "@dtinsight/molecule/esm/services";
-import { UniqueId } from "@dtinsight/molecule/esm/common/types";
 
 export const ColorThemeExtensions: IExtension = {
   id: 'colorTheme',

@@ -1,7 +1,6 @@
 import { IExtension } from "@dtinsight/molecule/esm/model";
 import { IExtensionService } from "@dtinsight/molecule/esm/services";
 import molecule from '@dtinsight/molecule';
-import { localize } from "@dtinsight/molecule/esm/i18n";
 import { UniqueId } from "@dtinsight/molecule/esm/common/types";
 
 export const MenuBarExtension: IExtension = {

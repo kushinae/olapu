@@ -6,11 +6,15 @@ export const ActivityExtension: IExtension = {
   id: "ActivityExtension",
   name: "Activity Extension",
   activate(extensionContext: IExtensionService): void {
-    molecule.activityBar.onClick((id) => {
-      console.log(id);
-    });
+    onClick();
   },
   dispose(extensionContext: IExtensionService): void {
     // ...
-  }
+  },
+}
+
+const onClick = (): void => {
+  molecule.activityBar.onClick((id) => {
+    molecule.activityBar.setActive(id);
+  });
 }
