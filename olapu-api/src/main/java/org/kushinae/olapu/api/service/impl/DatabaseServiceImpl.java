@@ -3,6 +3,7 @@ package org.kushinae.olapu.api.service.impl;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.components.ComponentFactory;
 import org.kushinae.olapu.api.service.DatabaseService;
+import org.kushinae.yone.commons.model.pojo.rdbms.Column;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,5 +26,10 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public List<String> tables(Long datasourceId, String uid, String database) {
         return componentFactory.getDatasourceComponent(datasourceId, uid).tables(datasourceId, uid, database);
+    }
+
+    @Override
+    public List<Column> columns(Long datasourceId, String database, String table, String uid) {
+        return componentFactory.getDatasourceComponent(datasourceId, uid).columnDetails(datasourceId, uid, database, table);
     }
 }

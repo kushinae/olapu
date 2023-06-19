@@ -1,7 +1,7 @@
-import CategoryService from "@/service/category";
+import ResourceCategoryService from "@/service/resource";
 
-const categoryService = new CategoryService();
+const resourceCategoryService = new ResourceCategoryService();
 
 export {
-  categoryService
+  resourceCategoryService
 }

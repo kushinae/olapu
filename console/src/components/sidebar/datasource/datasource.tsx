@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {Datasource as DatasourceParent} from "@/components/sidebar/datasource/style";
+import React, { useEffect, useState } from 'react';
+import { Datasource as DatasourceParent } from "@/components/sidebar/datasource/style";
 import DatasourceLabel from "@/components/sidebar/datasource/datasource_label";
-import {DatasourceInfo} from "@/api/interfaces";
 import api from "@/api";
-import {PageConstant} from "@/commons/constant";
+import { PageConstant } from "@/commons/constant";
+import { DatasourceInfo } from '@/api/response';
 
 interface DatasourceProps {
 }
@@ -26,7 +26,7 @@ const Datasource: React.FC<DatasourceProps> = () => {
    */
   useEffect(() => {
     // 创建之前等
-    api.searchDatasource({current, query_count: queryCount, q: query}).then(r => {
+    api.searchDatasource({ current, query_count: queryCount, q: query }).then(r => {
       setRecords(r.records);
       setTotal(r.total);
     });

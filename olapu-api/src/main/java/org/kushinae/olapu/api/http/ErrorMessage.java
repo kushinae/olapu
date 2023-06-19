@@ -21,6 +21,7 @@ public enum ErrorMessage {
     RESOURCE_DOES_NOT_EXIST("resource.does_not_exist", "Resource does not exist"),
     RESOURCE_ALREADY_EXISTS("resource.exists", "Resource already exists"),
     UNSUPPORTED_RESOURCE_TYPE("resource.unsupported.type", "Unsupported resource type"),
+    RESOURCE_CHILDREN_EXISTS("resource.children.exists", "The current resource contains one or more children"),
 
 
     TEMPLATE_DATA_ALREADY_EXISTS("template.exists", "Template already exists"),
@@ -31,6 +32,7 @@ public enum ErrorMessage {
     DATASOURCE_DOES_NOT_EXIST("datasource.does_not_exist", "Datasource does not exist"),
     DUPLICATE_DATA_SOURCE_CONFIGURATION_ITEMS("datasource.configure.duplicate.item", "Duplicate data source configuration items"),
     DATABASE_CANNOT_BE_EMPTY("database.database.can_not_be_empty", "Database cannot be empty"),
+    TABLE_CANNOT_BE_EMPTY("database.table.can_not_be_empty", "Table cannot be empty"),
     ;
 
     /**

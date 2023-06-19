@@ -1,12 +1,8 @@
-import {
-  CreateResourceParam, DatasourceInfo, IPage,
-  ISearch,
-  LoginParam,
-  LoginResult,
-  RegisterParam,
-} from "@/api/interfaces";
 import { httpClient } from '@/api/http'
 import requests from "@/api/requests";
+import {CreateResourceParam, LoginParam, RegisterParam} from "@/api/payload";
+import {Column, DatasourceInfo, Login, Resource} from "@/api/response";
+import {IPage, ISearch} from "@/api/interfaces";
 
 export default {
   /* 注册 */
@@ -17,8 +13,8 @@ export default {
   },
 
   /* 登陆 */
-  async login(payload: LoginParam, callback?: () => void): Promise<LoginResult> {
-    return await httpClient.post<LoginResult>(requests.account.login, {
+  async login(payload: LoginParam, callback?: () => void): Promise<Login> {
+    return await httpClient.post<Login>(requests.account.login, {
       data: payload
     }, callback);
   },
@@ -27,7 +23,7 @@ export default {
   async getResources(payload: {
     parent_id: number,
     name?: string,
-  }): Promise<any[]> {
+  }): Promise<Resource[]> {
     return await httpClient.get(requests.resource.getResources, {
       params: {
         ...payload
@@ -59,6 +55,43 @@ export default {
     all?: boolean;
   }): Promise<string[]> {
     return await httpClient.get(requests.database.getDatabases, {
+      params: {
+        ...payload
+      }
+    });
+  },
+
+  /* 获取数据库表列表 */
+  async getTables(payload: {
+    datasource_id: number;
+    database?: string;
+    all?: boolean;
+  }): Promise<string[]> {
+    return await httpClient.get(requests.database.getTables, {
+      params: {
+        ...payload
+      }
+    });
+  },
+
+  /* 获取数据库表列表 */
+  async getColumnDetails(payload: {
+    datasource_id: number;
+    database?: string;
+    table: string;
+  }): Promise<Column[]> {
+    return await httpClient.get(requests.database.getColumnDetails, {
+      params: {
+        ...payload
+      }
+    });
+  },
+
+  /* 删除资源对象 */
+  async deleteResource(payload: {
+    id: number;
+  }): Promise<void> {
+    return await httpClient.delete(requests.resource.delete, {
       params: {
         ...payload
       }

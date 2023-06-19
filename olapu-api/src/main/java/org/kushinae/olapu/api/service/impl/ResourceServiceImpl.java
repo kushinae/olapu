@@ -1,12 +1,10 @@
 package org.kushinae.olapu.api.service.impl;
 
 import org.kushinae.olapu.api.authorization.Authorization;
-import org.kushinae.olapu.api.convert.ResourceConvert;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.service.ResourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.StringUtils;
-import org.kushinae.olapu.api.vo.resource.EditResource;
 import org.kushinae.olapu.repository.entities.Resource;
 import org.kushinae.olapu.repository.repository.impl.ResourceRepository;
 import org.springframework.stereotype.Service;
@@ -24,11 +22,6 @@ public class ResourceServiceImpl implements ResourceService {
     @jakarta.annotation.Resource
     ResourceRepository repository;
 
-    @jakarta.annotation.Resource
-    Authorization authorization;
-
-
-
     @Override
     public ResourceRepository getRepository() {
         return repository;
@@ -38,13 +31,22 @@ public class ResourceServiceImpl implements ResourceService {
     public List<Resource> getResources(Long parentId, String name, String uid) {
         ResourceRepository repository = getRepository();
         return StringUtils.hasText(name) ?
-                repository.findAllByParentIdAndNameAndUid(parentId, name, uid) :
+                repository.findAllByParentIdAndNameLikeAndUid(parentId, name, uid) :
                 repository.findAllByParentIdAndUid(parentId, uid);
     }
 
     @Override
     public Resource getResourceById(Long id) {
         return getRepository().searchById(id);
+    }
+
+    @Override
+    public void deleteResource(Long id, String uid) {
+        Resource resource = getResourceById(id);
+        AbstractAssert.notNull(resource, ErrorMessage.RESOURCE_DOES_NOT_EXIST);
+        List<Resource> resources = getResources(id, null, uid);
+        AbstractAssert.isEmpty(resources, ErrorMessage.RESOURCE_CHILDREN_EXISTS);
+        getRepository().deleteById(id);
     }
 
     @Override

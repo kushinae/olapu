@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { DatasourceLabelLayout } from "@/components/sidebar/datasource/style";
 import molecule from '@dtinsight/molecule';
-import {TbBrandMysql} from 'react-icons/tb';
+import { TbBrandMysql } from 'react-icons/tb';
 import api from "@/api";
 import DatabaseLabel from "@/components/sidebar/datasource/database_label";
 
@@ -26,7 +26,7 @@ const DatasourceLabel: React.FC<DatasourceLabelProps> = (props, context) => {
   const handlerClick = async () => {
     if (!expansion) {
       setLoading(true);
-      const databases = await api.getDatabases({datasource_id: props.id});
+      const databases = await api.getDatabases({ datasource_id: props.id });
       setDatabases(databases);
       setLoading(false);
     }
@@ -34,7 +34,7 @@ const DatasourceLabel: React.FC<DatasourceLabelProps> = (props, context) => {
   }
 
   return (
-    <DatasourceLabelLayout key={props?.id?.toString()}>
+    <DatasourceLabelLayout>
       <div className="datasource" onClick={handlerClick}>
         <div className="icon">
           {expansion ? <molecule.component.Icon type='chevron-down' /> : <molecule.component.Icon type='chevron-right' />}
@@ -44,9 +44,11 @@ const DatasourceLabel: React.FC<DatasourceLabelProps> = (props, context) => {
         </div>
         <div className="name">{props.name}</div>
       </div>
-      {expansion ? databases?.map(e => <div className="database">
-        <DatabaseLabel database={e} />
-      </div>) : <></>}
+      <div className="database">
+        {expansion ? databases?.map(e =>
+          <DatabaseLabel key={e} datasourceId={props.id} database={e} />
+        ) : <></>}
+      </div>
     </DatasourceLabelLayout>
   )
 }

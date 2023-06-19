@@ -8,11 +8,11 @@ import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.StringUtils;
 import org.kushinae.yone.client.IClient;
 import org.kushinae.yone.client.Yone;
+import org.kushinae.yone.commons.model.pojo.rdbms.Column;
 import org.kushinae.yone.commons.model.properties.Properties;
 import org.kushinae.yone.commons.model.properties.RDBProperties;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -45,9 +45,19 @@ public abstract class RDBMSDatasourceComponent implements DatasourceComponent {
     @Override
     public List<String> tables(Long datasourceId, String uid, String database) {
         RDBProperties properties = (RDBProperties) getProperties(datasourceId, uid);
-        AbstractAssert.anyHasText(Stream.of(database, properties.getDatabase()).collect(Collectors.toList()), ErrorMessage.DATABASE_CANNOT_BE_EMPTY);
+        AbstractAssert.anyHasText(Stream.of(database, properties.getDatabase()).toList(), ErrorMessage.DATABASE_CANNOT_BE_EMPTY);
         IClient client = buildClient(properties, uid, datasourceId);
         database = StringUtils.hasText(database) ? database : properties.getDatabase();
         return client.tables(database);
+    }
+
+    @Override
+    public List<Column> columnDetails(Long datasourceId, String uid, String database, String table) {
+        RDBProperties properties = (RDBProperties) getProperties(datasourceId, uid);
+        AbstractAssert.anyHasText(Stream.of(database, properties.getDatabase()).toList(), ErrorMessage.DATABASE_CANNOT_BE_EMPTY);
+        AbstractAssert.hasText(table, ErrorMessage.TABLE_CANNOT_BE_EMPTY);
+        IClient client = buildClient(properties, uid, datasourceId);
+        database = StringUtils.hasText(database) ? database : properties.getDatabase();
+        return client.columnDetails(database, table);
     }
 }

@@ -2,6 +2,7 @@ package org.kushinae.olapu.api.components;
 
 import org.kushinae.olapu.repository.enums.DatasourceType;
 import org.kushinae.yone.client.IClient;
+import org.kushinae.yone.commons.model.pojo.rdbms.Column;
 import org.kushinae.yone.commons.model.properties.Properties;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public interface DatasourceComponent {
     List<String> databases(Long datasourceId, String uid, boolean skipDefault);
 
     List<String> tables(Long datasourceId, String uid, String database);
+
+    List<Column> columnDetails(Long datasourceId, String uid, String database, String table);
 
     DatasourceType getType();
 

@@ -1,30 +1,23 @@
 import molecule from "@dtinsight/molecule";
-import {
-  FileType,
-  IExplorerPanelItem,
-  IExtension,
-  IFolderTreeNodeProps,
-} from "@dtinsight/molecule/esm/model";
-import { IExtensionService } from "@dtinsight/molecule/esm/services";
-import {Button, notification} from "antd";
-import { UniqueId } from "@dtinsight/molecule/esm/common/types";
-import { EmptyFolder } from "@/extensions/folder/style";
-import { getTreeNode } from "@/utils/category";
+import {FileType, IExplorerPanelItem, IExtension, IFolderTreeNodeProps,} from "@dtinsight/molecule/esm/model";
+import {IExtensionService} from "@dtinsight/molecule/esm/services";
+import {Button, Modal, notification} from "antd";
+import {UniqueId} from "@dtinsight/molecule/esm/common/types";
+import {EmptyFolder} from "@/extensions/folder/style";
 import api from "@/api";
-import { randomId } from "@/utils/id";
-import {categoryService} from "@/service";
-
-/** 文件树异步加载 */
-const onLoadTree = () => {
-}
+import {randomId} from "@/utils/id";
+import {resourceCategoryService} from "@/service";
 
 export const FolderExtension: IExtension = {
   id: "FolderExtension",
   name: "FolderExtension",
-  activate(extensionCtx: IExtensionService): void {
+  activate: async function (extensionCtx: IExtensionService): Promise<void> {
+
+    // 加载根目录
+    await loadRootResource();
 
     // 加载树目录
-    onLoadTree();
+    await onLoadTree();
 
     // 改默认的初始化无文件样式
     defaultEntity();
@@ -38,11 +31,8 @@ export const FolderExtension: IExtension = {
     // 更新文件/文件夹名称
     onUpdateResourceName();
 
-    // Listen to the remove node event
-    molecule.folderTree.onRemove((id?: UniqueId) => {
-      // do something
-      alert("删除了");
-    });
+    // 监听删除事件
+    removeTreeNode();
 
     // Listen to the select node event
     molecule.folderTree.onSelectFile((file: IFolderTreeNodeProps) => {
@@ -97,7 +87,7 @@ const onUpdateResourceName = () => {
         type: "directory",
         parent_id: parentId
       });
-      await categoryService.loadTreeNode(parentId);
+      await resourceCategoryService.loadTreeNode(parentId);
       molecule.explorer.forceUpdate();
     } catch (e) {
       molecule.folderTree.remove(id);
@@ -110,10 +100,9 @@ const onUpdateResourceName = () => {
 const createResource = () => {
   molecule.folderTree.onCreate(async (type: FileType, id?: UniqueId) => {
     const parentId = id ? Number(id) : -1;
-    console.log(parentId);
     switch (type) {
       case "Folder":
-        molecule.folderTree.add(getTreeNode({
+        molecule.folderTree.add({
           id: randomId(),
           name: '',
           children: undefined,
@@ -124,13 +113,13 @@ const createResource = () => {
           fileType: 'Folder',
           isEditable: true,
           isLeaf: false,
-        }), parentId);
+        }, parentId);
         break;
       case "File":
         alert("文件" + id);
         break;
       case "RootFolder":
-        molecule.folderTree.add(getTreeNode({
+        molecule.folderTree.add({
           id: 'work_directory',
           name: "工作栏",
           children: undefined,
@@ -139,8 +128,37 @@ const createResource = () => {
           fileType: 'RootFolder',
           isEditable: false,
           isLeaf: false,
-        }));
+        });
         break;
     }
+  });
+}
+
+/** 文件树异步加载 */
+const onLoadTree = async () => {
+  molecule.folderTree.onLoadData(async (treeNode, callback) => {
+    treeNode.children = await resourceCategoryService.loadTreeNode(Number(treeNode.id));
+    callback(treeNode);
+  });
+}
+
+const loadRootResource = async () => {
+  await resourceCategoryService.loadRootFolder();
+}
+
+const removeTreeNode = () => {
+  molecule.folderTree.onRemove((id: UniqueId) => {
+    const treeNode = molecule.folderTree.get(id);
+    const type = treeNode?.fileType;
+    Modal.confirm({
+      title: `确认要删除此${type === 'File' ? '文件' : '文件夹'}吗?`,
+      content: `删除的${type === 'File' ? '文件' : '文件夹'}无法${type === 'File' ? '找回' : '恢复'}！`,
+      onOk() {
+        api.deleteResource({id: Number(id)}).then(() => molecule.folderTree.remove(id));
+      },
+      onCancel() {},
+      okText: '删除',
+      cancelText: '取消'
+    });
   });
 }

@@ -59,6 +59,13 @@ class Http {
       this.errorCallback = errorCallback;
     }
     return this.request.get<T>(url, options);
+  };
+
+  delete<T>(url: string, options?: RequestOptionsInit, errorCallback?: () => void): Promise<T> {
+    if (errorCallback) {
+      this.errorCallback = errorCallback;
+    }
+    return this.request.delete<T>(url, options);
   }
 }
 

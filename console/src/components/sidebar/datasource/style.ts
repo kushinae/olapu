@@ -4,6 +4,8 @@ export const Datasource = styled.div`
   .datasource_content {
     margin: 13px;
   }
+  max-height: 100%;
+  overflow-y: auto;
 `;
 
 export const DatasourceLabelLayout = styled.div`
@@ -64,7 +66,35 @@ export const TableLabelLayout = styled.div`
   }
   
   
-  .database {
-    margin-left: 5px;
+  .table {
+    margin-left: 10px;
+  }
+`
+
+export const ColumnLabelLayout = styled.div`
+  .column {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 30px;
+
+    :hover {
+      //background-color: #272b33;
+    }
+
+    * {
+      margin-right: 2px;
+    }
+  }
+
+
+  .column {
+    margin-left: 15px;
+
+    .column-detail {
+      .datatype {
+        color: #aeb2bb;
+      }
+    }
   }
 `

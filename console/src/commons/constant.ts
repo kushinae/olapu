@@ -1,4 +1,4 @@
-import {IActivityBarItem, ISidebarPane} from "@dtinsight/molecule/esm/model";
+import { IActivityBarItem, ISidebarPane } from "@dtinsight/molecule/esm/model";
 
 interface IComponentIdItem {
   id: string,
@@ -14,19 +14,19 @@ class Constant {
     Header: 'Authorization',
   }
 }
- const ComponentId = {
+const ComponentId = {
   Datasource: <IComponentIdItem>{
-    id: <string> 'datasource',
-    title: <string> '数据源',
-    icon: <string> 'database'
+    id: <string>'datasource',
+    title: <string>'数据源',
+    icon: <string>'database'
   },
   LowCode: <IComponentIdItem>{
-    id: <string> 'code.low',
-    title: <string> '低代码',
-    icon: <string> 'code'
+    id: <string>'code.low',
+    title: <string>'低代码',
+    icon: <string>'code'
   }
 }
- const ActivityBar = {
+const ActivityBar = {
   Datasource: <IActivityBarItem>{
     id: ComponentId.Datasource.id,
     title: ComponentId.Datasource.title,
@@ -57,6 +57,6 @@ const PageConstant = {
 }
 const SUPPORTED_LANGUAGES = ['java', 'sql'] as const;
 
-const ROOT_CATEGORY_ID = -1;
+const ROOT_RESOURCE_PARENT_ID = -1;
 
-export {Constant, ComponentId, ActivityBar, Sidebar, PageConstant, SUPPORTED_LANGUAGES, ROOT_CATEGORY_ID}
+export { Constant, ComponentId, ActivityBar, Sidebar, PageConstant, SUPPORTED_LANGUAGES, ROOT_RESOURCE_PARENT_ID }

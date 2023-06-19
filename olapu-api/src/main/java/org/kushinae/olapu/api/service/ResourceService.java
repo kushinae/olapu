@@ -1,6 +1,5 @@
 package org.kushinae.olapu.api.service;
 
-import org.kushinae.olapu.api.vo.resource.EditResource;
 import org.kushinae.olapu.repository.entities.Resource;
 import org.kushinae.olapu.repository.repository.impl.ResourceRepository;
 
@@ -19,4 +18,6 @@ public interface ResourceService extends IRepositoryService<Resource, Long> {
     List<Resource> getResources(Long parentId, String name, String uid);
 
     Resource getResourceById(Long id);
+
+    void deleteResource(Long id, String uid);
 }

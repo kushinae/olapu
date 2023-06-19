@@ -11,6 +11,7 @@ export default {
   resource: {
     getResources: `${BASE_URI}/resource`,
     createResource: `${BASE_URI}/resource`,
+    delete: `${BASE_URI}/resource`,
   },
 
   /* 数据源 */
@@ -21,5 +22,7 @@ export default {
   /* 数据库 */
   database: {
     getDatabases: `${BASE_URI}/database/databases`,
+    getTables: `${BASE_URI}/database/tables`,
+    getColumnDetails: `${BASE_URI}/database/columns/detail`,
   }
 }

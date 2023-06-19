@@ -2,8 +2,9 @@ import React, { useLayoutEffect, useState } from "react";
 import { Button, Form, Input, message, Modal, Space, Tabs } from "antd";
 import md5 from 'md5';
 import api from "@/api";
-import { LoginParam, LoginResult } from "@/api/interfaces";
 import { Constant } from "@/commons/constant";
+import {Login} from "@/api/response";
+import {LoginParam} from "@/api/payload";
 
 const listener: Record<string, React.Dispatch<React.SetStateAction<boolean>>> = {};
 
@@ -17,7 +18,7 @@ interface IFormField {
   nickname: string;
 }
 
-const loginStorage = (loginData: LoginResult) => {
+const loginStorage = (loginData: Login) => {
   localStorage.setItem(Constant.Authorization.X_Access_Token, loginData.access_token);
   localStorage.setItem(Constant.Authorization.Nickname, loginData.nickname);
   localStorage.setItem(Constant.Authorization.Avatar, loginData.avatar);
@@ -55,7 +56,7 @@ export default () => {
         onFinish={async (payload: LoginParam) => {
           payload.password = md5(payload.password);
           setLoading(true);
-          const result: LoginResult = await api.login(payload, () => {
+          const result: Login = await api.login(payload, () => {
             setLoading(false);
           });
           setLoading(false);
