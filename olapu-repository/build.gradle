@@ -6,6 +6,8 @@ group 'org.kushinae'
 version '1.0-SNAPSHOT'
 
 dependencies {
+    compileOnly project(path: ':olapu-core')
+
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
     api group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springComponentVersion
     // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j

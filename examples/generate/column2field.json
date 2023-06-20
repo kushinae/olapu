@@ -1,0 +1,21 @@
+{
+  "job": {
+    "generate": [
+      {
+        "columns": [
+          {
+            "name": "${columnName}",
+            "datatype": "${columnType}",
+            "comment": "${columnComment}"
+          }
+        ],
+        "table": "${tableName}",
+        "settings": {
+          "language": "java",
+          "model": "ctrl",
+          "template": "${template}"
+        }
+      }
+    ]
+  }
+}

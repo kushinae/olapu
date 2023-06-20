@@ -1,5 +1,6 @@
 package org.kushinae.olapu.generate;
 
+import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.generate.dispatcher.Dispatcher;
 
 /**
@@ -8,8 +9,8 @@ import org.kushinae.olapu.generate.dispatcher.Dispatcher;
  */
 public interface GenerateChain {
 
-    Record chain(BuildOption option);
+    Record chain(GenerateJob job);
 
-    Dispatcher getDispatcher(BuildOption option);
+    Dispatcher getDispatcher(GenerateJob job);
 
 }

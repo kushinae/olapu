@@ -5,7 +5,9 @@ import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.service.DatasourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.repository.entities.Datasource;
+import org.kushinae.olapu.repository.entities.Job;
 import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.repository.enums.JobModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,6 +21,9 @@ public class ComponentFactory {
 
     @Resource
     private List<DatasourceComponent> datasourceComponent;
+
+    @Resource
+    private List<JobComponent> jobComponents;
 
     @Resource
     private DatasourceService datasourceService;
@@ -37,10 +42,19 @@ public class ComponentFactory {
         return getDatasourceComponent(datasource.getType());
     }
 
-    public DatasourceComponent getDatasourceComponent(Long datasourceId, String uid) {
-        Datasource datasource = datasourceService.queryById(datasourceId, uid);
+    public DatasourceComponent getDatasourceComponent(Long datasourceId) {
+        Datasource datasource = datasourceService.queryById(datasourceId);
         AbstractAssert.notNull(datasource, ErrorMessage.DATASOURCE_DOES_NOT_EXIST);
         return getDatasourceComponent(datasource.getType());
+    }
+
+    public JobComponent getJobComponent(JobModel model) {
+        for (JobComponent jobComponent : jobComponents) {
+            if (jobComponent.model().equals(model)) {
+                return jobComponent;
+            }
+        }
+        throw new IllegalArgumentException("Unsupported job component of the model " + model.getCode());
     }
 
 }

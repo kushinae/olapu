@@ -28,6 +28,8 @@ public class CreatePayload {
     @NotNull(message = "模版不能为空")
     private String template;
 
+    private String uid;
+
     @NotBlank(message = "模版名称不能为空")
     private String name;
 

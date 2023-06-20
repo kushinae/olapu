@@ -1,7 +1,7 @@
 package org.kushinae.olapu.plugin.java.chain;
 
+import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.generate.mapping.HandlerMapping;
-import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.chain.AbstractExecutionChain;
 import org.kushinae.olapu.spi.factory.mapping.DefaultHandlerMappingFactory;
 

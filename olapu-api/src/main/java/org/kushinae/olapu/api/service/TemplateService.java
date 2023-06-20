@@ -12,4 +12,6 @@ public interface TemplateService extends IRepositoryService<Template, Long> {
 
     @Override
     TemplateRepository getRepository();
+
+    Template queryById(Long id);
 }

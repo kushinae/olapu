@@ -22,9 +22,8 @@ jar {
 }
 
 dependencies {
-
-    implementation project(path: ':olapu-java-plugin')
     implementation project(path: ':olapu-repository')
+    implementation project(path: ':olapu-java-plugin')
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: springComponentVersion

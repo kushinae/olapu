@@ -1,6 +1,6 @@
 package org.kushinae.olapu.spi.factory.adapter;
 
-import org.kushinae.olapu.generate.Language;
+import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.generate.adapter.HandlerAdapter;
 
 import java.util.ServiceLoader;

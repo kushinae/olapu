@@ -1,7 +1,7 @@
 package org.kushinae.olapu.generate.handler;
 
-import org.kushinae.olapu.generate.BuildOption;
-import org.kushinae.olapu.generate.ModelType;
+import org.kushinae.olapu.core.enums.ModelType;
+import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 
 import java.util.Map;
 
@@ -11,8 +11,7 @@ import java.util.Map;
  */
 public abstract class AbstractHandler implements Handler {
     @Override
-    public String getTemplate(BuildOption buildOption) {
-        Map<ModelType, String> modelsTemplate = buildOption.getModelsTemplate();
-        return modelsTemplate.get(getModelType());
+    public String getTemplate(GenerateJob job) {
+        return job.getSettings().getTemplate();
     }
 }

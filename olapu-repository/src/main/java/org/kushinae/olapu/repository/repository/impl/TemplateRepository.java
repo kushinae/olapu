@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TemplateRepository extends IServiceRepository<Template, Long> {
 
-    Template searchBySourceAndTypeAndModel(TemplateSource source, TemplateType typ, TemplateModel model);
+    Template searchBySourceAndTypeAndModelAndUid(TemplateSource source, TemplateType type, TemplateModel model, String uid);
 
-    Template searchByName(String name);
+    Template searchByNameAndUid(String name, String uid);
 
 }

@@ -1,7 +1,7 @@
 package org.kushinae.olapu.plugin.java.executor;
 
-import org.kushinae.olapu.generate.BuildOption;
-import org.kushinae.olapu.generate.Language;
+import org.kushinae.olapu.core.enums.Language;
+import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.generate.RecordResolver;
 import org.kushinae.olapu.generate.executor.AbstractExecutorResolver;
 import org.kushinae.olapu.generate.executor.Executor;
@@ -21,10 +21,10 @@ public class JavaExecutorResolver extends AbstractExecutorResolver {
     }
 
     @Override
-    public RecordResolver resolver(BuildOption option, String template) {
+    public RecordResolver resolver(GenerateJob job, String template) {
         Map<String, Object> dataModel = new HashMap<>();
         // todo 这里模版字符串替换也从客户端(引入该项目)服务拿
-        dataModel.put("className", "HelloWorld");
+        dataModel.put("className", job.getTable());
         RecordResolver recordResolver = new RecordResolver();
         recordResolver.setDataModel(dataModel);
         recordResolver.setTemplate(template);

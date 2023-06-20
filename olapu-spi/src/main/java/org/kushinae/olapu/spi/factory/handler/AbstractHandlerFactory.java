@@ -1,7 +1,7 @@
 package org.kushinae.olapu.spi.factory.handler;
 
+import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.core.utils.CollectionUtils;
-import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.handler.Handler;
 
 import java.util.List;

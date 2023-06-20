@@ -1,6 +1,6 @@
 package org.kushinae.olapu.spi.factory.chain;
 
-import org.kushinae.olapu.generate.Language;
+import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.generate.chain.ExecutionChain;
 
 import java.util.ServiceLoader;

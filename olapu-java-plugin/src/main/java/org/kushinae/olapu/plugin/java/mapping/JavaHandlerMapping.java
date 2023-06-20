@@ -1,6 +1,6 @@
 package org.kushinae.olapu.plugin.java.mapping;
 
-import org.kushinae.olapu.generate.Language;
+import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.generate.adapter.HandlerAdapter;
 import org.kushinae.olapu.generate.mapping.AbstractHandlerMapping;
 import org.kushinae.olapu.spi.factory.adapter.DefaultHandlerAdapterFactory;

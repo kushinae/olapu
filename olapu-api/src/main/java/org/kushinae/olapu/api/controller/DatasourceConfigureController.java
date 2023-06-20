@@ -49,7 +49,7 @@ public class DatasourceConfigureController {
 
     @GetMapping
     public List<Configure> getConfigures(@RequestParam("datasource_id") Long datasourceId) {
-        return DatasourceConfigureConvert.INSTANCE.entities2Configures(datasourceConfigureService.configures(datasourceId, authorization.getUid()));
+        return DatasourceConfigureConvert.INSTANCE.entities2Configures(datasourceConfigureService.configures(datasourceId));
     }
 
 }

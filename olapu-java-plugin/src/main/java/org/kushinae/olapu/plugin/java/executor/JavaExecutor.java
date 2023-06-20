@@ -4,7 +4,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.Version;
-import org.kushinae.olapu.generate.Language;
+import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.generate.RecordResolver;
 import org.kushinae.olapu.generate.executor.AbstractExecutor;
 
@@ -26,7 +26,7 @@ public class JavaExecutor extends AbstractExecutor {
         String template = recordResolver.getTemplate();
         StringWriter result = new StringWriter();
         try {
-            Template name = new Template("whatname", template, new Configuration(new Version("2.3.23")));
+            Template name = new Template("className", template, new Configuration(new Version("2.3.23")));
             name.process(recordResolver.getDataModel(), result);
         } catch (IOException | TemplateException e) {
             throw new RuntimeException(e);

@@ -1,10 +1,8 @@
 package org.kushinae.olapu.generate.adapter;
 
-import org.kushinae.olapu.generate.BuildOption;
+import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.generate.LanguageCode;
 import org.kushinae.olapu.generate.handler.Handler;
-
-import java.util.List;
 
 /**
  * 调用具体生成器(Generate of Java、Generate of Golang ....)
@@ -14,6 +12,6 @@ import java.util.List;
  */
 public interface HandlerAdapter extends LanguageCode {
 
-    List<Handler> getHandlers(BuildOption option);
+    Handler getHandler(GenerateJob job);
 
 }

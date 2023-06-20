@@ -1,8 +1,7 @@
 package org.kushinae.olapu.plugin.java.handler;
 
-import org.kushinae.olapu.generate.BuildOption;
-import org.kushinae.olapu.generate.Language;
-import org.kushinae.olapu.generate.ModelType;
+import org.kushinae.olapu.core.enums.Language;
+import org.kushinae.olapu.core.enums.ModelType;
 import org.kushinae.olapu.generate.executor.ExecutorResolver;
 import org.kushinae.olapu.generate.handler.AbstractHandler;
 import org.kushinae.olapu.spi.factory.executor.DefaultExecutorResolverFactory;

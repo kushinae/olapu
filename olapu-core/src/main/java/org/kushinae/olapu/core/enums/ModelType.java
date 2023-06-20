@@ -1,7 +1,6 @@
-package org.kushinae.olapu.generate;
+package org.kushinae.olapu.core.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.kushinae.olapu.core.enums.EnumCode;
 
 /**
  * @author kaisa.liu

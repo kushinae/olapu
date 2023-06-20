@@ -1,5 +1,7 @@
 package org.kushinae.olapu.generate;
 
+import org.kushinae.olapu.core.enums.Language;
+
 import java.util.HashMap;
 
 /**

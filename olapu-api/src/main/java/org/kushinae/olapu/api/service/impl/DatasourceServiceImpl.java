@@ -1,10 +1,7 @@
 package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.pojo.api.SearchPayload;
 import org.kushinae.olapu.api.service.DatasourceService;
@@ -19,7 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -59,8 +55,8 @@ public class DatasourceServiceImpl implements DatasourceService {
     }
 
     @Override
-    public Datasource queryById(Long id, String uid) {
-        return getRepository().searchByIdAndUid(id, uid);
+    public Datasource queryById(Long id) {
+        return getRepository().findById(id).orElseThrow(() -> new IllegalArgumentException(ErrorMessage.DATASOURCE_DOES_NOT_EXIST.getCode()));
     }
 
     @Override

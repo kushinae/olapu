@@ -1,6 +1,6 @@
 package org.kushinae.olapu.generate.dispatcher;
 
-import org.kushinae.olapu.generate.BuildOption;
+import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.generate.chain.ExecutionChain;
 import org.kushinae.olapu.generate.LanguageCode;
 
@@ -15,7 +15,7 @@ public interface Dispatcher extends LanguageCode {
      *
      * @return 返回一个执行链对象
      */
-    ExecutionChain getExecutionChain(BuildOption option);
+    ExecutionChain getExecutionChain(GenerateJob job);
 
 
 

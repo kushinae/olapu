@@ -1,4 +1,4 @@
-package org.kushinae.olapu.api.components.support;
+package org.kushinae.olapu.api.components.support.datasource;
 
 import org.kushinae.olapu.api.components.RDBMSDatasourceComponent;
 import org.kushinae.olapu.api.pojo.lang.DatasourceConfigureMapping;
@@ -20,7 +20,7 @@ public class MySQLComponent extends RDBMSDatasourceComponent {
 
     @Override
     public Properties getProperties(Long datasourceId, String uid) {
-        DatasourceConfigureMapping mapping = datasourceConfigureService.load2Mapping(datasourceId, uid);
+        DatasourceConfigureMapping mapping = datasourceConfigureService.load2Mapping(datasourceId);
         MySQLProperties properties = new MySQLProperties();
         properties.host(mapping.getHost())
                 .port(mapping.getPort())

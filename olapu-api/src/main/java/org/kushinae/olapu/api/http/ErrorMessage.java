@@ -26,6 +26,10 @@ public enum ErrorMessage {
 
     TEMPLATE_DATA_ALREADY_EXISTS("template.exists", "Template already exists"),
     TEMPLATE_NAME_ALREADY_EXISTS("template.name.exists", "Template name already exists"),
+    TEMPLATE_DOES_NOT_EXIST("template.does_not_exists", "Template does not exist"),
+
+    JOB_NAME_ALREADY_EXISTS("job.exists.name", "Job name already exists"),
+    JOB_DOES_NOT_EXIST("job.does_not_exists", "Job does not exists"),
 
     DATASOURCE_ALREADY_EXISTS("datasource.exists", "Datasource already exists"),
     UNSUPPORTED_DATASOURCE_TYPE("datasource.unsupported", "Unsupported datasource type"),

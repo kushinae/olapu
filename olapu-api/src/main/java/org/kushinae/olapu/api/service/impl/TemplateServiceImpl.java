@@ -26,11 +26,15 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public Long create(Template template) {
-        Template queryTemplate = getRepository().searchBySourceAndTypeAndModel(template.getSource(), template.getType(), template.getModel());
-        AbstractAssert.isNull(queryTemplate, ErrorMessage.TEMPLATE_DATA_ALREADY_EXISTS);
+    public Template queryById(Long id) {
+        return getRepository().findById(id).orElseThrow(() -> new IllegalArgumentException(ErrorMessage.TEMPLATE_DOES_NOT_EXIST.getCode()));
+    }
 
-        queryTemplate = getRepository().searchByName(template.getName());
+    @Override
+    public Long create(Template template) {
+        Template queryTemplate = getRepository().searchBySourceAndTypeAndModelAndUid(template.getSource(), template.getType(), template.getModel(), template.getUid());
+        AbstractAssert.isNull(queryTemplate, ErrorMessage.TEMPLATE_DATA_ALREADY_EXISTS);
+        queryTemplate = getRepository().searchByNameAndUid(template.getName(), template.getUid());
         AbstractAssert.isNull(queryTemplate, ErrorMessage.TEMPLATE_NAME_ALREADY_EXISTS);
         template.setCreateAt(new Date());
         template.setModifiedAt(new Date());

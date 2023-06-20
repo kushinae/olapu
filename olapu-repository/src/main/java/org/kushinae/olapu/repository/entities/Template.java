@@ -79,6 +79,9 @@ public class Template {
     @Column(name = "template")
     private String template;
 
+    @Column(name = "uid")
+    private String uid;
+
     /**
      * 数据创建时间
      */

@@ -1,8 +1,8 @@
 package org.kushinae.olapu.plugin.java.dispatcher;
 
-import org.kushinae.olapu.generate.BuildOption;
+import org.kushinae.olapu.core.enums.Language;
+import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.generate.chain.ExecutionChain;
-import org.kushinae.olapu.generate.Language;
 import org.kushinae.olapu.generate.dispatcher.AbstractDispatcherGenerate;
 import org.kushinae.olapu.spi.factory.chain.DefaultExecutionChainFactory;
 
@@ -18,7 +18,7 @@ public class JavaDispatcher extends AbstractDispatcherGenerate {
     }
 
     @Override
-    public ExecutionChain getExecutionChain(BuildOption option) {
+    public ExecutionChain getExecutionChain(GenerateJob job) {
         DefaultExecutionChainFactory executionChainFactory = new DefaultExecutionChainFactory();
         return executionChainFactory.getFactory(getLanguage());
     }

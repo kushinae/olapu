@@ -1,6 +1,6 @@
 package org.kushinae.olapu.spi.factory;
 
-import org.kushinae.olapu.generate.BuildOption;
+import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.generate.GenerateChain;
 import org.kushinae.olapu.generate.LanguageModelRecord;
 import org.kushinae.olapu.generate.LanguageRecord;
@@ -24,31 +24,29 @@ import java.util.List;
 public abstract class AbstractGenerateChain implements GenerateChain {
 
     @Override
-    public Record chain(BuildOption option) {
+    public Record chain(GenerateJob job) {
         Record record = new Record();
-        Dispatcher dispatcher = getDispatcher(option);
-        ExecutionChain executionChain = dispatcher.getExecutionChain(option);
+        Dispatcher dispatcher = getDispatcher(job);
+        ExecutionChain executionChain = dispatcher.getExecutionChain(job);
         HandlerMapping handlerMapping = executionChain.getHandlerMapping();
         HandlerAdapter handlerAdapter = handlerMapping.getHandlerAdapter();
-        List<Handler> handlers = handlerAdapter.getHandlers(option);
-        for (Handler handler : handlers) {
-            String template = handler.getTemplate(option);
-            ExecutorResolver executorResolver = handler.getExecutorResolver();
-            RecordResolver resolver = executorResolver.resolver(option, template);
-            Executor executor = executorResolver.getExecutor();
-            String out = executor.executor(resolver);
-            LanguageRecord languageRecord = record.get(handler.getLanguage()) == null ? new LanguageRecord() : record.get(handler.getLanguage());
-            LanguageModelRecord languageModelRecord = new LanguageModelRecord();
-            languageModelRecord.setOut(out);
-            languageRecord.put(handler.getModelType(), languageModelRecord);
-            record.put(handler.getLanguage(), languageRecord);
-        }
+        Handler handler = handlerAdapter.getHandler(job);
+        String template = handler.getTemplate(job);
+        ExecutorResolver executorResolver = handler.getExecutorResolver();
+        RecordResolver resolver = executorResolver.resolver(job, template);
+        Executor executor = executorResolver.getExecutor();
+        String out = executor.executor(resolver);
+        LanguageRecord languageRecord = record.get(handler.getLanguage()) == null ? new LanguageRecord() : record.get(handler.getLanguage());
+        LanguageModelRecord languageModelRecord = new LanguageModelRecord();
+        languageModelRecord.setOut(out);
+        languageRecord.put(handler.getModelType(), languageModelRecord);
+        record.put(handler.getLanguage(), languageRecord);
         return record;
     }
 
     @Override
-    public Dispatcher getDispatcher(BuildOption option) {
+    public Dispatcher getDispatcher(GenerateJob job) {
         DefaultDispatcherFactory dispatcherFactory = new DefaultDispatcherFactory();
-        return dispatcherFactory.getFactory(option.getLanguage());
+        return dispatcherFactory.getFactory(job.getSettings().getLanguage());
     }
 }

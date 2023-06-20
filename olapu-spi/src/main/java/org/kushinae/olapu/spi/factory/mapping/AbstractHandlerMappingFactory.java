@@ -1,6 +1,6 @@
 package org.kushinae.olapu.spi.factory.mapping;
 
-import org.kushinae.olapu.generate.Language;
+import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.generate.mapping.HandlerMapping;
 
 import java.util.ServiceLoader;
