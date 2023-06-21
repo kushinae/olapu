@@ -25,7 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/datasource")
-public class DataSourceController {
+public class DataSourceController extends AbstractController {
 
     @Resource
     DatasourceService datasourceService;

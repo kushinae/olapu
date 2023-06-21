@@ -24,12 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/datasource/configure")
-public class DatasourceConfigureController {
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(DatasourceType.class, new DatasourceType.Convert());
-    }
+public class DatasourceConfigureController extends AbstractController {
 
     @Resource
     DatasourceConfigureService datasourceConfigureService;

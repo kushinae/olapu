@@ -1,4 +1,4 @@
-package org.kushinae.olapu.api.pojo.api.job;
+package org.kushinae.olapu.api.vo.job;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -10,7 +10,7 @@ import org.kushinae.olapu.repository.enums.JobModel;
  * @since 1.0.0
  */
 @Data
-public class EditJobPayload {
+public class Detail {
 
     /**
      * 主键ID

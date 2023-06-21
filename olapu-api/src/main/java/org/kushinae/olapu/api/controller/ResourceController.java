@@ -6,6 +6,7 @@ import org.kushinae.olapu.api.convert.ResourceConvert;
 import org.kushinae.olapu.api.pojo.api.resource.Detail;
 import org.kushinae.olapu.api.service.ResourceService;
 import org.kushinae.olapu.api.vo.resource.EditResource;
+import org.kushinae.olapu.repository.enums.ResourceCategory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/resource")
-public class ResourceController {
+public class ResourceController extends AbstractController {
 
     @Resource
     ResourceService resourceService;
@@ -39,8 +40,9 @@ public class ResourceController {
 
     @GetMapping
     List<Detail> getResources(@RequestParam(value = "parent_id", defaultValue = "-1", required = false) Long parentId,
-                              @RequestParam(value = "name", required = false) String name) {
-        return ResourceConvert.INSTANCE.toDetails(resourceService.getResources(parentId, name, authorization.getUid()));
+                              @RequestParam(value = "name", required = false) String name,
+                              @RequestParam("category") ResourceCategory category) {
+        return ResourceConvert.INSTANCE.toDetails(resourceService.getResources(parentId, name, authorization.getUid(), category));
     }
 
     @DeleteMapping

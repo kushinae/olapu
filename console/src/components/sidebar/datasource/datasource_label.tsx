@@ -24,7 +24,7 @@ const DatasourceLabel: React.FC<DatasourceLabelProps> = (props, context) => {
   const [databases, setDatabases] = useState<string[] | undefined>();
 
   const handlerClick = async () => {
-    if (!expansion) {
+    if (!expansion && !databases) {
       setLoading(true);
       const databases = await api.getDatabases({ datasource_id: props.id });
       setDatabases(databases);

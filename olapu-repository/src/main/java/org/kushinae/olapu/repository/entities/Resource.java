@@ -12,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.kushinae.olapu.repository.enums.FileType;
+import org.kushinae.olapu.repository.enums.ResourceCategory;
 
 import java.util.Date;
 
@@ -59,6 +60,13 @@ public class Resource {
     @Column(name = "type")
     @Convert(converter = FileType.Convert.class)
     private FileType type;
+
+    /**
+     * 资源所属分类 job resource等
+     * @see ResourceCategory
+     */
+    @Convert(converter = ResourceCategory.Convert.class)
+    private ResourceCategory category;
 
     /**
      * 用户uid

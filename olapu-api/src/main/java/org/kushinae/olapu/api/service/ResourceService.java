@@ -1,6 +1,7 @@
 package org.kushinae.olapu.api.service;
 
 import org.kushinae.olapu.repository.entities.Resource;
+import org.kushinae.olapu.repository.enums.ResourceCategory;
 import org.kushinae.olapu.repository.repository.impl.ResourceRepository;
 
 import java.util.List;
@@ -15,7 +16,9 @@ public interface ResourceService extends IRepositoryService<Resource, Long> {
     @Override
     ResourceRepository getRepository();
 
-    List<Resource> getResources(Long parentId, String name, String uid);
+    List<Resource> getResources(Long parentId, String name, String uid, ResourceCategory category);
+
+    List<Resource> getResources(Long parentId, String uid);
 
     Resource getResourceById(Long id);
 

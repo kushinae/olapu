@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import org.kushinae.olapu.api.authorization.AbstractAuthorization;
 import org.kushinae.olapu.api.enums.TokenType;
 import org.kushinae.olapu.repository.enums.FileType;
+import org.kushinae.olapu.repository.enums.ResourceCategory;
 
 /**
  * @author kaisa.liu
@@ -17,6 +18,8 @@ public class EditResource {
     private String name;
 
     private FileType type;
+
+    private ResourceCategory category;
 
     @JsonProperty("parent_id")
     private Long parentId;

@@ -21,7 +21,13 @@ public abstract class AbstractJobComponent implements JobComponent {
     @Override
     public boolean supportedSave(Job job) {
         Job byResourceIdAndName = jobRepository.findByResourceIdAndName(job.getResourceId(), job.getName());
-        return Objects.isNull(byResourceIdAndName) || job.getId() != null;
+        if (Objects.isNull(byResourceIdAndName)) {
+            if (log.isDebugEnabled()) {
+                log.debug("The new job name already exists when saving the job");
+            }
+            return true;
+        }
+        return byResourceIdAndName.getId().equals(job.getId());
     }
 
     @Override

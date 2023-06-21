@@ -21,4 +21,6 @@ public interface JobService extends IRepositoryService<Job, Long> {
     void build(Long id);
 
     Job save(Job job);
+
+    Job updateJob(Job edit2Entity);
 }

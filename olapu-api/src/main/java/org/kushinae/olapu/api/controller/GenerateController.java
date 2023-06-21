@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/generate")
-public class GenerateController {
+public class GenerateController extends AbstractController {
 
     @Resource
     GenerateService generateService;

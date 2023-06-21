@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @RequestMapping("/template")
-public class TemplateController {
+public class TemplateController extends AbstractController {
 
     @Resource
     private TemplateService templateService;

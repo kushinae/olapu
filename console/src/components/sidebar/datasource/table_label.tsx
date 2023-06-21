@@ -26,8 +26,10 @@ const TableLabel: React.FC<TableLabelProps> = (props, context) => {
 
   const handlerClick = async () => {
     setExpansion(!expansion);
-    const columnDetails = await api.getColumnDetails({ datasource_id: props.datasourceId, database: props.database, table: props.table });
-    setColumns(columnDetails);
+    if (!columns) {
+      const columnDetails = await api.getColumnDetails({ datasource_id: props.datasourceId, database: props.database, table: props.table });
+      setColumns(columnDetails);
+    }
   }
 
   return (

@@ -3,6 +3,7 @@ import requests from "@/api/requests";
 import {CreateResourceParam, LoginParam, RegisterParam} from "@/api/payload";
 import {Column, DatasourceInfo, Login, Resource} from "@/api/response";
 import {IPage, ISearch} from "@/api/interfaces";
+import {RESOURCE_CATEGORY} from "@/interface";
 
 export default {
   /* 注册 */
@@ -23,6 +24,7 @@ export default {
   async getResources(payload: {
     parent_id: number,
     name?: string,
+    category: RESOURCE_CATEGORY,
   }): Promise<Resource[]> {
     return await httpClient.get(requests.resource.getResources, {
       params: {

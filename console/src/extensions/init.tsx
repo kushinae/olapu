@@ -5,6 +5,8 @@ import { logoutStorage, openLoginModal } from "@/pages/account/login";
 import { ActivityBar, Constant } from "@/commons/constant";
 import { UniqueId } from "@dtinsight/molecule/esm/common/types";
 import { DatasourcePane } from "./sidebar/supportes/datasource";
+import {JobPane} from "@/extensions/sidebar/supportes/job";
+import {jobTree} from "@/service/job_tree";
 
 export const InitializeExtension: IExtension = {
   id: "InitializeExtension",
@@ -15,6 +17,10 @@ export const InitializeExtension: IExtension = {
     initActiveBar();
     // 初始化左侧边栏
     initSideBar();
+    // 初始化任务管理
+    jobTree.setEntry(
+      <div>没有东西吗</div>
+    );
   },
   dispose(extensionCtx: IExtensionService) {
 
@@ -65,9 +71,10 @@ const updateAccountContent = (contextMenu: IActivityMenuItemProps[]) => {
 
 const initActiveBar = () => {
   molecule.activityBar.add(ActivityBar.Datasource);
-  molecule.activityBar.add(ActivityBar.LowCode);
+  molecule.activityBar.add(ActivityBar.Task);
 }
 
 const initSideBar = () => {
   molecule.sidebar.add(DatasourcePane);
+  molecule.sidebar.add(JobPane);
 }

@@ -23,9 +23,11 @@ const DatabaseLabel: React.FC<DatabaseLabelProps> = (props, context) => {
   const [tables, setTables] = useState<string[] | undefined>();
 
   const handlerClick = async () => {
+    if (!tables) {
+      const tables = await api.getTables({datasource_id: props.datasourceId, database: props.database});
+      setTables(tables);
+    }
     setExpansion(!expansion);
-    const tables = await api.getTables({datasource_id: props.datasourceId, database: props.database});
-    setTables(tables);
   }
 
   return (

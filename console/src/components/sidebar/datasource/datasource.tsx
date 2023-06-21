@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Header } from '@dtinsight/molecule/esm/workbench/sidebar';
 import { Datasource as DatasourceParent } from "@/components/sidebar/datasource/style";
 import DatasourceLabel from "@/components/sidebar/datasource/datasource_label";
 import api from "@/api";
 import { PageConstant } from "@/commons/constant";
 import { DatasourceInfo } from '@/api/response';
+import {ActionBar} from "@dtinsight/molecule/esm/components";
+import {ResourceProps} from "@/components/typings";
 
 interface DatasourceProps {
+  resource: ResourceProps;
 }
 
 /**
@@ -13,7 +17,7 @@ interface DatasourceProps {
  * @author bnyte
  * @since 1.0.0
  */
-const Datasource: React.FC<DatasourceProps> = () => {
+const Datasource: React.FC<DatasourceProps> = ({resource}) => {
 
   const [records, setRecords] = useState<DatasourceInfo[] | undefined>();
   const [current, setCurrent] = useState<number>(PageConstant.defaultCurrentPage);
@@ -36,6 +40,10 @@ const Datasource: React.FC<DatasourceProps> = () => {
   }, []);
   return (
     <DatasourceParent className='datasource_container'>
+      <Header
+        title='数据源管理'
+        toolbar={<ActionBar data={resource.headerToolBar} />}
+      />
       <div className='datasource_content'>
         {
           records?.map(e => <DatasourceLabel key={e.id} id={e.id} name={e.name} />)
@@ -44,4 +52,4 @@ const Datasource: React.FC<DatasourceProps> = () => {
     </DatasourceParent>
   )
 }
-export default Datasource;
+export {Datasource};

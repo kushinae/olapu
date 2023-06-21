@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 1.0.0
  */
 @RestController
-public class AccountLinkedController {
+public class AccountLinkedController extends AbstractController {
 
     @Resource
     AccountService accountService;

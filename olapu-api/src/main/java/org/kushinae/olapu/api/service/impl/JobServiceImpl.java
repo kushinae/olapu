@@ -7,10 +7,8 @@ import org.kushinae.olapu.api.enums.PubsubEventGroup;
 import org.kushinae.olapu.api.event.Event;
 import org.kushinae.olapu.api.event.factory.EventFactory;
 import org.kushinae.olapu.api.event.payload.BuildJobPayload;
-import org.kushinae.olapu.api.event.support.BuildJobEvent;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.service.JobService;
-import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.core.utils.JacksonUtils;
 import org.kushinae.olapu.generate.Record;
@@ -18,8 +16,6 @@ import org.kushinae.olapu.repository.entities.Job;
 import org.kushinae.olapu.repository.repository.impl.JobRepository;
 import org.kushinae.olapu.spi.factory.DefaultGenerateChain;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 /**
  * @author kaisa.liu
@@ -72,5 +68,11 @@ public class JobServiceImpl implements JobService {
     @Override
     public Job save(Job job) {
         return getRepository().save(job);
+    }
+
+    @Override
+    public Job updateJob(Job job) {
+        job.setBuilt(false);
+        return componentFactory.getJobComponent(job.getModel()).save(job);
     }
 }

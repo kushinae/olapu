@@ -7,8 +7,12 @@ import {EmptyFolder} from "@/extensions/folder/style";
 import api from "@/api";
 import {randomId} from "@/utils/id";
 import {resourceCategoryService} from "@/service";
+import {IResourceCategory, RESOURCE_CATEGORY} from "@/interface";
 
-export const FolderExtension: IExtension = {
+export const FolderExtension: IExtension & IResourceCategory = {
+  getCategory(): RESOURCE_CATEGORY {
+    return RESOURCE_CATEGORY.RESOURCE;
+  },
   id: "FolderExtension",
   name: "FolderExtension",
   activate: async function (extensionCtx: IExtensionService): Promise<void> {
@@ -17,7 +21,7 @@ export const FolderExtension: IExtension = {
     await loadRootResource();
 
     // 加载树目录
-    await onLoadTree();
+    await onLoadTree(this.getCategory());
 
     // 改默认的初始化无文件样式
     defaultEntity();
@@ -48,7 +52,7 @@ export const FolderExtension: IExtension = {
   },
   dispose(extensionCtx: IExtensionService): void {
     throw new Error("Function not implemented.");
-  },
+  }
 }
 
 const defaultEntity = () => {
@@ -87,7 +91,7 @@ const onUpdateResourceName = () => {
         type: "directory",
         parent_id: parentId
       });
-      await resourceCategoryService.loadTreeNode(parentId);
+      await resourceCategoryService.loadTreeNode(parentId, RESOURCE_CATEGORY.RESOURCE);
       molecule.explorer.forceUpdate();
     } catch (e) {
       molecule.folderTree.remove(id);
@@ -109,6 +113,7 @@ const createResource = () => {
           data: {
             parentId
           },
+          icon: "chevron-right",
           disabled: false,
           fileType: 'Folder',
           isEditable: true,
@@ -135,9 +140,9 @@ const createResource = () => {
 }
 
 /** 文件树异步加载 */
-const onLoadTree = async () => {
+const onLoadTree = async (category: RESOURCE_CATEGORY) => {
   molecule.folderTree.onLoadData(async (treeNode, callback) => {
-    treeNode.children = await resourceCategoryService.loadTreeNode(Number(treeNode.id));
+    treeNode.children = await resourceCategoryService.loadTreeNode(Number(treeNode.id), category);
     callback(treeNode);
   });
 }

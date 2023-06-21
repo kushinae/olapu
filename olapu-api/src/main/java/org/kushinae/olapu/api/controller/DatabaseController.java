@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/database")
-public class DatabaseController {
+public class DatabaseController extends AbstractController {
 
     @Resource
     DatabaseService databaseService;

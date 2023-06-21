@@ -20,10 +20,10 @@ const ComponentId = {
     title: <string>'数据源',
     icon: <string>'database'
   },
-  LowCode: <IComponentIdItem>{
-    id: <string>'code.low',
+  Job: <IComponentIdItem>{
+    id: <string>'task',
     title: <string>'低代码',
-    icon: <string>'code'
+    icon: <string>'checklist'
   }
 }
 const ActivityBar = {
@@ -32,10 +32,10 @@ const ActivityBar = {
     title: ComponentId.Datasource.title,
     icon: ComponentId.Datasource.icon,
   },
-  LowCode: <IActivityBarItem>{
-    id: ComponentId.LowCode.id,
-    title: ComponentId.LowCode.title,
-    icon: ComponentId.LowCode.icon,
+  Task: <IActivityBarItem>{
+    id: ComponentId.Job.id,
+    title: ComponentId.Job.title,
+    icon: ComponentId.Job.icon,
   }
 }
 const Sidebar = {
@@ -44,10 +44,10 @@ const Sidebar = {
     title: ComponentId.Datasource.title,
     icon: ComponentId.Datasource.icon,
   },
-  LowCode: <ISidebarPane>{
-    id: ComponentId.LowCode.id,
-    title: ComponentId.LowCode.title,
-    icon: ComponentId.LowCode.icon,
+  Job: <ISidebarPane>{
+    id: ComponentId.Job.id,
+    title: ComponentId.Job.title,
+    icon: ComponentId.Job.icon,
   }
 }
 
