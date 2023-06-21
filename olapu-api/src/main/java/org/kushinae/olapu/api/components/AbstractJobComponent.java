@@ -21,7 +21,7 @@ public abstract class AbstractJobComponent implements JobComponent {
     @Override
     public boolean supportedSave(Job job) {
         Job byResourceIdAndName = jobRepository.findByResourceIdAndName(job.getResourceId(), job.getName());
-        return Objects.isNull(byResourceIdAndName);
+        return Objects.isNull(byResourceIdAndName) || job.getId() != null;
     }
 
     @Override
@@ -36,6 +36,7 @@ public abstract class AbstractJobComponent implements JobComponent {
 
     @Override
     public String buildScript(Job job) {
+        job.setBuilt(true);
         return job.getScript();
     }
 
@@ -44,11 +45,6 @@ public abstract class AbstractJobComponent implements JobComponent {
         if (supportedSave(job)) {
             // supported code ...
             job = onSaveBefore(job);
-
-            // build script
-            String script = buildScript(job);
-            job.setScript(script);
-
             return jobRepository.save(job);
         } else {
             // unsupported code ...

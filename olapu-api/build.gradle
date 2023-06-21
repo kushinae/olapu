@@ -36,6 +36,9 @@ dependencies {
     implementation group: 'com.auth0', name: 'java-jwt', version: jwtVersion
     // https://mvnrepository.com/artifact/cn.hutool/hutool-core
     implementation group: 'cn.hutool', name: 'hutool-core', version: hutoolVersion
+    // https://mvnrepository.com/artifact/com.lmax/disruptor
+    implementation group: 'com.lmax', name: 'disruptor', version: disruptorVersion
+
 
 
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"

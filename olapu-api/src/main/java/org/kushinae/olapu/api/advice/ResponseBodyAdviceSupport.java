@@ -44,6 +44,13 @@ public class ResponseBodyAdviceSupport implements ResponseBodyAdvice<Object> {
     }
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(IllegalCallerException.class)
+    public ErrorResponse handlerIllegalCallerException(IllegalCallerException e) {
+        preLogger(e);
+        return ErrorResponse.forbidden().message(getMessage(e.getMessage())).path(request.getMethod(), request.getRequestURI());
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(UnAccessException.class)
     public ErrorResponse handlerAccessTokenException(UnAccessException e) {
         preLogger(e);

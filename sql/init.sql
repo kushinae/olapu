@@ -77,6 +77,7 @@ create table t_job
    name varchar(128) not null comment '任务名称',
    script text comment '任务执行脚本',
    type varchar(128) not null comment '任务类型 generate',
+   built tinyint(1) not null default false comment '已经构建? true 已经完成 false 没有完成'
    description text comment '任务描述',
    resource_id bigint not null comment '任务所属目录',
    workflow_id bigint comment '工作流id',

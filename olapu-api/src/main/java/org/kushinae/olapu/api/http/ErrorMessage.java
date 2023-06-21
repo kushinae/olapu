@@ -30,6 +30,7 @@ public enum ErrorMessage {
 
     JOB_NAME_ALREADY_EXISTS("job.exists.name", "Job name already exists"),
     JOB_DOES_NOT_EXIST("job.does_not_exists", "Job does not exists"),
+    JOB_UNREADY("job.unready", "The job is not ready because it needs to complete the build"),
 
     DATASOURCE_ALREADY_EXISTS("datasource.exists", "Datasource already exists"),
     UNSUPPORTED_DATASOURCE_TYPE("datasource.unsupported", "Unsupported datasource type"),

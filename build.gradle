@@ -12,7 +12,6 @@ def properties = project.getProperties()
 
 allprojects {
     repositories {
-        mavenLocal()
         maven {
             credentials {
                 username properties['maven.username']
@@ -27,6 +26,7 @@ allprojects {
             }
             url 'https://packages.aliyun.com/maven/repository/2212017-snapshot-2vhkHr/'
         }
+        mavenLocal()
         mavenCentral()
     }
     group 'org.kushinae'
@@ -45,4 +45,5 @@ ext {
     jwtVersion = '4.4.0'
     hutoolVersion = '5.8.19'
     yoneVersion = '1.0.0-SNAPSHOT'
+    disruptorVersion = '4.0.0.RC1'
 }

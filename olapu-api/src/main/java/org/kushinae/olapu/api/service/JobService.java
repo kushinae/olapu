@@ -17,4 +17,8 @@ public interface JobService extends IRepositoryService<Job, Long> {
     Record start(Long id);
 
     Job queryById(Long id);
+
+    void build(Long id);
+
+    Job save(Job job);
 }

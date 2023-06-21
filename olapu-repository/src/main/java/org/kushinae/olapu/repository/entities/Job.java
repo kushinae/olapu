@@ -69,6 +69,12 @@ public class Job {
     private EJobType type;
 
     /**
+     * 已经构建? true 已经完成 false 没有完成
+     */
+    @Column(name = "built")
+    private Boolean built;
+
+    /**
      * 任务描述
      */
     @Column(name = "description")
