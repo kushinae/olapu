@@ -46,4 +46,5 @@ ext {
     hutoolVersion = '5.8.19'
     yoneVersion = '1.0.0-SNAPSHOT'
     disruptorVersion = '4.0.0.RC1'
+    swaggerVersion = '2.2.12'
 }

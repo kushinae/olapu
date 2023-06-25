@@ -21,6 +21,9 @@ dependencies {
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
     api group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
     api group: 'org.kushinae', name: 'yone-mysql-plugin', version: yoneVersion
+    // https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations
+    api group: 'io.swagger.core.v3', name: 'swagger-annotations', version: swaggerVersion
+
 
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"

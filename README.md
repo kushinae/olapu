@@ -86,8 +86,9 @@ I'm actively developing this project, I can't push it anytime soon due to work, 
 
 [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-# Thank you
+# Additional Support
 
-- Thanks to `JetBrains` for their help with this project
+* [JetBrains](https://www.jetbrains.com/?from=kushinae/olapu) - Thanks a lot for
+  supporting kushinae-olapu project.
 
-![[JetBrainsLogo](https://www.jetbrains.com)](https://github.com/rymcu/forest/raw/master/src/main/resources/static/jb_beam.svg)
+![JenBrains logo](https://springdoc.org/img/jetbrains.svg)
