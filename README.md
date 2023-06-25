@@ -78,6 +78,11 @@ yarn window
 
 ![](./docs/quickstart/applicaiton_preview.png)
 
+# Todo
+
+- [ ] 迁移 `generate` 模块
+
+- [ ] 抽象 `事件` 中心入库，用户防止重复消费以及后续的状态查询以及日志log输出等
 # Timeline
 
 I'm actively developing this project, I can't push it anytime soon due to work, but I'm keeping active commits every day
