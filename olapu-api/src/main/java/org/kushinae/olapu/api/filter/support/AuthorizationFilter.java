@@ -15,8 +15,10 @@ import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.api.util.AccessTokenUtils;
 import org.kushinae.olapu.api.util.JWTToken;
 import org.kushinae.olapu.api.util.StringUtils;
+import org.springframework.util.AntPathMatcher;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 /**
  * @author kaisa.liu
@@ -39,12 +41,15 @@ public class AuthorizationFilter extends AbstractAuthorizationFilter {
     @Override
     public void filter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String uri = request.getRequestURI();
-        if (authorization.getWhitelist().contains(uri)) {
+        AntPathMatcher matcher = new AntPathMatcher();
+        for (String pattern : authorization.getWhitelist()) {
             if (log.isDebugEnabled()) {
                 log.debug("[{}] request {} in whitelist direct release", this.getClass().getSimpleName(), uri);
             }
-            chain.doFilter(request, response);
-            return;
+            if (matcher.match(pattern, uri)) {
+                chain.doFilter(request, response);
+                return;
+            }
         }
         String header = request.getHeader(AUTHORIZATION_HEADER);
         if (StringUtils.nonText(header)) {

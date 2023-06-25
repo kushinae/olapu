@@ -1,5 +1,6 @@
 package org.kushinae.olapu.api.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.authorization.Authorization;
 import org.kushinae.olapu.api.service.DatabaseService;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/database")
+@Tag(name = "Controller for database operations", description = "The controller user operates the relevant information of the database, such as: obtaining information related to the database such as all libraries, tables, fields, etc.")
 public class DatabaseController extends AbstractController {
 
     @Resource

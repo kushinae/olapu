@@ -7,6 +7,9 @@ spring:
 server:
   servlet:
     context-path: /api
+springdoc:
+  swagger-ui:
+    path: /doc.html
 logging:
   level:
     org.kushinae.olapu.api.filter: debug

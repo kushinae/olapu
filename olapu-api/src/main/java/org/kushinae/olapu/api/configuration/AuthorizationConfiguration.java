@@ -30,6 +30,10 @@ public class AuthorizationConfiguration {
         Whitelist whitelist = new Whitelist();
         whitelist.setPrePath(serverProperties.getServlet().getContextPath());
         whitelist.addOnPrefix("/login");
+        whitelist.addOnPrefix("/doc.html");
+        whitelist.addOnPrefix("/v3/api-docs");
+        whitelist.addOnPrefix("/v3/api-docs/*");
+        whitelist.addOnPrefix("/swagger-ui/*");
         return whitelist;
     }
 

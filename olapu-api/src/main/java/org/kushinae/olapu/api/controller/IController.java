@@ -12,5 +12,5 @@ public interface IController {
     @InitBinder
     default void registerBinder(WebDataBinder binder) {
 
-    };
+    }
 }

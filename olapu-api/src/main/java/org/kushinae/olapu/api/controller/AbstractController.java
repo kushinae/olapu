@@ -3,7 +3,6 @@ package org.kushinae.olapu.api.controller;
 import org.kushinae.olapu.repository.enums.DatasourceType;
 import org.kushinae.olapu.repository.enums.ResourceCategory;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 
 /**
  * @author kaisa.liu
