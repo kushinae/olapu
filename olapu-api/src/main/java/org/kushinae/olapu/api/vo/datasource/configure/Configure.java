@@ -1,5 +1,6 @@
 package org.kushinae.olapu.api.vo.datasource.configure;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.Data;
 
 /**
@@ -9,10 +10,13 @@ import lombok.Data;
 @Data
 public class Configure {
 
+    @Parameter(description = "配置ID")
     public Long id;
 
+    @Parameter(description = "配置key")
     public String key;
 
+    @Parameter(description = "配置值")
     private String value;
 
 }

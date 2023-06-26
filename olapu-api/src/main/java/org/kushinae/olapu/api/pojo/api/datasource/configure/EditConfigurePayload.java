@@ -1,6 +1,7 @@
 package org.kushinae.olapu.api.pojo.api.datasource.configure;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.Data;
 import org.kushinae.olapu.api.vo.datasource.configure.Configure;
 
@@ -14,8 +15,10 @@ import java.util.List;
 public class EditConfigurePayload {
 
     @JsonProperty("datasource_id")
+    @Parameter(description = "数据源ID", required = true)
     private Long datasourceId;
 
+    @Parameter(description = "数据源配置列表", required = true)
     private List<Configure> configures;
 
 }

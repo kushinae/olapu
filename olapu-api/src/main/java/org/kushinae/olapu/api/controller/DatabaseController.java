@@ -1,5 +1,7 @@
 package org.kushinae.olapu.api.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.authorization.Authorization;
@@ -18,7 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/database")
-@Tag(name = "Controller for database operations", description = "The controller user operates the relevant information of the database, such as: obtaining information related to the database such as all libraries, tables, fields, etc.")
+@Tag(name = "数据库操作控制器", description = "控制者用户操作数据库的相关信息，如：获取所有库、表、字段等与数据库相关的信息。")
 public class DatabaseController extends AbstractController {
 
     @Resource
@@ -28,21 +30,24 @@ public class DatabaseController extends AbstractController {
     Authorization authorization;
 
     @GetMapping("/databases")
-    public List<String> database(@RequestParam("datasource_id") Long datasourceId,
-                                 @RequestParam(value = "all", required = false, defaultValue = "false") Boolean allDatabase) {
+    @Operation(summary = "通过数据源获取数据库列表")
+    public List<String> database(@Parameter(required = true, example = "1") @RequestParam("datasource_id") Long datasourceId,
+                                 @Parameter(description = "如果为true则不会忽略默认数据库", example = "false") @RequestParam(value = "all", required = false, defaultValue = "false") Boolean allDatabase) {
         return databaseService.databases(datasourceId, authorization.getUid(), allDatabase);
     }
 
     @GetMapping("/tables")
-    public List<String> tables(@RequestParam("datasource_id") Long datasourceId,
-                               @RequestParam(value = "database", required = false) String database) {
+    @Operation(summary = "通过数据源ID以及库名获取表列表")
+    public List<String> tables(@Parameter(required = true, example = "1") @RequestParam("datasource_id") Long datasourceId,
+                               @Parameter(description = "如果为空使用数据源配置的数据库，如果该参数和数据源配置的数据库都为空则抛出异常400") @RequestParam(value = "database", required = false) String database) {
         return databaseService.tables(datasourceId, authorization.getUid(), database);
     }
 
     @GetMapping("/columns/detail")
-    public List<Column> columns(@RequestParam("datasource_id") Long datasourceId,
-                                @RequestParam(value = "database", required = false) String database,
-                                @RequestParam("table") String table) {
+    @Operation(summary = "通过数据源ID以及库名称和表名称获取字段详情")
+    public List<Column> columns(@Parameter(required = true, example = "1") @RequestParam("datasource_id") Long datasourceId,
+                                @Parameter(description = "如果为空使用数据源配置的数据库，如果该参数和数据源配置的数据库都为空则抛出异常400", example = "olapu") @RequestParam(value = "database", required = false) String database,
+                                @Parameter(required = true, example = "t_user") @RequestParam("table") String table) {
         return databaseService.columns(datasourceId, database, table, authorization.getUid());
     }
 

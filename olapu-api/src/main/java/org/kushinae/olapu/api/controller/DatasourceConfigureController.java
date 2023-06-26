@@ -1,5 +1,8 @@
 package org.kushinae.olapu.api.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.authorization.Authorization;
 import org.kushinae.olapu.api.convert.DatasourceConfigureConvert;
@@ -7,9 +10,7 @@ import org.kushinae.olapu.api.pojo.api.datasource.configure.EditConfigurePayload
 import org.kushinae.olapu.api.service.DatasourceConfigureService;
 import org.kushinae.olapu.api.vo.datasource.configure.Configure;
 import org.kushinae.olapu.repository.enums.DatasourceType;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/datasource/configure")
+@Tag(name = "数据源配置管理控制器", description = "该控制器用以管理数据源的配置管理")
 public class DatasourceConfigureController extends AbstractController {
 
     @Resource
@@ -33,7 +35,8 @@ public class DatasourceConfigureController extends AbstractController {
     Authorization authorization;
 
     @GetMapping("/template")
-    public List<Configure> template(@RequestParam("type") DatasourceType type) {
+    @Operation(summary = "获取数据源配置模版")
+    public List<Configure> template(@Parameter(description = "数据源类型") @RequestParam("type") DatasourceType type) {
         return DatasourceConfigureConvert.INSTANCE.entities2Configures(datasourceConfigureService.template(type));
     }
 
