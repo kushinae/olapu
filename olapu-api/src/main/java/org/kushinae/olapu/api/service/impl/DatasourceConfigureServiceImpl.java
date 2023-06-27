@@ -2,11 +2,11 @@ package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.api.service.DatasourceConfigureService;
 import org.kushinae.olapu.api.service.DatasourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.CollectionUtils;
+import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.repository.entities.Datasource;
 import org.kushinae.olapu.repository.entities.DatasourceConfigure;
 import org.kushinae.olapu.repository.enums.DatasourceType;

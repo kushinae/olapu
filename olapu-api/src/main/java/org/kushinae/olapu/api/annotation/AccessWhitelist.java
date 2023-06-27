@@ -1,5 +1,7 @@
 package org.kushinae.olapu.api.annotation;
 
+import org.kushinae.olapu.interfaces.authorization.Authorization;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -20,7 +22,7 @@ import java.lang.annotation.Target;
 public @interface AccessWhitelist {
 
     /**
-     * 是否跳过验证，如果关闭验证白名单则会将该接口进行强行验证 尽管他没有实现{@link org.kushinae.olapu.api.authorization.Authorization}
+     * 是否跳过验证，如果关闭验证白名单则会将该接口进行强行验证 尽管他没有实现{@link Authorization}
      *
      * @return true则会证明跳过
      */

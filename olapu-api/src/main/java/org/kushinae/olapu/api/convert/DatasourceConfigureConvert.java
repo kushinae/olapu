@@ -1,6 +1,6 @@
 package org.kushinae.olapu.api.convert;
 
-import org.kushinae.olapu.api.vo.datasource.configure.Configure;
+import org.kushinae.olapu.interfaces.vo.datasource.configure.Configure;
 import org.kushinae.olapu.repository.entities.DatasourceConfigure;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

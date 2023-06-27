@@ -2,12 +2,10 @@ package org.kushinae.olapu.api.event;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.components.ComponentFactory;
-import org.kushinae.olapu.api.enums.PubsubEventGroup;
+import org.kushinae.olapu.interfaces.enums.PubsubEventGroup;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.repository.entities.Job;
 import org.kushinae.olapu.repository.repository.impl.JobRepository;
-
-import java.io.Serializable;
 
 /**
  * @author kaisa.liu

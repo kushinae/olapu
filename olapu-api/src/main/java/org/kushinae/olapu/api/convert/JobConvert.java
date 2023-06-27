@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.convert;
 
-import org.kushinae.olapu.api.pojo.api.job.EditJobPayload;
-import org.kushinae.olapu.api.vo.job.Detail;
+import org.kushinae.olapu.interfaces.pojo.api.job.EditJobPayload;
+import org.kushinae.olapu.interfaces.vo.job.Detail;
 import org.kushinae.olapu.repository.entities.Job;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

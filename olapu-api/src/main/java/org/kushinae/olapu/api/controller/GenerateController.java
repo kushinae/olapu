@@ -1,9 +1,10 @@
 package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.pojo.api.generate.GeneratePayload;
 import org.kushinae.olapu.api.service.GenerateService;
 import org.kushinae.olapu.generate.Record;
+import org.kushinae.olapu.interfaces.controller.AbstractController;
+import org.kushinae.olapu.interfaces.pojo.api.generate.GeneratePayload;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateField;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.kushinae.olapu.api.enums.TokenType;
+import org.kushinae.olapu.interfaces.enums.TokenType;
 import org.kushinae.olapu.api.exceprion.UnAccessException;
 import org.kushinae.olapu.api.exceprion.UnAuthorizationException;
 import org.kushinae.olapu.api.http.ErrorMessage;

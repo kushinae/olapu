@@ -12,6 +12,7 @@ def properties = project.getProperties()
 
 allprojects {
     repositories {
+        mavenLocal()
         maven {
             credentials {
                 username properties['maven.username']
@@ -26,7 +27,6 @@ allprojects {
             }
             url 'https://packages.aliyun.com/maven/repository/2212017-snapshot-2vhkHr/'
         }
-        mavenLocal()
         mavenCentral()
     }
     group 'org.kushinae'

@@ -1,23 +1,19 @@
 package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.pojo.api.generate.GeneratePayload;
-import org.kushinae.olapu.api.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.api.service.DatasourceConfigureService;
 import org.kushinae.olapu.api.service.DatasourceService;
 import org.kushinae.olapu.api.service.GenerateService;
 import org.kushinae.olapu.api.service.TemplateService;
-import org.kushinae.olapu.core.enums.JobType;
 import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.core.enums.ModelType;
-import org.kushinae.olapu.core.job.entities.Job;
 import org.kushinae.olapu.core.job.entities.generate.GenerateColumn;
 import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.core.job.entities.generate.GenerateSettings;
 import org.kushinae.olapu.generate.Record;
-import org.kushinae.olapu.repository.entities.Datasource;
+import org.kushinae.olapu.interfaces.pojo.api.generate.GeneratePayload;
+import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.repository.entities.Template;
-import org.kushinae.olapu.repository.repository.impl.TemplateRepository;
 import org.kushinae.olapu.spi.factory.DefaultGenerateChain;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.convert;
 
-import org.kushinae.olapu.api.pojo.api.resource.Detail;
-import org.kushinae.olapu.api.vo.resource.EditResource;
+import org.kushinae.olapu.interfaces.pojo.api.resource.Detail;
+import org.kushinae.olapu.interfaces.vo.resource.EditResource;
 import org.kushinae.olapu.repository.entities.Resource;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

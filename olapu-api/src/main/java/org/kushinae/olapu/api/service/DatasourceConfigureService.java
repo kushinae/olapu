@@ -1,6 +1,6 @@
 package org.kushinae.olapu.api.service;
 
-import org.kushinae.olapu.api.pojo.lang.DatasourceConfigureMapping;
+import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.repository.entities.DatasourceConfigure;
 import org.kushinae.olapu.repository.enums.DatasourceType;
 

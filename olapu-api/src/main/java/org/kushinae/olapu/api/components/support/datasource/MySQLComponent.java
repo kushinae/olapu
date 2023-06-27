@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.components.support.datasource;
 
 import org.kushinae.olapu.api.components.RDBMSDatasourceComponent;
-import org.kushinae.olapu.api.pojo.lang.DatasourceConfigureMapping;
+import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.repository.enums.DatasourceType;
 import org.kushinae.yone.commons.model.properties.Properties;
 import org.kushinae.yone.commons.model.properties.mysql.MySQLProperties;

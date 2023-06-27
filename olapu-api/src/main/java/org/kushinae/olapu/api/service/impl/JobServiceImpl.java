@@ -2,8 +2,8 @@ package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.components.ComponentFactory;
-import org.kushinae.olapu.api.enums.PubsubEvent;
-import org.kushinae.olapu.api.enums.PubsubEventGroup;
+import org.kushinae.olapu.interfaces.enums.PubsubEvent;
+import org.kushinae.olapu.interfaces.enums.PubsubEventGroup;
 import org.kushinae.olapu.api.event.Event;
 import org.kushinae.olapu.api.event.factory.EventFactory;
 import org.kushinae.olapu.api.event.payload.BuildJobPayload;

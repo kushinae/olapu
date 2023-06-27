@@ -2,7 +2,7 @@ package org.kushinae.olapu.api.event.support;
 
 import lombok.extern.log4j.Log4j2;
 import org.kushinae.olapu.api.components.JobComponent;
-import org.kushinae.olapu.api.enums.PubsubEvent;
+import org.kushinae.olapu.interfaces.enums.PubsubEvent;
 import org.kushinae.olapu.api.event.AbstractDisruptorEvent;
 import org.kushinae.olapu.api.event.payload.BuildJobPayload;
 import org.kushinae.olapu.repository.entities.Job;

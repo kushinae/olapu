@@ -3,6 +3,12 @@ plugins {
 }
 
 dependencies {
+    api project(path: ':olapu-repository')
+    compileOnly project(path: ':olapu-java-plugin')
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springComponentVersion
+
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }

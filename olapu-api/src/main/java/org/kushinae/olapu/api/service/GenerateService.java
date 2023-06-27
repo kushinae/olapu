@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.service;
 
-import org.kushinae.olapu.api.pojo.api.generate.GeneratePayload;
 import org.kushinae.olapu.generate.Record;
+import org.kushinae.olapu.interfaces.pojo.api.generate.GeneratePayload;
 
 /**
  * @author kaisa.liu

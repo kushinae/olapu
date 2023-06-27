@@ -1,6 +1,6 @@
 package org.kushinae.olapu.api.convert;
 
-import org.kushinae.olapu.api.pojo.api.account.RegisterPayload;
+import org.kushinae.olapu.interfaces.pojo.api.account.RegisterPayload;
 import org.kushinae.olapu.repository.entities.Account;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

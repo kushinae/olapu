@@ -1,9 +1,9 @@
 package org.kushinae.olapu.api.configuration;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.authorization.Authorization;
-import org.kushinae.olapu.api.authorization.DefaultAuthorization;
-import org.kushinae.olapu.api.authorization.Whitelist;
+import org.kushinae.olapu.interfaces.authorization.Authorization;
+import org.kushinae.olapu.interfaces.authorization.DefaultAuthorization;
+import org.kushinae.olapu.interfaces.authorization.Whitelist;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

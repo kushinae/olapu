@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.event;
 
-import org.kushinae.olapu.api.enums.PubsubEvent;
-import org.kushinae.olapu.api.enums.PubsubEventGroup;
+import org.kushinae.olapu.interfaces.enums.PubsubEvent;
+import org.kushinae.olapu.interfaces.enums.PubsubEventGroup;
 
 /**
  * @author kaisa.liu

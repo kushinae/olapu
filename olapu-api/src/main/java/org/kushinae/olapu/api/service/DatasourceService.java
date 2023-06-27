@@ -1,6 +1,6 @@
 package org.kushinae.olapu.api.service;
 
-import org.kushinae.olapu.api.pojo.api.SearchPayload;
+import org.kushinae.olapu.interfaces.pojo.api.SearchPayload;
 import org.kushinae.olapu.repository.entities.Datasource;
 import org.kushinae.olapu.repository.enums.DatasourceType;
 import org.springframework.data.domain.Page;
