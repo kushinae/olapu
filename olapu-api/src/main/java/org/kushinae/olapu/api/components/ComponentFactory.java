@@ -2,10 +2,9 @@ package org.kushinae.olapu.api.components;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.DatasourceService;
+import org.kushinae.olapu.interfaces.service.IDatasourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.repository.entities.Datasource;
-import org.kushinae.olapu.repository.entities.Job;
 import org.kushinae.olapu.repository.enums.DatasourceType;
 import org.kushinae.olapu.repository.enums.JobModel;
 import org.springframework.stereotype.Component;
@@ -26,7 +25,7 @@ public class ComponentFactory {
     private List<JobComponent> jobComponents;
 
     @Resource
-    private DatasourceService datasourceService;
+    private IDatasourceService IDatasourceService;
 
     public DatasourceComponent getDatasourceComponent(DatasourceType datasourceType) {
         for (DatasourceComponent component : datasourceComponent) {
@@ -43,7 +42,7 @@ public class ComponentFactory {
     }
 
     public DatasourceComponent getDatasourceComponent(Long datasourceId) {
-        Datasource datasource = datasourceService.queryById(datasourceId);
+        Datasource datasource = IDatasourceService.queryById(datasourceId);
         AbstractAssert.notNull(datasource, ErrorMessage.DATASOURCE_DOES_NOT_EXIST);
         return getDatasourceComponent(datasource.getType());
     }

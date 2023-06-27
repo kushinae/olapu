@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.service.DatabaseService;
+import org.kushinae.olapu.interfaces.service.IDatabaseService;
 import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.controller.database.IDatabaseController;
 import org.kushinae.yone.commons.model.pojo.rdbms.Column;
@@ -17,21 +17,26 @@ import java.util.List;
 public class DatabaseController extends AbstractController implements IDatabaseController {
 
     @Resource
-    DatabaseService databaseService;
+    private IDatabaseService databaseService;
 
     @Override
     public List<String> database(Long datasourceId, Boolean allDatabase) {
-        return databaseService.databases(datasourceId, authorization.getUid(), allDatabase);
+        return getService().databases(datasourceId, authorization.getUid(), allDatabase);
     }
 
     @Override
     public List<String> tables(Long datasourceId, String database) {
-        return databaseService.tables(datasourceId, authorization.getUid(), database);
+        return getService().tables(datasourceId, authorization.getUid(), database);
     }
 
     @Override
     public List<Column> columns(Long datasourceId, String database, String table) {
-        return databaseService.columns(datasourceId, database, table, authorization.getUid());
+        return getService().columns(datasourceId, database, table, authorization.getUid());
+    }
+
+    @Override
+    public IDatabaseService getService() {
+        return databaseService;
     }
 
 }

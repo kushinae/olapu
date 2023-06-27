@@ -2,6 +2,7 @@ package org.kushinae.olapu.interfaces.controller.resource;
 
 import org.kushinae.olapu.interfaces.controller.IController;
 import org.kushinae.olapu.interfaces.pojo.api.resource.Detail;
+import org.kushinae.olapu.interfaces.service.IResourceService;
 import org.kushinae.olapu.interfaces.vo.resource.EditResource;
 import org.kushinae.olapu.repository.enums.ResourceCategory;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,4 +31,7 @@ public interface IResourceController extends IController {
 
     @DeleteMapping
     void deleteResource(@RequestParam("id") Long id);
+
+    @Override
+    IResourceService getService();
 }

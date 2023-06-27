@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.kushinae.olapu.interfaces.controller.IController;
 import org.kushinae.olapu.interfaces.pojo.api.account.LoginPayload;
 import org.kushinae.olapu.interfaces.pojo.api.account.RegisterPayload;
+import org.kushinae.olapu.interfaces.service.IAccountService;
 import org.kushinae.olapu.interfaces.vo.account.Login;
 import org.kushinae.olapu.interfaces.vo.account.Register;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,4 +26,6 @@ public interface IAccountLinkedController extends IController {
     @Operation(summary = "在olapu注册一个帐户", description = "使用该api在olapu注册账号")
     Register register(@RequestBody RegisterPayload payload);
 
+    @Override
+    IAccountService getService();
 }

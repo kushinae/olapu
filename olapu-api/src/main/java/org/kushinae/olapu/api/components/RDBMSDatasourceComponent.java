@@ -2,8 +2,8 @@ package org.kushinae.olapu.api.components;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.DatasourceConfigureService;
-import org.kushinae.olapu.api.service.DatasourceService;
+import org.kushinae.olapu.interfaces.service.IDatasourceConfigureService;
+import org.kushinae.olapu.interfaces.service.IDatasourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.StringUtils;
 import org.kushinae.yone.client.IClient;
@@ -22,10 +22,10 @@ import java.util.stream.Stream;
 public abstract class RDBMSDatasourceComponent implements DatasourceComponent {
 
     @Resource
-    protected DatasourceConfigureService datasourceConfigureService;
+    protected IDatasourceConfigureService IDatasourceConfigureService;
 
     @Resource
-    protected DatasourceService datasourceService;
+    protected IDatasourceService IDatasourceService;
 
     @Override
     public IClient buildClient(Properties properties, String uid, Long datasourceId) {

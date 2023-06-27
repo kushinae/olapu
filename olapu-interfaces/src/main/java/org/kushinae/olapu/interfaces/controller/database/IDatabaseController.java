@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.kushinae.olapu.interfaces.controller.IController;
+import org.kushinae.olapu.interfaces.service.IDatabaseService;
 import org.kushinae.yone.commons.model.pojo.rdbms.Column;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,4 +35,7 @@ public interface IDatabaseController extends IController {
     List<Column> columns(@Parameter(required = true, example = "1") @RequestParam("datasource_id") Long datasourceId,
                                 @Parameter(description = "如果为空使用数据源配置的数据库，如果该参数和数据源配置的数据库都为空则抛出异常400", example = "olapu") @RequestParam(value = "database", required = false) String database,
                                 @Parameter(required = true, example = "t_user") @RequestParam("table") String table);
+
+    @Override
+    IDatabaseService getService();
 }

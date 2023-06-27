@@ -1,4 +1,4 @@
-package org.kushinae.olapu.api.service;
+package org.kushinae.olapu.interfaces.service;
 
 import org.kushinae.olapu.interfaces.pojo.api.account.LoginPayload;
 import org.kushinae.olapu.interfaces.pojo.api.account.RegisterPayload;
@@ -11,7 +11,7 @@ import org.springframework.data.repository.Repository;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface AccountService extends IRepositoryService<Account, Long> {
+public interface IAccountService extends IRepositoryService<Account, Long> {
 
     Login login(LoginPayload payload);
 

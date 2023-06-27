@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.kushinae.olapu.interfaces.controller.IController;
 import org.kushinae.olapu.interfaces.pojo.api.datasource.configure.EditConfigurePayload;
+import org.kushinae.olapu.interfaces.service.IDatasourceConfigureService;
 import org.kushinae.olapu.interfaces.vo.datasource.configure.Configure;
 import org.kushinae.olapu.repository.enums.DatasourceType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,4 +34,6 @@ public interface IDatasourceConfigureController extends IController {
     @GetMapping
     List<Configure> getConfigures(@RequestParam("datasource_id") Long datasourceId);
 
+    @Override
+    IDatasourceConfigureService getService();
 }

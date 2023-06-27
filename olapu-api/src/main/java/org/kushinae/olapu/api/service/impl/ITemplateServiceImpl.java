@@ -2,7 +2,7 @@ package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.TemplateService;
+import org.kushinae.olapu.interfaces.service.ITemplateService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.repository.entities.Template;
 import org.kushinae.olapu.repository.repository.impl.TemplateRepository;
@@ -15,7 +15,7 @@ import java.util.Date;
  * @since 1.0.0
  */
 @Service
-public class TemplateServiceImpl implements TemplateService {
+public class ITemplateServiceImpl implements ITemplateService {
 
     @Resource
     TemplateRepository templateRepository;

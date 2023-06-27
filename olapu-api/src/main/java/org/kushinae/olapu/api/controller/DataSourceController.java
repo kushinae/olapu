@@ -2,7 +2,7 @@ package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.convert.DatasourceConvert;
-import org.kushinae.olapu.api.service.DatasourceService;
+import org.kushinae.olapu.interfaces.service.IDatasourceService;
 import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.controller.datasource.IDatasourceController;
 import org.kushinae.olapu.interfaces.pojo.api.SearchPayload;
@@ -23,18 +23,18 @@ import java.util.List;
 public class DataSourceController extends AbstractController implements IDatasourceController {
 
     @Resource
-    DatasourceService datasourceService;
+    IDatasourceService datasourceService;
 
     @Override
     public Long create(CreatePayload createPayload) {
         Datasource entity = DatasourceConvert.INSTANCE.create2Entity(createPayload);
         entity.setUid(authorization.getUid());
-        return datasourceService.create(entity);
+        return getService().create(entity);
     }
 
     @Override
     public List<DatasourceType> supports() {
-        return datasourceService.supports();
+        return getService().supports();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DataSourceController extends AbstractController implements IDatasou
                 .query(query)
                 .uid(authorization.getUid())
                 .build();
-        org.springframework.data.domain.Page<Datasource> page = datasourceService.search(search);
+        org.springframework.data.domain.Page<Datasource> page = getService().search(search);
         return Page
                 .builder(DatasourceInfo.class)
                 .current(search.getCurrent())
@@ -54,6 +54,11 @@ public class DataSourceController extends AbstractController implements IDatasou
                 .queryCount(search.getQueryCount())
                 .records(DatasourceConvert.INSTANCE.entities2Infos(page.get().toList()))
                 .build();
+    }
+
+    @Override
+    public IDatasourceService getService() {
+        return datasourceService;
     }
 
 }

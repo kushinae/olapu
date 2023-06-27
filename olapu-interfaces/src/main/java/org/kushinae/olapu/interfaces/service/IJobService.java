@@ -1,4 +1,4 @@
-package org.kushinae.olapu.api.service;
+package org.kushinae.olapu.interfaces.service;
 
 import org.kushinae.olapu.generate.Record;
 import org.kushinae.olapu.repository.entities.Job;
@@ -8,7 +8,7 @@ import org.kushinae.olapu.repository.repository.impl.JobRepository;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface JobService extends IRepositoryService<Job, Long> {
+public interface IJobService extends IRepositoryService<Job, Long> {
 
     JobRepository getRepository();
 

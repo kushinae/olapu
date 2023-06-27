@@ -3,8 +3,8 @@ package org.kushinae.olapu.api.service.impl;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.DatasourceService;
-import org.kushinae.olapu.api.service.ResourceService;
+import org.kushinae.olapu.interfaces.service.IDatasourceService;
+import org.kushinae.olapu.interfaces.service.IResourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.StringUtils;
 import org.kushinae.olapu.interfaces.pojo.api.SearchPayload;
@@ -25,13 +25,13 @@ import java.util.List;
  * @since 1.0.0
  */
 @Service
-public class DatasourceServiceImpl implements DatasourceService {
+public class IDatasourceServiceImpl implements IDatasourceService {
 
     @Resource
     DatasourceRepository datasourceRepository;
 
     @Resource
-    ResourceService resourceService;
+    IResourceService IResourceService;
 
     @Override
     public DatasourceRepository getRepository() {

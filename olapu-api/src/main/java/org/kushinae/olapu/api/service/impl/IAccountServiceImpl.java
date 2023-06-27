@@ -4,7 +4,7 @@ import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.convert.AccountConvert;
 import org.kushinae.olapu.interfaces.enums.TokenType;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.AccountService;
+import org.kushinae.olapu.interfaces.service.IAccountService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.AccessTokenUtils;
 import org.kushinae.olapu.api.util.UidUtils;
@@ -23,7 +23,7 @@ import java.util.Date;
  * @since 1.0.0
  */
 @Service
-public class AccountServiceImpl implements AccountService {
+public class IAccountServiceImpl implements IAccountService {
 
     private static final Integer UID_LENGTH = 28;
 

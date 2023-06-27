@@ -1,10 +1,10 @@
 package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.service.DatasourceConfigureService;
-import org.kushinae.olapu.api.service.DatasourceService;
-import org.kushinae.olapu.api.service.GenerateService;
-import org.kushinae.olapu.api.service.TemplateService;
+import org.kushinae.olapu.interfaces.service.IDatasourceConfigureService;
+import org.kushinae.olapu.interfaces.service.IDatasourceService;
+import org.kushinae.olapu.interfaces.service.IGenerateService;
+import org.kushinae.olapu.interfaces.service.ITemplateService;
 import org.kushinae.olapu.core.enums.Language;
 import org.kushinae.olapu.core.enums.ModelType;
 import org.kushinae.olapu.core.job.entities.generate.GenerateColumn;
@@ -24,23 +24,23 @@ import java.util.stream.Stream;
  * @since 1.0.0
  */
 @Service
-public class GenerateServiceImpl implements GenerateService {
+public class IGenerateServiceImpl implements IGenerateService {
 
     @Resource
-    TemplateService templateService;
+    ITemplateService ITemplateService;
 
     @Resource
-    DatasourceService datasourceService;
+    IDatasourceService IDatasourceService;
 
     @Resource
-    DatasourceConfigureService datasourceConfigureService;
+    IDatasourceConfigureService IDatasourceConfigureService;
 
 
     @Override
     public Record generate(GeneratePayload generatePayload) {
         // 获取生成任务的脚本
-        Template template = templateService.queryById(generatePayload.getTemplateId());
-        DatasourceConfigureMapping mapping = datasourceConfigureService.load2Mapping(generatePayload.getDatasourceId());
+        Template template = ITemplateService.queryById(generatePayload.getTemplateId());
+        DatasourceConfigureMapping mapping = IDatasourceConfigureService.load2Mapping(generatePayload.getDatasourceId());
         GenerateJob generateJob = new GenerateJob();
         generateJob.setColumns(Stream.of(new GenerateColumn()).toList());
         GenerateSettings settings = new GenerateSettings();

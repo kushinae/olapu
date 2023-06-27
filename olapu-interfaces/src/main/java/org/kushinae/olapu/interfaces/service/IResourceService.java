@@ -1,4 +1,4 @@
-package org.kushinae.olapu.api.service;
+package org.kushinae.olapu.interfaces.service;
 
 import org.kushinae.olapu.repository.entities.Resource;
 import org.kushinae.olapu.repository.enums.ResourceCategory;
@@ -10,7 +10,7 @@ import java.util.List;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface ResourceService extends IRepositoryService<Resource, Long> {
+public interface IResourceService extends IRepositoryService<Resource, Long> {
     Long create(Resource resource);
 
     @Override

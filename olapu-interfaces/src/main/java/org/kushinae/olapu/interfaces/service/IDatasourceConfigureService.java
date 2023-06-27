@@ -1,4 +1,4 @@
-package org.kushinae.olapu.api.service;
+package org.kushinae.olapu.interfaces.service;
 
 import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.repository.entities.DatasourceConfigure;
@@ -10,7 +10,7 @@ import java.util.List;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface DatasourceConfigureService extends IRepositoryService<DatasourceConfigure, Long> {
+public interface IDatasourceConfigureService extends IRepositoryService<DatasourceConfigure, Long> {
 
     /**
      * 通过数据源ID获取数据源配置项

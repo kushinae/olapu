@@ -2,7 +2,7 @@ package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.convert.ResourceConvert;
-import org.kushinae.olapu.api.service.ResourceService;
+import org.kushinae.olapu.interfaces.service.IResourceService;
 import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.controller.resource.IResourceController;
 import org.kushinae.olapu.interfaces.pojo.api.resource.Detail;
@@ -20,23 +20,28 @@ import java.util.List;
 public class ResourceController extends AbstractController implements IResourceController {
 
     @Resource
-    ResourceService resourceService;
+    IResourceService resourceService;
 
     @Override
     public Long create(EditResource payload) {
         org.kushinae.olapu.repository.entities.Resource entity = ResourceConvert.INSTANCE.toEntity(payload);
         entity.setUid(authorization.getUid());
-        return resourceService.create(entity);
+        return getService().create(entity);
     }
 
     @Override
     public List<Detail> getResources(Long parentId, String name, ResourceCategory category) {
-        return ResourceConvert.INSTANCE.toDetails(resourceService.getResources(parentId, name, authorization.getUid(), category));
+        return ResourceConvert.INSTANCE.toDetails(getService().getResources(parentId, name, authorization.getUid(), category));
     }
 
     @Override
     public void deleteResource(Long id) {
-        resourceService.deleteResource(id, authorization.getUid());
+        getService().deleteResource(id, authorization.getUid());
+    }
+
+    @Override
+    public IResourceService getService() {
+        return resourceService;
     }
 
 }

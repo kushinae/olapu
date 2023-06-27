@@ -1,7 +1,8 @@
 package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.service.GenerateService;
+import org.kushinae.olapu.interfaces.controller.generate.IGenerateController;
+import org.kushinae.olapu.interfaces.service.IGenerateService;
 import org.kushinae.olapu.generate.Record;
 import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.pojo.api.generate.GeneratePayload;
@@ -16,14 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/generate")
-public class GenerateController extends AbstractController {
+public class GenerateController extends AbstractController implements IGenerateController {
 
     @Resource
-    GenerateService generateService;
+    IGenerateService generateService;
 
     @PostMapping
     public Record generate(@RequestBody GeneratePayload generatePayload) {
-        return generateService.generate(generatePayload);
+        return getService().generate(generatePayload);
     }
 
+    @Override
+    public IGenerateService getService() {
+        return generateService;
+    }
 }

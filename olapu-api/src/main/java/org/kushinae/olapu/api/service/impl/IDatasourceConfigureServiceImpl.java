@@ -2,8 +2,8 @@ package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.DatasourceConfigureService;
-import org.kushinae.olapu.api.service.DatasourceService;
+import org.kushinae.olapu.interfaces.service.IDatasourceConfigureService;
+import org.kushinae.olapu.interfaces.service.IDatasourceService;
 import org.kushinae.olapu.api.util.AbstractAssert;
 import org.kushinae.olapu.api.util.CollectionUtils;
 import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
@@ -25,10 +25,10 @@ import java.util.stream.StreamSupport;
  * @since 1.0.0
  */
 @Service
-public class DatasourceConfigureServiceImpl implements DatasourceConfigureService {
+public class IDatasourceConfigureServiceImpl implements IDatasourceConfigureService {
 
     @Resource
-    DatasourceService datasourceService;
+    IDatasourceService IDatasourceService;
 
     @Resource
     DatasourceConfigureRepository datasourceConfigureRepository;
@@ -40,14 +40,14 @@ public class DatasourceConfigureServiceImpl implements DatasourceConfigureServic
 
     @Override
     public List<DatasourceConfigure> configures(Long datasourceId) {
-        Datasource datasource = datasourceService.queryById(datasourceId);
+        Datasource datasource = IDatasourceService.queryById(datasourceId);
         AbstractAssert.notNull(datasource, ErrorMessage.DATASOURCE_DOES_NOT_EXIST);
         return getRepository().searchByDatasourceId(datasourceId);
     }
 
     @Override
     public List<DatasourceConfigure> template(DatasourceType type) {
-        Datasource datasource = datasourceService.queryTemplate(type);
+        Datasource datasource = IDatasourceService.queryTemplate(type);
         AbstractAssert.notNull(datasource, ErrorMessage.DATASOURCE_DOES_NOT_EXIST);
         return getRepository().searchByDatasourceId(datasource.getId());
     }

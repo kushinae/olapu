@@ -1,4 +1,4 @@
-package org.kushinae.olapu.api.service;
+package org.kushinae.olapu.interfaces.service;
 
 import org.kushinae.olapu.generate.Record;
 import org.kushinae.olapu.interfaces.pojo.api.generate.GeneratePayload;
@@ -7,6 +7,6 @@ import org.kushinae.olapu.interfaces.pojo.api.generate.GeneratePayload;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface GenerateService {
+public interface IGenerateService extends IService {
     Record generate(GeneratePayload generatePayload);
 }

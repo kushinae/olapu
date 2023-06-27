@@ -3,6 +3,7 @@ package org.kushinae.olapu.interfaces.controller.job;
 import org.kushinae.olapu.generate.Record;
 import org.kushinae.olapu.interfaces.controller.IController;
 import org.kushinae.olapu.interfaces.pojo.api.job.EditJobPayload;
+import org.kushinae.olapu.interfaces.service.IJobService;
 import org.kushinae.olapu.interfaces.vo.job.Detail;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,4 +36,7 @@ public interface IJobController extends IController {
 
     @GetMapping("/start")
     Record start(@RequestParam("id") Long id);
+
+    @Override
+    IJobService getService();
 }

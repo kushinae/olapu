@@ -20,7 +20,7 @@ public class MySQLComponent extends RDBMSDatasourceComponent {
 
     @Override
     public Properties getProperties(Long datasourceId, String uid) {
-        DatasourceConfigureMapping mapping = datasourceConfigureService.load2Mapping(datasourceId);
+        DatasourceConfigureMapping mapping = IDatasourceConfigureService.load2Mapping(datasourceId);
         MySQLProperties properties = new MySQLProperties();
         properties.host(mapping.getHost())
                 .port(mapping.getPort())

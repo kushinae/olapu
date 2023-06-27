@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.controller;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.api.service.AccountService;
+import org.kushinae.olapu.interfaces.service.IAccountService;
 import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.controller.account.IAccountLinkedController;
 import org.kushinae.olapu.interfaces.pojo.api.account.LoginPayload;
@@ -18,16 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountLinkedController extends AbstractController implements IAccountLinkedController {
 
     @Resource
-    AccountService accountService;
+    private IAccountService accountService;
 
     @Override
     public Login login(LoginPayload payload) {
-        return accountService.login(payload);
+        return getService().login(payload);
     }
 
     @Override
     public Register register(RegisterPayload payload) {
-        return accountService.register(payload);
+        return getService().register(payload);
     }
 
+    @Override
+    public IAccountService getService() {
+        return accountService;
+    }
 }

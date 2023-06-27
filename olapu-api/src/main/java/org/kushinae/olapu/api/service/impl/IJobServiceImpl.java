@@ -8,7 +8,7 @@ import org.kushinae.olapu.api.event.Event;
 import org.kushinae.olapu.api.event.factory.EventFactory;
 import org.kushinae.olapu.api.event.payload.BuildJobPayload;
 import org.kushinae.olapu.api.http.ErrorMessage;
-import org.kushinae.olapu.api.service.JobService;
+import org.kushinae.olapu.interfaces.service.IJobService;
 import org.kushinae.olapu.core.job.entities.generate.GenerateJob;
 import org.kushinae.olapu.core.utils.JacksonUtils;
 import org.kushinae.olapu.generate.Record;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
  * @since 1.0.0
  */
 @Service
-public class JobServiceImpl implements JobService {
+public class IJobServiceImpl implements IJobService {
 
     @Resource
     JobRepository repository;

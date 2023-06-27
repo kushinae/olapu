@@ -2,7 +2,7 @@ package org.kushinae.olapu.api.service.impl;
 
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.components.ComponentFactory;
-import org.kushinae.olapu.api.service.DatabaseService;
+import org.kushinae.olapu.interfaces.service.IDatabaseService;
 import org.kushinae.yone.commons.model.pojo.rdbms.Column;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @Service
-public class DatabaseServiceImpl implements DatabaseService {
+public class IDatabaseServiceImpl implements IDatabaseService {
 
     @Resource
     ComponentFactory componentFactory;
