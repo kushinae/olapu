@@ -1,5 +1,6 @@
 package org.kushinae.olapu.interfaces.controller;
 
+import jakarta.annotation.Resource;
 import org.kushinae.olapu.interfaces.authorization.Authorization;
 import org.kushinae.olapu.interfaces.service.IService;
 import org.kushinae.olapu.repository.enums.DatasourceType;
@@ -28,6 +29,7 @@ public abstract class AbstractController implements IController {
     }
 
     @Override
+    @Resource
     public void setAuthorization(Authorization authorization) {
         this.authorization = authorization;
     }
