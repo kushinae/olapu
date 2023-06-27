@@ -1,7 +1,6 @@
 package org.kushinae.olapu.api.components.support.job;
 
 import org.kushinae.olapu.api.components.AbstractJobComponent;
-import org.kushinae.olapu.repository.entities.Job;
 import org.kushinae.olapu.repository.enums.JobModel;
 import org.springframework.stereotype.Component;
 
