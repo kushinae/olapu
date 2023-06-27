@@ -33,8 +33,8 @@ public interface IDatabaseController extends IController {
     @GetMapping("/columns/detail")
     @Operation(summary = "通过数据源ID以及库名称和表名称获取字段详情")
     List<Column> columns(@Parameter(required = true, example = "1") @RequestParam("datasource_id") Long datasourceId,
-                                @Parameter(description = "如果为空使用数据源配置的数据库，如果该参数和数据源配置的数据库都为空则抛出异常400", example = "olapu") @RequestParam(value = "database", required = false) String database,
-                                @Parameter(required = true, example = "t_user") @RequestParam("table") String table);
+                         @Parameter(description = "如果为空使用数据源配置的数据库，如果该参数和数据源配置的数据库都为空则抛出异常400", example = "olapu") @RequestParam(value = "database", required = false) String database,
+                         @Parameter(required = true, example = "t_user") @RequestParam("table") String table);
 
     @Override
     IDatabaseService getService();

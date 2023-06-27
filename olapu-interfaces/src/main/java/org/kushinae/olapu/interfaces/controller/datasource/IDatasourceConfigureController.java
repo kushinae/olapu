@@ -29,10 +29,12 @@ public interface IDatasourceConfigureController extends IController {
     List<Configure> template(@Parameter(description = "数据源类型") @RequestParam("type") DatasourceType type);
 
     @PostMapping
+    @Operation(summary = "通过数据源ID修改数据源配置")
     List<Configure> configure(@RequestBody EditConfigurePayload payload);
 
     @GetMapping
-    List<Configure> getConfigures(@RequestParam("datasource_id") Long datasourceId);
+    @Operation(summary = "通过数据源ID获取数据源配置")
+    List<Configure> getConfigures(@Parameter(description = "数据源主键ID") @RequestParam("datasource_id") Long datasourceId);
 
     @Override
     IDatasourceConfigureService getService();
