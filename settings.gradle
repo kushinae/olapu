@@ -8,11 +8,7 @@
  */
 
 rootProject.name = 'olapu'
-include 'olapu-core'
 include 'olapu-api'
-include 'olapu-spi'
-include 'olapu-generate'
-include 'olapu-java-plugin'
 include 'olapu-repository'
 include 'olapu-interfaces'
 

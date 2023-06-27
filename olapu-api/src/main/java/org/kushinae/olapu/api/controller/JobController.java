@@ -3,7 +3,7 @@ package org.kushinae.olapu.api.controller;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.convert.JobConvert;
 import org.kushinae.olapu.interfaces.service.IJobService;
-import org.kushinae.olapu.generate.Record;
+import org.kushinae.heimerdinger.core.generate.Record;
 import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.controller.job.IJobController;
 import org.kushinae.olapu.interfaces.pojo.api.job.EditJobPayload;

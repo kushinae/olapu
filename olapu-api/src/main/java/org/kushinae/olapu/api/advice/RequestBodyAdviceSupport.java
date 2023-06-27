@@ -2,7 +2,7 @@ package org.kushinae.olapu.api.advice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
-import org.kushinae.olapu.core.utils.JacksonUtils;
+import org.kushinae.heimerdinger.core.utils.JacksonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpInputMessage;

@@ -3,7 +3,7 @@ package org.kushinae.olapu.interfaces.controller.job;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.kushinae.olapu.generate.Record;
+import org.kushinae.heimerdinger.core.generate.Record;
 import org.kushinae.olapu.interfaces.controller.IController;
 import org.kushinae.olapu.interfaces.pojo.api.job.EditJobPayload;
 import org.kushinae.olapu.interfaces.service.IJobService;

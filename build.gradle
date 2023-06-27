@@ -47,4 +47,5 @@ ext {
     yoneVersion = '1.0.0-SNAPSHOT'
     disruptorVersion = '4.0.0.RC1'
     springdocVersion = '2.1.0'
+    heimerdingerVersion = '1.0.0-SNAPSHOT'
 }

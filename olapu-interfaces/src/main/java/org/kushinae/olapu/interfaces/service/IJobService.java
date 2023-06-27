@@ -1,6 +1,6 @@
 package org.kushinae.olapu.interfaces.service;
 
-import org.kushinae.olapu.generate.Record;
+import org.kushinae.heimerdinger.core.generate.Record;
 import org.kushinae.olapu.repository.entities.Job;
 import org.kushinae.olapu.repository.repository.impl.JobRepository;
 

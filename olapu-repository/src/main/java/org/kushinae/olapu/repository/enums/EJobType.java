@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import org.kushinae.olapu.core.enums.JobType;
+import org.kushinae.heimerdinger.core.enums.JobType;
 
 /**
  * @author kaisa.liu

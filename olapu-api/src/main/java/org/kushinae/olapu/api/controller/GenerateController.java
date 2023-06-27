@@ -3,7 +3,7 @@ package org.kushinae.olapu.api.controller;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.interfaces.controller.generate.IGenerateController;
 import org.kushinae.olapu.interfaces.service.IGenerateService;
-import org.kushinae.olapu.generate.Record;
+import org.kushinae.heimerdinger.core.generate.Record;
 import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.pojo.api.generate.GeneratePayload;
 import org.springframework.web.bind.annotation.PostMapping;

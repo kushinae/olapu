@@ -22,7 +22,6 @@ jar {
 }
 
 dependencies {
-    implementation project(path: ':olapu-java-plugin')
     implementation project(path: ':olapu-interfaces')
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
@@ -38,6 +37,7 @@ dependencies {
     implementation group: 'cn.hutool', name: 'hutool-core', version: hutoolVersion
     // https://mvnrepository.com/artifact/com.lmax/disruptor
     implementation group: 'com.lmax', name: 'disruptor', version: disruptorVersion
+    implementation group: 'org.kushinae', name: 'heimerdinger-generate-java-plugin', version: heimerdingerVersion
 
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     // https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor

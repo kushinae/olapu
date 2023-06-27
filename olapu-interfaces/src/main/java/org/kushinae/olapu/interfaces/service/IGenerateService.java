@@ -1,6 +1,6 @@
 package org.kushinae.olapu.interfaces.service;
 
-import org.kushinae.olapu.generate.Record;
+import org.kushinae.heimerdinger.core.generate.Record;
 import org.kushinae.olapu.interfaces.pojo.api.generate.GeneratePayload;
 
 /**
