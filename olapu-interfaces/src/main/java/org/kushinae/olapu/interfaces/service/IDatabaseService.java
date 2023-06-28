@@ -1,6 +1,6 @@
 package org.kushinae.olapu.interfaces.service;
 
-import org.kushinae.yone.commons.model.pojo.rdbms.Column;
+import org.kushinae.yone.core.rdbms.Column;
 
 import java.util.List;
 
@@ -14,4 +14,6 @@ public interface IDatabaseService extends IService {
     List<String> tables(Long datasourceId, String uid, String database);
 
     List<Column> columns(Long datasourceId, String database, String table, String uid);
+
+    String preview(Long datasourceId, String database, String table);
 }

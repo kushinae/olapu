@@ -4,7 +4,7 @@ import jakarta.annotation.Resource;
 import org.kushinae.olapu.interfaces.service.IDatabaseService;
 import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.controller.database.IDatabaseController;
-import org.kushinae.yone.commons.model.pojo.rdbms.Column;
+import org.kushinae.yone.core.rdbms.Column;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,6 +32,11 @@ public class DatabaseController extends AbstractController implements IDatabaseC
     @Override
     public List<Column> columns(Long datasourceId, String database, String table) {
         return getService().columns(datasourceId, database, table, authorization.getUid());
+    }
+
+    @Override
+    public String preview(Long datasourceId, String database, String table) {
+        return getService().preview(datasourceId, database, table);
     }
 
     @Override

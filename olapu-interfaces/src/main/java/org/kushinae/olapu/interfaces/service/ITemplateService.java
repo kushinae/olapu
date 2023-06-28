@@ -7,7 +7,7 @@ import org.kushinae.olapu.repository.repository.impl.TemplateRepository;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface ITemplateService extends IRepositoryService<Template, Long> {
+public interface ITemplateService extends IRepositoryService<Template, Long, TemplateRepository> {
     Long create(Template template);
 
     @Override

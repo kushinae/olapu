@@ -1,12 +1,12 @@
 package org.kushinae.olapu.interfaces.service;
 
-import org.springframework.data.repository.Repository;
+import org.kushinae.olapu.repository.repository.IServiceRepository;
 
 /**
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface IRepositoryService<E, I> extends IService {
+public interface IRepositoryService<E, I, R extends IServiceRepository<E, I>> extends IService {
 
-    Repository<E, I> getRepository();
+    R getRepository();
 }

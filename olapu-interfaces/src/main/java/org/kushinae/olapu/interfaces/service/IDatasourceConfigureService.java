@@ -3,6 +3,7 @@ package org.kushinae.olapu.interfaces.service;
 import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.repository.entities.DatasourceConfigure;
 import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.repository.repository.impl.DatasourceConfigureRepository;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface IDatasourceConfigureService extends IRepositoryService<DatasourceConfigure, Long> {
+public interface IDatasourceConfigureService extends IRepositoryService<DatasourceConfigure, Long, DatasourceConfigureRepository> {
 
     /**
      * 通过数据源ID获取数据源配置项

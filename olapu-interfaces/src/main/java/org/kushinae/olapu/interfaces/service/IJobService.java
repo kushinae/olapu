@@ -8,7 +8,7 @@ import org.kushinae.olapu.repository.repository.impl.JobRepository;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface IJobService extends IRepositoryService<Job, Long> {
+public interface IJobService extends IRepositoryService<Job, Long, JobRepository> {
 
     JobRepository getRepository();
 

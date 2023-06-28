@@ -10,7 +10,7 @@ import java.util.List;
  * @author kaisa.liu
  * @since 1.0.0
  */
-public interface IResourceService extends IRepositoryService<Resource, Long> {
+public interface IResourceService extends IRepositoryService<Resource, Long, ResourceRepository> {
     Long create(Resource resource);
 
     @Override

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import org.kushinae.yone.commons.model.enums.EDataSourceType;
+import org.kushinae.yone.core.enums.EDataSourceType;
 
 import java.beans.PropertyEditorSupport;
 

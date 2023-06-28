@@ -1,8 +1,8 @@
 package org.kushinae.olapu.api.event.factory;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.interfaces.enums.PubsubEvent;
-import org.kushinae.olapu.interfaces.enums.PubsubEventGroup;
+import org.kushinae.olapu.repository.enums.PubsubEvent;
+import org.kushinae.olapu.repository.enums.PubsubEventGroup;
 import org.kushinae.olapu.api.event.Event;
 import org.springframework.stereotype.Component;
 

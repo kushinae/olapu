@@ -38,6 +38,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.lmax/disruptor
     implementation group: 'com.lmax', name: 'disruptor', version: disruptorVersion
     implementation group: 'org.kushinae', name: 'heimerdinger-generate-java-plugin', version: heimerdingerVersion
+    implementation group: 'org.kushinae', name: 'yone-mysql-8-plugin', version: yoneVersion
 
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     // https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor
