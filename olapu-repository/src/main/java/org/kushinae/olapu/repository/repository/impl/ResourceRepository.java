@@ -1,8 +1,8 @@
 package org.kushinae.olapu.repository.repository.impl;
 
 import org.kushinae.olapu.repository.entities.Resource;
-import org.kushinae.olapu.repository.enums.FileType;
-import org.kushinae.olapu.repository.enums.ResourceCategory;
+import org.kushinae.olapu.core.enums.FileType;
+import org.kushinae.olapu.core.enums.ResourceCategory;
 import org.kushinae.olapu.repository.repository.IServiceRepository;
 import org.springframework.stereotype.Repository;
 

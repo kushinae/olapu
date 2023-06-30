@@ -7,7 +7,7 @@ import org.kushinae.olapu.interfaces.controller.IController;
 import org.kushinae.olapu.interfaces.pojo.api.resource.Detail;
 import org.kushinae.olapu.interfaces.service.IResourceService;
 import org.kushinae.olapu.interfaces.vo.resource.EditResource;
-import org.kushinae.olapu.repository.enums.ResourceCategory;
+import org.kushinae.olapu.core.enums.ResourceCategory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

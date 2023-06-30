@@ -11,8 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.kushinae.olapu.repository.enums.FileType;
-import org.kushinae.olapu.repository.enums.ResourceCategory;
+import org.kushinae.olapu.core.enums.FileType;
+import org.kushinae.olapu.core.enums.ResourceCategory;
 
 import java.util.Date;
 

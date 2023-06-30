@@ -7,19 +7,12 @@ version '1.0-SNAPSHOT'
 
 dependencies {
     compileOnly group: 'org.kushinae', name: 'heimerdinger-core', version: heimerdingerVersion
+    compileOnly project(path: ':olapu-core')
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
     api group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springComponentVersion
     // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
     api group: 'com.mysql', name: 'mysql-connector-j', version: mysqlDriverVersion
-    // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    api group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    api group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
-    api group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
-    api group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
     compileOnly group: 'org.kushinae', name: 'yone-mysql-8-plugin', version: yoneVersion
     // https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations
     api group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: springdocVersion

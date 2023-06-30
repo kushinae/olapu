@@ -1,6 +1,7 @@
 package org.kushinae.olapu.api.util;
 
 import org.junit.jupiter.api.Test;
+import org.kushinae.olapu.core.util.UidUtils;
 
 import java.math.BigDecimal;
 import java.util.regex.Pattern;

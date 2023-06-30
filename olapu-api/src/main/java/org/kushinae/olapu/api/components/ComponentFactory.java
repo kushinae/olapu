@@ -3,10 +3,10 @@ package org.kushinae.olapu.api.components;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.interfaces.service.IDatasourceService;
-import org.kushinae.olapu.api.util.AbstractAssert;
+import org.kushinae.olapu.core.util.AbstractAssert;
 import org.kushinae.olapu.repository.entities.Datasource;
-import org.kushinae.olapu.repository.enums.DatasourceType;
-import org.kushinae.olapu.repository.enums.JobModel;
+import org.kushinae.olapu.core.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.JobModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

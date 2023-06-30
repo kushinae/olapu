@@ -11,4 +11,5 @@ rootProject.name = 'olapu'
 include 'olapu-api'
 include 'olapu-repository'
 include 'olapu-interfaces'
+include 'olapu-core'
 

@@ -7,7 +7,7 @@ import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.controller.datasource.IDatasourceConfigureController;
 import org.kushinae.olapu.interfaces.pojo.api.datasource.configure.EditConfigurePayload;
 import org.kushinae.olapu.interfaces.vo.datasource.configure.Configure;
-import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.DatasourceType;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

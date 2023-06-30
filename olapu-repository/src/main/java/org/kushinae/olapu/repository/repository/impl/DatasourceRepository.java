@@ -1,7 +1,7 @@
 package org.kushinae.olapu.repository.repository.impl;
 
 import org.kushinae.olapu.repository.entities.Datasource;
-import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.DatasourceType;
 import org.kushinae.olapu.repository.repository.IServiceRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

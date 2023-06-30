@@ -11,8 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.kushinae.olapu.repository.enums.PubsubEvent;
-import org.kushinae.olapu.repository.enums.PubsubEventGroup;
+import org.kushinae.olapu.core.enums.EventMiddleware;
+import org.kushinae.olapu.core.enums.EventTargetType;
+import org.kushinae.olapu.core.enums.PubsubEvent;
+import org.kushinae.olapu.core.enums.PubsubEventGroup;
+
+import java.util.Date;
 
 /**
  * @author kaisa.liu
@@ -28,7 +32,13 @@ public class EventDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
+
+    /**
+     * 目标事件类型数据ID
+     */
+    @Column(name = "event_id")
+    private String eventId;
 
     /**
      * 目标事件类型数据ID
@@ -40,7 +50,8 @@ public class EventDetail {
      * 目标事件类型 比如 job
      */
     @Column(name = "target_type")
-    private String targetType;
+    @Convert(converter = EventTargetType.Convert.class)
+    private EventTargetType targetType;
 
     /**
      * 事件组
@@ -57,6 +68,13 @@ public class EventDetail {
     private PubsubEvent type;
 
     /**
+     * 事件所使用的中间件 如rabbitmq等等
+     */
+    @Column(name = "middleware")
+    @Convert(converter = EventMiddleware.Convert.class)
+    private EventMiddleware middleware;
+
+    /**
      * 事件内容
      */
     @Column(name = "content")
@@ -66,19 +84,18 @@ public class EventDetail {
      * 数据创建时间
      */
     @Column(name = "create_at")
-    private String createAt;
+    private Date createAt;
 
     /**
      * 数据编辑时间
      */
     @Column(name = "modified_at")
-    private String modifiedAt;
+    private Date modifiedAt;
 
     /**
      * 数据是否删除
      */
     @Column(name = "deleted")
-    private String deleted;
-
+    private Boolean deleted;
 
 }

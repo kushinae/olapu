@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     api project(path: ':olapu-repository')
+    compileOnly project(path: ':olapu-core')
     compileOnly group: 'org.kushinae', name: 'heimerdinger-generate-java-plugin', version: heimerdingerVersion
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springComponentVersion

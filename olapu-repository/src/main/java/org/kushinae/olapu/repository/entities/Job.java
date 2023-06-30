@@ -11,8 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.kushinae.olapu.repository.enums.EJobType;
-import org.kushinae.olapu.repository.enums.JobModel;
+import org.kushinae.olapu.core.enums.EJobType;
+import org.kushinae.olapu.core.enums.JobModel;
 
 import java.util.Date;
 

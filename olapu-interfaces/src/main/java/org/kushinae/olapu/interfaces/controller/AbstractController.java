@@ -3,8 +3,8 @@ package org.kushinae.olapu.interfaces.controller;
 import jakarta.annotation.Resource;
 import org.kushinae.olapu.interfaces.authorization.Authorization;
 import org.kushinae.olapu.interfaces.service.IService;
-import org.kushinae.olapu.repository.enums.DatasourceType;
-import org.kushinae.olapu.repository.enums.ResourceCategory;
+import org.kushinae.olapu.core.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.ResourceCategory;
 import org.springframework.web.bind.WebDataBinder;
 
 /**

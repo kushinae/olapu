@@ -7,7 +7,7 @@ import org.kushinae.olapu.interfaces.controller.IController;
 import org.kushinae.olapu.interfaces.pojo.api.datasource.configure.EditConfigurePayload;
 import org.kushinae.olapu.interfaces.service.IDatasourceConfigureService;
 import org.kushinae.olapu.interfaces.vo.datasource.configure.Configure;
-import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.DatasourceType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

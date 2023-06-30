@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.DatasourceType;
 
 import java.util.Date;
 

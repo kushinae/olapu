@@ -1,7 +1,7 @@
 package org.kushinae.olapu.interfaces.service;
 
 import org.kushinae.olapu.repository.entities.Resource;
-import org.kushinae.olapu.repository.enums.ResourceCategory;
+import org.kushinae.olapu.core.enums.ResourceCategory;
 import org.kushinae.olapu.repository.repository.impl.ResourceRepository;
 
 import java.util.List;

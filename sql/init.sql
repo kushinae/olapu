@@ -86,3 +86,17 @@ create table t_job
    modified_at datetime default now() comment '数据编辑时间',
    deleted tinyint(1) default false comment '数据是否删除'
 ) comment '任务表';
+
+create table t_event (
+                         id bigint primary key auto_increment comment '主键ID',
+                         event_id varchar(128) comment '事件唯一ID',
+                         target_id varchar(128) not null comment '目标事件类型数据ID',
+                         target_type char(32) not null comment '目标事件类型 比如 job',
+                         `group` char(32) not null comment '事件组',
+                         type char(32) not null comment '事件类型',
+                         middleware char(32) not null comment '事件所使用的中间件 如rabbitmq等等',
+                         content text not null comment '事件内容',
+                         create_at datetime default now() comment '数据创建时间',
+                         modified_at datetime default now() comment '数据编辑时间',
+                         deleted tinyint(1) default false comment '数据是否删除'
+) comment '事件表';

@@ -2,8 +2,8 @@ package org.kushinae.olapu.interfaces.vo.job;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.kushinae.olapu.repository.enums.EJobType;
-import org.kushinae.olapu.repository.enums.JobModel;
+import org.kushinae.olapu.core.enums.EJobType;
+import org.kushinae.olapu.core.enums.JobModel;
 
 /**
  * @author kaisa.liu

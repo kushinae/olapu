@@ -7,7 +7,7 @@ import org.kushinae.olapu.interfaces.controller.AbstractController;
 import org.kushinae.olapu.interfaces.controller.resource.IResourceController;
 import org.kushinae.olapu.interfaces.pojo.api.resource.Detail;
 import org.kushinae.olapu.interfaces.vo.resource.EditResource;
-import org.kushinae.olapu.repository.enums.ResourceCategory;
+import org.kushinae.olapu.core.enums.ResourceCategory;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

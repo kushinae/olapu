@@ -1,9 +1,9 @@
 package org.kushinae.olapu.api.event.factory;
 
 import jakarta.annotation.Resource;
-import org.kushinae.olapu.repository.enums.PubsubEvent;
-import org.kushinae.olapu.repository.enums.PubsubEventGroup;
-import org.kushinae.olapu.api.event.Event;
+import org.kushinae.olapu.core.event.Event;
+import org.kushinae.olapu.core.enums.PubsubEvent;
+import org.kushinae.olapu.core.enums.PubsubEventGroup;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

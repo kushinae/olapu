@@ -4,12 +4,12 @@ import jakarta.annotation.Resource;
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.interfaces.service.IDatasourceConfigureService;
 import org.kushinae.olapu.interfaces.service.IDatasourceService;
-import org.kushinae.olapu.api.util.AbstractAssert;
-import org.kushinae.olapu.api.util.CollectionUtils;
+import org.kushinae.olapu.core.util.AbstractAssert;
+import org.kushinae.olapu.core.util.CollectionUtils;
 import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.repository.entities.Datasource;
 import org.kushinae.olapu.repository.entities.DatasourceConfigure;
-import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.DatasourceType;
 import org.kushinae.olapu.repository.repository.impl.DatasourceConfigureRepository;
 import org.springframework.stereotype.Service;
 

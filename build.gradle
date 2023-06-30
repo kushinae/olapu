@@ -48,4 +48,5 @@ ext {
     disruptorVersion = '4.0.0.RC1'
     springdocVersion = '2.1.0'
     heimerdingerVersion = '1.0.0-SNAPSHOT'
+    log4jVersion = '3.0.0-alpha1'
 }

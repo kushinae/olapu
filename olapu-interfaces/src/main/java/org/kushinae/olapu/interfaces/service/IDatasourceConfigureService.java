@@ -2,7 +2,7 @@ package org.kushinae.olapu.interfaces.service;
 
 import org.kushinae.olapu.interfaces.pojo.lang.DatasourceConfigureMapping;
 import org.kushinae.olapu.repository.entities.DatasourceConfigure;
-import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.DatasourceType;
 import org.kushinae.olapu.repository.repository.impl.DatasourceConfigureRepository;
 
 import java.util.List;

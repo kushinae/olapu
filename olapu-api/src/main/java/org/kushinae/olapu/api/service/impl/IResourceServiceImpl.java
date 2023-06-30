@@ -2,10 +2,10 @@ package org.kushinae.olapu.api.service.impl;
 
 import org.kushinae.olapu.api.http.ErrorMessage;
 import org.kushinae.olapu.interfaces.service.IResourceService;
-import org.kushinae.olapu.api.util.AbstractAssert;
-import org.kushinae.olapu.api.util.StringUtils;
+import org.kushinae.olapu.core.util.AbstractAssert;
+import org.kushinae.olapu.core.util.StringUtils;
 import org.kushinae.olapu.repository.entities.Resource;
-import org.kushinae.olapu.repository.enums.ResourceCategory;
+import org.kushinae.olapu.core.enums.ResourceCategory;
 import org.kushinae.olapu.repository.repository.impl.ResourceRepository;
 import org.springframework.stereotype.Service;
 

@@ -2,9 +2,9 @@ package org.kushinae.olapu.interfaces.pojo.api.generate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.kushinae.olapu.repository.enums.TemplateModel;
-import org.kushinae.olapu.repository.enums.TemplateSource;
-import org.kushinae.olapu.repository.enums.TemplateType;
+import org.kushinae.olapu.core.enums.TemplateModel;
+import org.kushinae.olapu.core.enums.TemplateSource;
+import org.kushinae.olapu.core.enums.TemplateType;
 
 /**
  * @author kaisa.liu

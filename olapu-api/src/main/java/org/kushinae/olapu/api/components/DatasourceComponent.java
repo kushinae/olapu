@@ -1,6 +1,6 @@
 package org.kushinae.olapu.api.components;
 
-import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.DatasourceType;
 import org.kushinae.yone.core.client.IClient;
 import org.kushinae.yone.core.properties.Properties;
 import org.kushinae.yone.core.rdbms.Column;

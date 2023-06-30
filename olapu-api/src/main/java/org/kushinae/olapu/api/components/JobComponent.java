@@ -1,7 +1,7 @@
 package org.kushinae.olapu.api.components;
 
 import org.kushinae.olapu.repository.entities.Job;
-import org.kushinae.olapu.repository.enums.JobModel;
+import org.kushinae.olapu.core.enums.JobModel;
 
 /**
  * @author kaisa.liu

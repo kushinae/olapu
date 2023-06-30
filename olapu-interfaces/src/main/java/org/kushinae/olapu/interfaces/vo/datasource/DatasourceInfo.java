@@ -3,7 +3,7 @@ package org.kushinae.olapu.interfaces.vo.datasource;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import org.kushinae.olapu.repository.enums.DatasourceType;
+import org.kushinae.olapu.core.enums.DatasourceType;
 
 /**
  * @author kaisa.liu
